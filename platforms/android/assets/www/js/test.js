@@ -2,6 +2,7 @@ var $$ = Dom7;
 var page;
 sessionStorage['idSpeaker']="";
 sessionStorage['token']="";
+sessionStorage['login']="true";
 
 
 
@@ -10,15 +11,7 @@ var myApp = new Framework7({
     swipePanel: 'left'
     // ... other parameters
 });
-//myApp.alert(sessionStorage['idSpeaker']);
 
-//$$('#ici').hide();
-
-
-/*var mySearchbar = myApp.searchbar('.searchbar', {
-    searchList: '.list-block-search',
-    searchIn: '.item-title'
-});*/
 
 get_search_bar();
 
@@ -44,7 +37,7 @@ var template = $$('#tpl-search-bar').html();
           "url": "http://52.69.148.135/ws/api/speakers",
           "type": "Get",
           "headers": {
-            "authorization":"Bearer {eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjQsImlzcyI6Imh0dHA6XC9cLzUyLjY5LjE0OC4xMzVcL3dzXC9hdXRoXC9sb2dpbiIsImlhdCI6MTQ2NzE4MzkzMywiZXhwIjoxNDY3MTg3NTMzLCJuYmYiOjE0NjcxODM5MzMsImp0aSI6IjFhOGE1NTI1OTUyZWQxN2RkOTk1ZGJmYjFjNzE3ZTYzIn0.irdAohn6JS0Ft_HCJg4BiF8nn3bijKc2Ak9et2RBjfk}"
+            "authorization":"Bearer {eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjQsImlzcyI6Imh0dHA6XC9cLzUyLjY5LjE0OC4xMzVcL3dzXC9hdXRoXC9sb2dpbiIsImlhdCI6MTQ2NzE4NzYwMSwiZXhwIjoxNDY3MTkxMjAxLCJuYmYiOjE0NjcxODc2MDEsImp0aSI6IjEyZGI5OTg0OGY5YTdlY2M2NmQwNDBkYmY2MDMwNTE1In0.10HaGYVsbVD26bZxZcabW1kn5WvxSTp6i-pNehFsig4}"
               },
               data: {
                         email: "evan.chen@acer.com",
@@ -115,7 +108,7 @@ var settings = {
   "url": "http://52.69.148.135/ws/api/speakers/"+sessionStorage['idSpeaker']+"",
   "type": "Get",
   "headers": {
-    "authorization": "Bearer {eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjQsImlzcyI6Imh0dHA6XC9cLzUyLjY5LjE0OC4xMzVcL3dzXC9hdXRoXC9sb2dpbiIsImlhdCI6MTQ2NzE4MzkzMywiZXhwIjoxNDY3MTg3NTMzLCJuYmYiOjE0NjcxODM5MzMsImp0aSI6IjFhOGE1NTI1OTUyZWQxN2RkOTk1ZGJmYjFjNzE3ZTYzIn0.irdAohn6JS0Ft_HCJg4BiF8nn3bijKc2Ak9et2RBjfk}"
+    "authorization": "Bearer {eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjQsImlzcyI6Imh0dHA6XC9cLzUyLjY5LjE0OC4xMzVcL3dzXC9hdXRoXC9sb2dpbiIsImlhdCI6MTQ2NzE4NzYwMSwiZXhwIjoxNDY3MTkxMjAxLCJuYmYiOjE0NjcxODc2MDEsImp0aSI6IjEyZGI5OTg0OGY5YTdlY2M2NmQwNDBkYmY2MDMwNTE1In0.10HaGYVsbVD26bZxZcabW1kn5WvxSTp6i-pNehFsig4}"
      },data: {
                 email: "evan.chen@acer.com",
                 password: "1qaz@WSX"
@@ -129,7 +122,12 @@ var settings = {
   }
   };
 
+
+myApp.alert(sessionStorage['login']);
 //CHARGEMENT DES DONNEES DU SPEAKER
+
+
+
 
 $.ajax(settings).done(function(data){
 page = compiledTemplate(data.speakers);
@@ -186,7 +184,13 @@ var myPhotoBrowserPopupDark = myApp.photoBrowser({
 });
 
 $$('.open-about').on('click', function () {
-  myApp.popup('.popup-about');
+if (!sessionStorage['login']){
+    myApp.alert('Pas de login, pas de review :(');
+}
+else{
+
+  myApp.popup('.popup-review');
+  }
 });
 
 $$('.popup-services').on('click', function () {
@@ -229,15 +233,14 @@ var understand = (document.getElementById("understand-id").value)/20;
 var captivating = (document.getElementById("captivating-id").value)/20;
 var inspiring = (document.getElementById("inspiring-id").value)/20;
 
-});
+}
 
+);
 }
 
 
 
-//APPEL DE LA FONCTION
 
-//get_specific_speaker();
 
 
 
