@@ -1,8 +1,9 @@
 var $$ = Dom7;
 var page;
 sessionStorage['idSpeaker']="";
-sessionStorage['token']="";
+sessionStorage['token']="Bearer {eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjQsImlzcyI6Imh0dHA6XC9cLzUyLjY5LjE0OC4xMzVcL3dzXC9hdXRoXC9sb2dpbiIsImlhdCI6MTQ2NzE5MTU3NywiZXhwIjoxNDY3MTk1MTc3LCJuYmYiOjE0NjcxOTE1NzcsImp0aSI6ImRlMGRhNWM1M2E0NGI4MzMyYjVlYTQzZWY0MWVhODNiIn0.5oCA3lORl0dvUX-87YGL9HPtGs5lDgmqapzLmJj3RYg}";
 sessionStorage['login']="true";
+
 
 
 
@@ -12,7 +13,7 @@ var myApp = new Framework7({
     // ... other parameters
 });
 
-
+//myApp.alert(sessionStorage['token']);
 get_search_bar();
 
 
@@ -37,8 +38,8 @@ var template = $$('#tpl-search-bar').html();
           "url": "http://52.69.148.135/ws/api/speakers",
           "type": "Get",
           "headers": {
-            "authorization":"Bearer {eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjQsImlzcyI6Imh0dHA6XC9cLzUyLjY5LjE0OC4xMzVcL3dzXC9hdXRoXC9sb2dpbiIsImlhdCI6MTQ2NzE4NzYwMSwiZXhwIjoxNDY3MTkxMjAxLCJuYmYiOjE0NjcxODc2MDEsImp0aSI6IjEyZGI5OTg0OGY5YTdlY2M2NmQwNDBkYmY2MDMwNTE1In0.10HaGYVsbVD26bZxZcabW1kn5WvxSTp6i-pNehFsig4}"
-              },
+            "authorization": sessionStorage['token']
+            },
               data: {
                         email: "evan.chen@acer.com",
                         password: "1qaz@WSX"
@@ -108,7 +109,7 @@ var settings = {
   "url": "http://52.69.148.135/ws/api/speakers/"+sessionStorage['idSpeaker']+"",
   "type": "Get",
   "headers": {
-    "authorization": "Bearer {eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjQsImlzcyI6Imh0dHA6XC9cLzUyLjY5LjE0OC4xMzVcL3dzXC9hdXRoXC9sb2dpbiIsImlhdCI6MTQ2NzE4NzYwMSwiZXhwIjoxNDY3MTkxMjAxLCJuYmYiOjE0NjcxODc2MDEsImp0aSI6IjEyZGI5OTg0OGY5YTdlY2M2NmQwNDBkYmY2MDMwNTE1In0.10HaGYVsbVD26bZxZcabW1kn5WvxSTp6i-pNehFsig4}"
+    "authorization": sessionStorage['token']
      },data: {
                 email: "evan.chen@acer.com",
                 password: "1qaz@WSX"
@@ -123,7 +124,7 @@ var settings = {
   };
 
 
-myApp.alert(sessionStorage['login']);
+//myApp.alert("Le session storage (login) vaut "+sessionStorage['login']);
 //CHARGEMENT DES DONNEES DU SPEAKER
 
 
@@ -185,11 +186,16 @@ var myPhotoBrowserPopupDark = myApp.photoBrowser({
 
 $$('.open-about').on('click', function () {
 if (!sessionStorage['login']){
-    myApp.alert('Pas de login, pas de review :(');
+    //myApp.alert('Pas de login, pas de review :(');
+    myApp.popup('.popup-inscription');
 }
 else{
 
   myApp.popup('.popup-review');
+  $$('.form-to-json').on('click', function(){
+    var formData = myApp.formToJSON('#leave-a-review');
+    console.log(JSON.stringify(formData));
+  });
   }
 });
 

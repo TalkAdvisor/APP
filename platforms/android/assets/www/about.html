@@ -76,7 +76,7 @@
                 <li class="item-content">
                     <div class="item-inner">
                         <div class="item-title">{{speaker_name}} </div>
-                        <div class="item-after">{{video}}<div class="button" href="#" onclick="sessionStorage['idSpeaker']='{{id}}'; get_specific_speaker()">See the profile id={{id}}</div></div>
+                        <div class="item-after">{{video}}<div class="button" href="#" onclick="sessionStorage['idSpeaker']='{{id}}'; get_specific_speaker()">See the profile</div></div>
 
                     </div>
                 </li>
@@ -271,7 +271,7 @@
 <div class="popup popup-review">
     <div class="content-block">
         <a href="#" class="button button-fill button-big color-yellow">Please leave a review about François Hollande</a>
-        <div class="list-block">
+        <form class="list-block" id="leave-a-review">
             <ul>
                 <li>
                     <div class="item-content">
@@ -281,7 +281,7 @@
                                 <i class="fa fa-question-circle"></i></a> <span id="affiche-overall"></span>/5</div>
                             <div class="item-input">
                                 <div class="range-slider">
-                                    <input id="overall-id" type="range" min="0" max="100" value="50" step="10">
+                                    <input id="overall-id" name="overall" type="range" min="0" max="100" value="50" step="10">
                                 </div>
                             </div>
                         </div>
@@ -294,7 +294,7 @@
                             <div class="item-title label">內容 <a href="#" data-popover=".popover-about-content" class="open-popover"><i class="fa fa-question-circle"></i></a><span id="affiche-content"></span>/5</div>
                             <div class="item-input">
                                 <div class="range-slider">
-                                    <input id="content-id" type="range" min="0" max="100" value="50" step="10">
+                                    <input id="content-id" name="content" type="range" min="0" max="100" value="50" step="10">
                                 </div>
                             </div>
                         </div>
@@ -307,7 +307,7 @@
                             <div class="item-title label">容易懂 <a href="#" data-popover=".popover-about-understand" class="open-popover"><i class="fa fa-question-circle"></i></a><span id="affiche-understand"></span>/5</div>
                             <div class="item-input">
                                 <div class="range-slider">
-                                    <input id="understand-id" type="range" min="0" max="100" value="50" step="10">
+                                    <input id="understand-id" name="understand" type="range" min="0" max="100" value="50" step="10">
                                 </div>
                             </div>
                         </div>
@@ -320,7 +320,7 @@
                             <div class="item-title label">啓發性 <a href="#" data-popover=".popover-about-captivating" class="open-popover"><i class="fa fa-question-circle"></i></a><span id="affiche-captivating"></span>/5</div>
                             <div class="item-input">
                                 <div class="range-slider">
-                                    <input id="captivating-id" type="range" min="0" max="100" value="50" step="10">
+                                    <input id="captivating-id" name="captivating" type="range" min="0" max="100" value="50" step="10">
                                 </div>
                             </div>
                         </div>
@@ -333,7 +333,7 @@
                             <div class="item-title label">讓人投入 <a href="#" data-popover=".popover-about-inspiring" class="open-popover"><i class="fa fa-question-circle"></i></a><span id="affiche-inspiring"></span>/5</div>
                             <div class="item-input">
                                 <div class="range-slider">
-                                    <input id="inspiring-id" type="range" min="0" max="100" value="50" step="10">
+                                    <input id="inspiring-id" name="inspiring" type="range" min="0" max="100" value="50" step="10">
                                 </div>
                             </div>
                         </div>
@@ -345,7 +345,7 @@
                         <div class="item-inner">
                             <div class="item-title label">Quote</div>
                             <div class="item-input">
-                                <input type="text" placeholder="Enter a quote">
+                                <input type="text" name="quote" placeholder="Enter a quote">
                             </div>
                         </div>
                     </div>
@@ -356,7 +356,7 @@
                         <div class="item-inner">
                             <div class="item-title label">Leave a comment</div>
                             <div class="item-input">
-                                <textarea></textarea>
+                                <textarea name="comment"></textarea>
                             </div>
                         </div>
                     </div>
@@ -366,10 +366,10 @@
 
             </ul>
 
-        </div>
+        </form>
         <div class="row">
             <div class="col-50"><a href="#" class="button button-fill button-big color-red  close-popup">Cancel</a></div>
-            <div class="col-50"><a href="#" class="button button-fill button-big color-green  close-popup notification-default ">Done</a></div>
+            <div class="col-50"><a href="#" class="button button-fill button-big color-green  close-popup notification-default form-to-json">Done</a></div>
         </div>
 
     </div>
@@ -422,7 +422,69 @@
 </div>
 
 
+<!--POPUP REGISTER IF NO LOGIN-->
+<div class="popup popup-inscription">
+    <div class="content-block">
+        <a href="#" class="button button-fill button-big color-yellow">Please sign in TalkAdvisor</a>
+        <div class="list-block">
+            <ul>
+                <li>
+                    <div class="item-content">
+                        <div class="item-media"><i class="fa fa-comments-o"></i></div>
+                        <div class="item-inner">
+                            <div class="item-title label">Login</div>
+                            <div class="item-input">
+                                <input type="text" placeholder="Please enter your login">
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="item-content">
+                        <div class="item-media"><i class="fa fa-comments-o"></i></div>
+                        <div class="item-inner">
+                            <div class="item-title label">Email</div>
+                            <div class="item-input">
+                                <input type="text" placeholder="Please enter your email">
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="item-content">
+                        <div class="item-media"><i class="fa fa-pencil"></i></div>
+                        <div class="item-inner">
+                            <div class="item-title label">Password</div>
+                            <div class="item-input">
+                                <input type="password" placeholder="Please enter your password">
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="item-content">
+                        <div class="item-media"><i class="fa fa-pencil"></i></div>
+                        <div class="item-inner">
+                            <div class="item-title label">Confirm password</div>
+                            <div class="item-input">
+                                <input type="password" placeholder="Please confirm your password">
+                            </div>
+                        </div>
+                    </div>
+                </li>
 
+
+
+            </ul>
+
+        </div>
+        <div class="row">
+            <div class="col-50"><a href="#" class="button button-fill button-big color-red  close-popup">Remind me Later</a></div>
+            <div class="col-50"><a href="#" class="button button-fill button-big color-green  close-popup notification-default ">Sign in ! </a></div>
+        </div>
+
+    </div>
+</div>
 
 
 
