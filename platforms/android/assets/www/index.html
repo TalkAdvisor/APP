@@ -33,6 +33,9 @@
         <link rel="stylesheet" href="css/framework7.ios.colors.min.css">
         <link rel="stylesheet" href="css/framework7.3dpanels.min.css">
         <link rel="stylesheet" href="css/index.css">
+        <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet">
+        <link href="css/star-rating.css" media="all" rel="stylesheet" type="text/css" />
+        <link href="css/theme-krajee-svg.css" media="all" rel="stylesheet" type="text/css" />
     </head>
     <body>
 
@@ -115,403 +118,44 @@
         </div>
 
     </script>
-    <script type="text/template7" id="tpl-speakers">
-        <div class="content-block-title">Classement général</div>
-        <div class="list-block">
-            <ul>
-                {{#each speakers}}
-                <li class="item-content">
-                    <div class="item-inner">
-                        <div class="item-title"> {{speaker_name}}</div>
-                        <div class="item-after">id :&nbsp;<span class="badge">{{id}}</span></div>
-                        <div class="button" onclick="get_specific_speaker()">See the profile of this speaker</div>
-                        <div class="col-50"><a href="#" class="button pb-standalone-video">Standalone</a></div>
-                    </div>
-                </li>
+    <script type="text/template7" id="tpl-reviews">
 
-
-                {{/each}}
-
-
-            </ul>
-        </div>
-    </script>
-    <script type="text/template7" id="tpl-specific-speaker">
-        <div class="content-block-title">Classement général</div>
-        <div class="list-block">
-            <ul>
-                {{#each speakers}}
-                <li class="item-content">
-                    <div class="item-inner">
-                        <div class="item-title"> {{speaker_name}}</div>
-                        <div class="item-after">id :&nbsp;<span class="badge">{{id}}</span></div>
-                        <div class="button" onclick="get_specific_speaker">See the profile of this speaker</div>
-                        <div class="col-50"><a href="#" class="button pb-standalone-video">Standalone</a></div>
-                    </div>
-                </li>
-
-
-                {{/each}}
-
-
-            </ul>
-        </div>
-    </script>
-    <script type="text/template7" id="tpl-search-bar">
-        <div data-page="home" class="page">
-            <!-- Search bar -->
-            <form data-search-list=".list-block-search" data-search-in=".item-title" class="searchbar">
-                <div class="searchbar-input">
-                    <input type="search" placeholder="Search"><a href="#" class="searchbar-clear"></a>
-                </div><a href="#" class="searchbar-cancel">Cancel</a>
-            </form>
-
-            <!-- Search bar overlay -->
-            <div class="searchbar-overlay"></div>
-
-            <div class="page-content">
-                <!-- This block will be displayed if nothing found -->
-                <div class="content-block searchbar-not-found">
-                    <div class="content-block-inner">Nothing found</div>
-                </div>
-
-                <!-- This block will be displayed if anything found, and this list block is used a searbar target -->
-                <div class="list-block list-block-search searchbar-found">
-                    <ul>
-                        <li class="item-content">
-                            <div class="item-inner">
-                                <div class="item-title">Acura </div>
-                            </div>
-                        </li>
-                        <li class="item-content">
-                            <div class="item-inner">
-                                <div class="item-title">Audi</div>
-                            </div>
-                        </li>
-
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </script>
-    <script type="text/template7" id="tpl-specific-speaker">
-
-        <div class="content-block">
-            <div class="row">
-                <div class="col-50">
-                    <img src="img/hollande.jpg" width="100%"/>
-                </div>
-                <div class="col-50">
-                    <div class="content-block-title">Specific speaker profile</div>
-                    <a href="#" class="button button-big">Notation</a>
-                    <div class="row">
-                        <div class="col-33 color-red"><a href="#" class="button button-fill button-small color-red button-round">Tag1</a></div>
-                        <div class="col-33"><a href="#" class="button button-fill color-red button-round">Tag2</a></div>
-                        <div class="col-33"><a href="#" class="button button-fill color-red button-round">Tag3</a></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-17"></div>
-                        <div class="col-33"><a href="#" class="button button-fill button-small color-red button-round">Tag4</a></div>
-
-                        <div class="col-33"><a href="#" class="button button-fill button-small color-red button-round">Tag5</a></div>
-                        <div class="col-17"></div>
-                    </div>
-
-                    <a href="#" class="button open-about button-fill button-big color-yellow">Please leave a review</a>
-                    <div class="content-block-title">
-                        Description
-                    </div>
-                    <div class="content-block-inner">
-                        François Hollande, né le 12 août 1954 à Rouen, en Seine-Inférieure, est un homme d'État français. Il est président de la République française depuis 2012.
-                    </div>
-                    <a href="#" class="button open-popup button-fill " data-popup=".popup-services">More description</a>
-                </div>
-
-            </div>
-
-
-            <a href="#" class="button button-big">Quote here </a>
-
-            <!-- VIDEOS -->
-            <div class="content-block-inner">
-                <iframe width="100%" height="315" src="https://www.youtube.com/embed/nSDa0FRw2cs" frameborder="0" allowfullscreen></iframe>
-                <p>Lorem ipsum dolor sit amet...</p>
-                <div class="col-50"><a href="#" class="button pb-standalone-video">Standalone</a></div>
-
-
-            </div>
-            <!-- RATINGS & REVIEWS-->
-            <div class="list-block">
-
-                <div class="content-block-inner">
-                    RATINGS OF VIEWERS
-                    <ul>
-                        <li>
-                            <div class="item-content">
-                                <div class="item-media"><i class="fa fa-star"></i></div>
-                                <div class="item-inner">
-                                    <div class="item-title label">總和評分 <a href="#" data-popover=".popover-about-overall" class="open-popover">
-                                        <i class="fa fa-question-circle"></i></a> <span id="affiche-overall-rating" class="green">3</span>/5</div>
-                                    <div class="item-input">
-                                        <div class="range-slider">
-                                            <input id="overall-id-rating" type="range" min="0" max="100" value="60" step="10">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="item-content">
-                                <div class="item-media"><i class="fa fa-star"></i></div>
-                                <div class="item-inner">
-                                    <div class="item-title label">內容 <a href="#" data-popover=".popover-about-content" class="open-popover"><i class="fa fa-question-circle"></i></a><span id="affiche-content-rated">3.5</span>/5</div>
-                                    <div class="item-input">
-                                        <div class="range-slider">
-                                            <input id="content-id-rated" type="range" min="0" max="100" value="70" step="10">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="item-content">
-                                <div class="item-media"><i class="fa fa-star"></i></div>
-                                <div class="item-inner">
-                                    <div class="item-title label">容易懂 <a href="#" data-popover=".popover-about-understand" class="open-popover"><i class="fa fa-question-circle"></i></a><span id="affiche-understand-rated">2</span>/5</div>
-                                    <div class="item-input">
-                                        <div class="range-slider">
-                                            <input id="understand-id-rated" type="range" min="0" max="100" value="40" step="10">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="item-content">
-                                <div class="item-media"><i class="fa fa-star"></i></div>
-                                <div class="item-inner">
-                                    <div class="item-title label">啓發性 <a href="#" data-popover=".popover-about-captivating" class="open-popover"><i class="fa fa-question-circle"></i></a><span id="affiche-captivating-rated">5</span>/5</div>
-                                    <div class="item-input">
-                                        <div class="range-slider">
-                                            <input id="captivating-id-rated" type="range" min="0" max="100" value="100" step="10">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="item-content">
-                                <div class="item-media"><i class="fa fa-star"></i></div>
-                                <div class="item-inner">
-                                    <div class="item-title label">讓人投入 <a href="#" data-popover=".popover-about-inspiring" class="open-popover"><i class="fa fa-question-circle"></i></a><span id="affiche-inspiring-rated">5</span>/5</div>
-                                    <div class="item-input">
-                                        <div class="range-slider">
-                                            <input id="inspiring-id-rated" type="range" min="0" max="100" value="100" step="10">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-
-
-                </div>
-
-            </div>
-            <div class="list-block">
-
-                <div class="content-block-inner">
-                    LAST REVIEWS
-                    <ul>
-                        <div class="item-content">
-                            Nicolas Sarkozy, on Februar 31st 2016 said :
-                            <div class="item-inner color-red">
-                                LOL
-                            </div>
-                        </div>
-                    </ul>
-                    <ul>
-                        <div class="item-content">
-                            Jacques Chirac, on Februar 31st 2013 said :
-                            <div class="item-inner color-red">
-                                Bellefgvbhjnk,fygvbhuijnqds dsqbhjnk,zef yvgbh fygvh fcgv yftguh tyfu ytturdfy iytf fity itvy bvyouy ouyouvy ouvy iv iutv ityv itv ouyvo iygiytf utrdut ru bpoh ubp
-                            </div>
-                        </div>
-                    </ul>
-                </div>
-
-            </div>
-        </div>
-
-
-    </script>
-
-    <!-- POPUP DESCRIPTION-->
-    <div class="popup popup-alone">
-        <div class="content-block">
-            François Hollande
-        </div>
-        François Hollande, né le 12 août 1954 à Rouen, en Seine-Inférieure, est un homme d'État français. Il est président de la République française depuis 2012.
-
-        Magistrat à la Cour des comptes, et avocat pendant quelques mois entre 1996 et 1997, il est premier secrétaire du Parti socialiste de 1997 à 2008, pendant la troisième cohabitation puis dans l'opposition. Maire de Tulle de 2001 à 2008, il est député de la première circonscription de la Corrèze de 1988 à 1993 et de nouveau de 1997 à 2012, et préside le conseil général de la Corrèze de 2008 à 2012.
-
-        Désigné candidat du PS et du PRG à l'élection présidentielle de 2012 à l'issue d'une primaire, il emporte le second tour avec 51,64 % des voix face au président sortant, Nicolas Sarkozy, le 6 mai 2012. Il prend ses fonctions de président de la République française le 15 mai 2012.
-
-    </div>
-
-
-    <!-- POPUP LEAVE A REVIEW-->
-    <div class="popup popup-about">
-        <div class="content-block">
-            <a href="#" class="button button-fill button-big color-yellow">Please leave a review about François Hollande</a>
-            <div class="list-block">
+            <div class="content-block-title">Last reviews</div>
+            <div class="list-block media-list">
                 <ul>
-                    <li>
-                        <div class="item-content">
-                            <div class="item-media"><i class="fa fa-star"></i></div>
-                            <div class="item-inner">
-                                <div class="item-title label">總和評分 <a href="#" data-popover=".popover-about-overall" class="open-popover">
-                                    <i class="fa fa-question-circle"></i></a> <span id="affiche-overall"></span>/5</div>
-                                <div class="item-input">
-                                    <div class="range-slider">
-                                        <input id="overall-id" type="range" min="0" max="100" value="50" step="10">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="item-content">
-                            <div class="item-media"><i class="fa fa-star"></i></div>
-                            <div class="item-inner">
-                                <div class="item-title label">內容 <a href="#" data-popover=".popover-about-content" class="open-popover"><i class="fa fa-question-circle"></i></a><span id="affiche-content"></span>/5</div>
-                                <div class="item-input">
-                                    <div class="range-slider">
-                                        <input id="content-id" type="range" min="0" max="100" value="50" step="10">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="item-content">
-                            <div class="item-media"><i class="fa fa-star"></i></div>
-                            <div class="item-inner">
-                                <div class="item-title label">容易懂 <a href="#" data-popover=".popover-about-understand" class="open-popover"><i class="fa fa-question-circle"></i></a><span id="affiche-understand"></span>/5</div>
-                                <div class="item-input">
-                                    <div class="range-slider">
-                                        <input id="understand-id" type="range" min="0" max="100" value="50" step="10">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="item-content">
-                            <div class="item-media"><i class="fa fa-star"></i></div>
-                            <div class="item-inner">
-                                <div class="item-title label">啓發性 <a href="#" data-popover=".popover-about-captivating" class="open-popover"><i class="fa fa-question-circle"></i></a><span id="affiche-captivating"></span>/5</div>
-                                <div class="item-input">
-                                    <div class="range-slider">
-                                        <input id="captivating-id" type="range" min="0" max="100" value="50" step="10">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="item-content">
-                            <div class="item-media"><i class="fa fa-star"></i></div>
-                            <div class="item-inner">
-                                <div class="item-title label">讓人投入 <a href="#" data-popover=".popover-about-inspiring" class="open-popover"><i class="fa fa-question-circle"></i></a><span id="affiche-inspiring"></span>/5</div>
-                                <div class="item-input">
-                                    <div class="range-slider">
-                                        <input id="inspiring-id" type="range" min="0" max="100" value="50" step="10">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="item-content">
-                            <div class="item-media"><i class="fa fa-comments-o"></i></div>
-                            <div class="item-inner">
-                                <div class="item-title label">Quote</div>
-                                <div class="item-input">
-                                    <input type="text" placeholder="Enter a quote">
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="item-content">
-                            <div class="item-media"><i class="fa fa-pencil"></i></div>
-                            <div class="item-inner">
-                                <div class="item-title label">Leave a comment</div>
-                                <div class="item-input">
-                                    <textarea></textarea>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
+                    {{#each reviews}}
 
+                    <li>
+                        <a href="#" class="item-link item-content">
+                            <div class="item-inner">
+                                <div class="item-title-row">
+                                    <div class="item-title">{{review.user_name}}</div>
+                                    <div class="item-after">{{review.created_at}}</div>
+                                </div>
+                                <div class="item-subtitle">New messages from John Doe</div>
+                                <div class="item-text">{{review.comment}}</div>
+                                Overall : <input id="input-1" name="input-1" value="{{review_rating[0].pivot.score_id}}" class="rating-loading disabled">
 
+                                Content : <input id="input-2" name="input-2" value="{{review_rating[1].pivot.score_id}}" class="rating-loading disabled">
+                                Easy to understand : <input id="input-3" name="input-3" value="{{review_rating[2].pivot.score_id}}" class="rating-loading disabled">
+                                Captivating : <input id="input-4" name="input-4" value="{{review_rating[3].pivot.score_id}}" class="rating-loading disabled">
+                                Inspiring :
+                                {{#if review_rating[4]}} <input id="input-5" name="input-5" value="{{review_rating[4].pivot.score_id}}" class="rating-loading disabled"> {{else}} NO RATING {{/if}}
+                            </div>
+                        </a>
+                    </li>
+                    {{/each}}
 
                 </ul>
-
-            </div>
-            <div class="row">
-                <div class="col-50"><a href="#" class="button button-fill button-big color-red  close-popup">Cancel</a></div>
-                <div class="col-50"><a href="#" class="button button-fill button-big color-green  close-popup notification-default ">Done</a></div>
             </div>
 
-        </div>
-    </div>
 
-    <div class="popover popover-about-overall">
-        <div class="popover-angle"></div>
-        <div class="popover-inner">
-            <div class="content-block">
-                <p>總和評分</p>
-                <p>滿意度的指標，觀眾有沒有得到、聽到、學到想要得到、聽到、學到的東西</p>
-            </div>
-        </div>
-    </div>
-    <div class="popover popover-about-content">
-        <div class="popover-angle"></div>
-        <div class="popover-inner">
-            <div class="content-block">
-                <p>內容</p>
-                <p>與預告講題的相關度、適合本場演講的觀眾等等</p>
-            </div>
-        </div>
-    </div>
-    <div class="popover popover-about-understand">
-        <div class="popover-angle"></div>
-        <div class="popover-inner">
-            <div class="content-block">
-                <p>容易懂</p>
-                <p>調理清晰，講話速度恰當，舉例子，好的視覺支援 等等</p>
-            </div>
-        </div>
-    </div>
-    <div class="popover popover-about-captivating">
-        <div class="popover-angle"></div>
-        <div class="popover-inner">
-            <div class="content-block">
-                <p>啓發性</p>
-                <p>讓人有新的想法、聯想到自己事業或人生等等</p>
-            </div>
-        </div>
-    </div>
-    <div class="popover popover-about-inspiring">
-        <div class="popover-angle"></div>
-        <div class="popover-inner">
-            <div class="content-block">
-                <p>讓人投入</p>
-                <p>帶動氣氛的能力，讓人專注於講師，包含講師講笑話、感人故事等等</p>
-            </div>
-        </div>
-    </div>
+
+
+
+</script>
+
+
 
 
 
@@ -524,7 +168,10 @@
         <script type="text/javascript" src="js/framework7.min.js"></script>
         <script type="text/javascript" src="js/jquery.js"></script>
         <script type="text/javascript" src="cordova.js"></script>
+    <script src="js/star-rating.js" type="text/javascript"></script>
         <script type="text/javascript" src="js/index.js"></script>
+    <script src="js/stars.js"></script>
+
     </body>
 </html>
 

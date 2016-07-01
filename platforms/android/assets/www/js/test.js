@@ -1,7 +1,7 @@
 var $$ = Dom7;
 var page;
 sessionStorage['idSpeaker']="";
-sessionStorage['token']="Bearer {eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjQsImlzcyI6Imh0dHA6XC9cLzUyLjY5LjE0OC4xMzVcL3dzXC9hdXRoXC9sb2dpbiIsImlhdCI6MTQ2NzE5MTU3NywiZXhwIjoxNDY3MTk1MTc3LCJuYmYiOjE0NjcxOTE1NzcsImp0aSI6ImRlMGRhNWM1M2E0NGI4MzMyYjVlYTQzZWY0MWVhODNiIn0.5oCA3lORl0dvUX-87YGL9HPtGs5lDgmqapzLmJj3RYg}";
+sessionStorage['token']="Bearer {eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjQsImlzcyI6Imh0dHA6XC9cLzUyLjY5LjE0OC4xMzVcL3dzXC9hdXRoXC9sb2dpbiIsImlhdCI6MTQ2NzMzODczNCwiZXhwIjoxNDY3NDI1MTM0LCJuYmYiOjE0NjczMzg3MzQsImp0aSI6IjhjZWZiZjAxYjc5MjMzODQ5Mjg1NjJmZDgwOTRjYmVkIn0.78_ijE1Vvs5OEsJDCS5scZrfVlbr21f9AQTKXHPYXMw}";
 sessionStorage['login']="true";
 
 
@@ -99,7 +99,7 @@ myApp.alert('YOLO');
 
 // FONCTION PRINCIPALE
 function get_specific_speaker() {
-//myApp.alert(sessionStorage['idSpeaker']);
+
 var template = $$('#tpl-specific-speaker').html();
 var compiledTemplate = Template7.compile(template);
 //PREPARATION DE LA REQUETE
@@ -131,7 +131,9 @@ var settings = {
 
 
 $.ajax(settings).done(function(data){
-page = compiledTemplate(data.speakers);
+myApp.alert(data.speakers);
+page = compiledTemplate(data.speaker);
+//myApp.alert(sessionStorage['idSpeaker']);
     //console.log(data.speakers);
     document.getElementById("container").innerHTML = page;
 

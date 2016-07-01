@@ -2,12 +2,19 @@
 
 var $$ = Dom7;
 var page;
-var data = "akak";
+//var data = "akak";
+session="Bearer {eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjQsImlzcyI6Imh0dHA6XC9cLzUyLjY5LjE0OC4xMzVcL3dzXC9hdXRoXC9sb2dpbiIsImlhdCI6MTQ2NzMzODczNCwiZXhwIjoxNDY3NDI1MTM0LCJuYmYiOjE0NjczMzg3MzQsImp0aSI6IjhjZWZiZjAxYjc5MjMzODQ5Mjg1NjJmZDgwOTRjYmVkIn0.78_ijE1Vvs5OEsJDCS5scZrfVlbr21f9AQTKXHPYXMw}";
+
 
 var rafraichir="";
 var myApp = new Framework7({fastCLicks: true, pushState: true, template7Pages: true, notificationHold: 2500, modalTitle:'TalkAdvisor'});
 var mainView = myApp.addView('.view-main', { dynamicNavbar: true });
 var formData;
+
+
+
+// initialize with defaults
+//$("#input-id").rating();
 
 // Search bar
 /*var mySearchbar = myApp.searchbar('.searchbar', {
@@ -21,24 +28,51 @@ var formData;
 
 // Functions
 
+getconnexion();
+
 function getconnexion() {
-	page = $$('#tpl-connexion').html();
-	document.getElementById("container").innerHTML = page;
+	//page = $$('#tpl-connexion').html();
+	//document.getElementById("container").innerHTML = page;
 
 
-}
-
-function get_speakers() {
-		var template = $$('#tpl-speakers').html();
+var template = $$('#tpl-reviews').html();
 		var compiledTemplate = Template7.compile(template);
-		$$.getJSON('js/speakers.json', function(json) {
-				   page = compiledTemplate(json);
-				   document.getElementById("container").innerHTML = page;
-				   var jsonText= JSON.stringify(json.speakers[0].video);
 
-				   document.getElementById("essai").innerHTML = jsonText;
+var settings = {
 
-				   });
+  "url": "http://52.69.148.135/ws/api/reviews",
+  "type": "Get",
+  "headers": {
+    "authorization": session
+     },data: {
+                email: "antoinekeller007@gmail.com",
+                password: "talkadvisor"
+            },
+   dataType :"json",
+ success: function(data){
+  //myApp.alert(data.reviews);
+  },
+  error: function(){
+  myApp.alert('La requete n a pas abouti');
+  }
+  };
+
+
+//myApp.alert("Le session storage (login) vaut "+sessionStorage['login']);
+//CHARGEMENT DES DONNEES DU SPEAKER
+
+
+
+
+$.ajax(settings).done(function(data){
+
+page = compiledTemplate(data);
+//myApp.alert(sessionStorage['idSpeaker']);
+    console.log(data.reviews[2].review_rating[4].pivot.score_id);
+    document.getElementById("container").innerHTML = page;
+    $('#input-1, #input-2, #input-3, #input-4, #input-5').rating({min: 0.5, max: 5, step: 0.5, stars: 5, readonly : true,
+      showCaption : false, size : 'xs',
+      showClear : false});
 
 
 
@@ -46,54 +80,9 @@ function get_speakers() {
 
 
 
+});
 }
 
-function get_specific_speaker() {
-		var template = $$('#tpl-specific-speaker').html();
-		console.log(template);
-		var compiledTemplate = Template7.compile(template);
-		//console.log(compiledTemplate);
-		$$.getJSON('js/speakers.json', function(json) {
-				   page = compiledTemplate(json);
-				   document.getElementById("container").innerHTML = page;
-				   });
-
-			   myApp.alert('YOLO');
-
-
-		var myPhotoBrowserPopupDark = myApp.photoBrowser({
-                                       photos : [
-                                           {
-                                               html: '<iframe src="https://www.youtube.com/v/dm9nqukato4" frameborder="0" allowfullscreen></iframe>',
-                                               caption: 'Woodkid - Run Boy Run (Official HD Video)'
-                                           },
-                                           {
-                                               url: 'http://lorempixel.com/1024/1024/sports/2/',
-                                               caption: 'Second Caption Text'
-                                           },
-                                           {
-                                               url: 'http://lorempixel.com/1024/1024/sports/3/',
-                                           },
-                                       ],
-                                       theme: 'dark',
-                                       type: 'standalone'
-                                   });
-                                   $$('.pb-standalone-video').on('click', function () {
-                                       myPhotoBrowserPopupDark.open();
-                                   });
-
-
-
-}
-
-function get_search_bar(){
-//var mySearchbar = $$('.searchbar')[0].f7Searchbar;
-
-// Now you can use it
-//mySearchbar.search('Hello world');
-page = $$('#tpl-search-bar').html();
-	document.getElementById("container").innerHTML = page;
-}
 
 
 
@@ -129,5 +118,5 @@ ptrContent.on('refresh', function (e) {
 						 }, 1000);
 			  });
 
-get_specific_speaker();
+
 
