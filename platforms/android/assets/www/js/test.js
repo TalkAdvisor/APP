@@ -1,7 +1,7 @@
 var $$ = Dom7;
 var page;
 sessionStorage['idSpeaker']="";
-sessionStorage['token']="Bearer {eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjQsImlzcyI6Imh0dHA6XC9cLzUyLjY5LjE0OC4xMzVcL3dzXC9hdXRoXC9sb2dpbiIsImlhdCI6MTQ2NzU5NzkyNiwiZXhwIjoxNDY3Njg0MzI2LCJuYmYiOjE0Njc1OTc5MjYsImp0aSI6IjA4MDVmZDQxODIyNTU5OGIyMjk0NGZhOTdhNGEyYzhjIn0.t8Gk2_i7mMW_xn6VgJfIFX7_oUnrtA_M0fs4kHTc540}";
+sessionStorage['token']="Bearer {eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjQsImlzcyI6Imh0dHA6XC9cLzUyLjY5LjE0OC4xMzVcL3dzXC9hdXRoXC9sb2dpbiIsImlhdCI6MTQ2NzYwNDk2MywiZXhwIjoxNDY3NjkxMzYzLCJuYmYiOjE0Njc2MDQ5NjMsImp0aSI6IjViMThlYTBmOTY0NDIxOWViMjQzMTBiYjc1OGQzN2YyIn0.AjE3PodfrAlIarK_n-tkklA3gmdXPQFpjC-SZO8OeV4}";
 sessionStorage['login']="true";
 
 
@@ -196,7 +196,10 @@ else{
   myApp.popup('.popup-review');
   $$('.form-to-json').on('click', function(){
     var formData = myApp.formToJSON('#leave-a-review');
-    console.log(JSON.stringify(formData));
+
+
+
+    //});
 
 
     // POST DU REVIEW
@@ -213,9 +216,9 @@ else{
         data:{
             user_name : "AntoineK.",
             user_email : "lol@gmail.com",
-            comment : "bite",
-            speaker_id : "117",
-            score : ['1','2','3','4','5']
+            comment : JSON.stringify(formData.comment),
+            speaker_id : "117008",
+            score : [formData.overall,formData.content,formData.understand,formData.captivating,formData.inspiring]
             },
 
       "mimeType": "multipart/form-data",
@@ -226,7 +229,7 @@ else{
                 myApp.alert('La requete n a pas abouti');
                 }
     }
-
+console.log(settings.data.score);
     $.ajax(settings).done(function (response) {
       console.log(response);
     });
@@ -254,23 +257,23 @@ $$('.notification-default').on('click', function () {
 
 });
 $$("#overall-id").click(function(){
-var overall = (document.getElementById("overall-id").value)/20;
+var overall = (document.getElementById("overall-id").value);
 $$('#affiche-overall').html(overall);
 });
 $$("#content-id").click(function(){
-var content = (document.getElementById("content-id").value)/20;
+var content = (document.getElementById("content-id").value);
 $$('#affiche-content').html(content);
 });
 $$("#understand-id").click(function(){
-var understand = (document.getElementById("understand-id").value)/20;
+var understand = (document.getElementById("understand-id").value);
 $$('#affiche-understand').html(understand);
 });
 $$("#captivating-id").click(function(){
-var captivating = (document.getElementById("captivating-id").value)/20;
+var captivating = (document.getElementById("captivating-id").value);
 $$('#affiche-captivating').html(captivating);
 });
 $$("#inspiring-id").click(function(){
-var inspiring = (document.getElementById("inspiring-id").value)/20;
+var inspiring = (document.getElementById("inspiring-id").value);
 $$('#affiche-inspiring').html(inspiring);
 });
 

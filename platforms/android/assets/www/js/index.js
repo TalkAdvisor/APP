@@ -3,15 +3,15 @@
 var $$ = Dom7;
 var page;
 //var data = "akak";
-session="Bearer {eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjQsImlzcyI6Imh0dHA6XC9cLzUyLjY5LjE0OC4xMzVcL3dzXC9hdXRoXC9sb2dpbiIsImlhdCI6MTQ2NzU5NzkyNiwiZXhwIjoxNDY3Njg0MzI2LCJuYmYiOjE0Njc1OTc5MjYsImp0aSI6IjA4MDVmZDQxODIyNTU5OGIyMjk0NGZhOTdhNGEyYzhjIn0.t8Gk2_i7mMW_xn6VgJfIFX7_oUnrtA_M0fs4kHTc540}";
-
+session="Bearer {eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjQsImlzcyI6Imh0dHA6XC9cLzUyLjY5LjE0OC4xMzVcL3dzXC9hdXRoXC9sb2dpbiIsImlhdCI6MTQ2NzYwNDk2MywiZXhwIjoxNDY3NjkxMzYzLCJuYmYiOjE0Njc2MDQ5NjMsImp0aSI6IjViMThlYTBmOTY0NDIxOWViMjQzMTBiYjc1OGQzN2YyIn0.AjE3PodfrAlIarK_n-tkklA3gmdXPQFpjC-SZO8OeV4}";
 
 var rafraichir="";
 var myApp = new Framework7({fastCLicks: true, pushState: true, template7Pages: true, notificationHold: 2500, modalTitle:'TalkAdvisor'});
 var mainView = myApp.addView('.view-main', { dynamicNavbar: true });
 var formData;
 
-
+var string = "122";
+console.log(parseFloat(string));
 
 // initialize with defaults
 //$("#input-id").rating();
