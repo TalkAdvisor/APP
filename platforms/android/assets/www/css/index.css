@@ -126,3 +126,20 @@ div[class*="col-"] {
 .row {
   margin-bottom: 15px;
 }
+
+
+
+.swiper-slide {
+  background: #fff;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+}
+.swiper-slide span {
+  text-align:center;
+  display:block;
+  margin: 20px;
+  font-size:21px;
+}
+.swiper-container {
+  margin: 35px 0;
+}

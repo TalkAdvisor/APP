@@ -11,17 +11,32 @@ sessionStorage['nameSpeaker']="";
 
 var myApp = new Framework7({
     pushState: true,
-    swipePanel: 'left'
+    swipePanel: 'left',
+    animateNavBackIcon : true
     // ... other parameters
 });
+var mainView = myApp.addView('.view-main');
+
+
+
+
+get_welcome();
+function get_welcome(){
+    var template = $$('#tpl-welcome').html();
+    document.getElementById("container").innerHTML = template;
+    $('#speaker-reviews').hide();
+    $('#average-reviews').hide();
+    }
+
 
 //myApp.alert(sessionStorage['token']);
-get_search_bar();
+//get_search_bar();
 
 
 
 
 function get_search_bar(){
+
 var template = $$('#tpl-search-bar').html();
 		var compiledTemplate = Template7.compile(template);
 		var settings = {
@@ -70,7 +85,8 @@ myApp.alert('YOLO');
 function get_specific_speaker() {
 
 // AFFICHAGE DU SPEAKER
-
+$('#speaker-reviews').show();
+    $('#average-reviews').show();
 var template = $$('#tpl-specific-speaker').html();
 var compiledTemplate = Template7.compile(template);
 // basic use comes with defaults values
@@ -88,6 +104,7 @@ var compiledTemplate = Template7.compile(template);
     activeColor: 'crimson',
     useGradient: false
   });
+
 
 //PREPARATION DE LA REQUETE
 
@@ -122,6 +139,11 @@ page = compiledTemplate(data.speaker);
 sessionStorage['nameSpeaker']=data.speaker.speaker_name;
 
 document.getElementById("container").innerHTML = page;
+// 1 Slide Per View, 50px Between
+  var mySwiper1 = myApp.swiper('.swiper-1', {
+    pagination:'.swiper-1 .swiper-pagination',
+    spaceBetween: 50
+  });
 
 
 
@@ -214,7 +236,8 @@ else{
                         user_id:"1",
                         comment : JSON.stringify(formData.comment),
                         speaker_id : sessionStorage['idSpeaker'],
-                        score : [formData.overall,formData.content,formData.understand,formData.captivating,formData.inspiring]
+                        score : [formData.overall,formData.content,formData.understand,formData.captivating,formData.inspiring],
+                        quote : formData.quote
                         },
 
                   "mimeType": "multipart/form-data",

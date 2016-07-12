@@ -25,7 +25,8 @@
     <div class="view view-main">
         <div class="navbar">
             <div class="navbar-inner">
-                <div class="center sliding"><a href="#" class="button button-big button-fill color-green" onclick="get_search_bar()">Look for a speaker</a></div>
+                <div class="left sliding"><a href="#" onclick="get_welcome()">Back to the index</a></div>
+                <div class="center sliding">TalkAdvisor</div>
             </div>
         </div>
         <div class="pages navbar-through toolbar-through">
@@ -38,6 +39,7 @@
                     </div>
 
                     <!-- Container -->
+
                     <div id="container"></div>
                     <div id="average-reviews"></div>
                     <div id="speaker-reviews"></div>
@@ -58,21 +60,29 @@
     </div>
 </div>
 <script type="text/template7" id="tpl-welcome">
-    <div class="content-block-title">Inset</div>
+
+    <div class="content-block-title"><a href="#" onclick="get_search_bar()">Look for a speaker</a></div>
     <!-- Inset content block -->
     <div class="content-block inset">
         <div class="content-block-inner">
             <p>Donec et nulla auctor massa pharetra adipiscing ut sit amet sem. Suspendisse molestie velit vitae mattis tincidunt. Ut sit amet quam mollis, vulputate turpis vel, sagittis felis. </p>
         </div>
     </div>
-    <div class="content-block-title">Inset</div>
+    <div class="content-block-title">3 best speakers</div>
     <!-- Inset content block -->
     <div class="content-block inset">
         <div class="content-block-inner">
             <p>Donec et nulla auctor massa pharetra adipiscing ut sit amet sem. Suspendisse molestie velit vitae mattis tincidunt. Ut sit amet quam mollis, vulputate turpis vel, sagittis felis. </p>
         </div>
     </div>
-    <div class="content-block-title">Inset</div>
+    <div class="content-block-title">3 last reviews</div>
+    <!-- Inset content block -->
+    <div class="content-block inset">
+        <div class="content-block-inner">
+            <p>Donec et nulla auctor massa pharetra adipiscing ut sit amet sem. Suspendisse molestie velit vitae mattis tincidunt. Ut sit amet quam mollis, vulputate turpis vel, sagittis felis. </p>
+        </div>
+    </div>
+    <div class="content-block-title">3 random quotes</div>
     <!-- Inset content block -->
     <div class="content-block inset">
         <div class="content-block-inner">
@@ -137,32 +147,37 @@ ICI les Average reviews
                 </div>
                 <div class="col-50">
                     <h3>{{speaker_name}}</h3>
-
-                    <a href="#" class="button button-small">Notation (waiting for average ratings)</a>
+                    {{#if average_1}}
+                    <div class="my-rating-read" data-rating="{{average_1}}"></div>
+                    {{else}}
+                    <div class="my-rating-read" data-rating="2.5"></div>
+                    {{/if}}
 
 
                     <a href="#" class="button open-about button-fill button-small color-yellow">Rate me</a>
 
                     </div>
-                </div>
+            </div>
 
+    </div>
+    <div class="content-block-title">Best quotes of {{speaker_name}}</div>
+    <div class="swiper-container swiper-1">
+        <div class="swiper-pagination"></div>
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"><span>Peu importe qu'un chat soit noir ou blanc, tant qu'il attrape les souris.</span></div>
+            <div class="swiper-slide"><span>Ah que quoi? (Johny)</span></div>
+
+            <div class="swiper-slide"><span>Plutot chinois ou plutot chez toi?</span></div>
         </div>
+    </div>
+    {{#if speaker_description}}
     <div class="content-block">
-
-                        Description
-
+                        <div class="content-block-title">Description</div>
                     <div class="content-block-inner">
-                        {{#if speaker_description}}
-
-                        {{speaker_description}}
-
-                        {{else}}
-                        NO Description
-                        {{/if}}
-                    </div>
-                    <a href="#" class="button open-popup button-fill " data-popup=".popup-services">More description</a>
-
+                                 {{speaker_description}}
+                        </div>
                 </div>
+    {{/if}}
     <!-- VIDEOS -->
     {{#if video}}
     <div class="content-block-inner">
@@ -172,7 +187,11 @@ ICI les Average reviews
         </div>
     </div>
     {{/if}}
+
+
+
 </script>
+
 
 
 
@@ -297,6 +316,7 @@ ICI les Average reviews
                     </div>
                 </li>
                 <div id="leave-a-comment">
+                    <h3>Thank you for your review, please leave us a now a comment</h3>
                     <li>
                         <div class="item-content">
                             <div class="item-media"><i class="fa fa-comments-o"></i></div>
@@ -312,9 +332,9 @@ ICI les Average reviews
                         <div class="item-content">
                             <div class="item-media"><i class="fa fa-pencil"></i></div>
                             <div class="item-inner">
-                                <div class="item-title label">Leave a comment</div>
+                                <div class="item-title label">Comment</div>
                                 <div class="item-input">
-                                    <textarea name="comment" id="comment"></textarea>
+                                    <textarea name="comment" id="comment" placeholder="Leave a comment"></textarea>
                                 </div>
                             </div>
                         </div>
