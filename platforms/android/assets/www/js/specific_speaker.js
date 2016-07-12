@@ -30,7 +30,7 @@ var settings = {
   "url": "http://52.69.148.135/ws/api/speakers/111",
   "type": "Get",
   "headers": {
-    "authorization": "Bearer {eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjQsImlzcyI6Imh0dHA6XC9cLzUyLjY5LjE0OC4xMzVcL3dzXC9hdXRoXC9sb2dpbiIsImlhdCI6MTQ2NzEwMzYzNywiZXhwIjoxNDY3MTA3MjM3LCJuYmYiOjE0NjcxMDM2MzcsImp0aSI6ImRkMWU0NzI2YTViZDYzM2NiZTY2NWU5YmM4Yzk4NWZmIn0.fCuHsr8p8xcSxFH7z0pyS59D_N7veHJ1lgfYZAI5CS8}"},
+    "authorization": "Bearer {eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjQsImlzcyI6Imh0dHA6XC9cLzUyLjY5LjE0OC4xMzVcL3dzXC9hdXRoXC9sb2dpbiIsImlhdCI6MTQ2NzgwMDg5MSwiZXhwIjoxNDY3ODg3MjkxLCJuYmYiOjE0Njc4MDA4OTEsImp0aSI6ImNkMzJjN2VlZmVlMjA4OGQ2NzIxN2NiNGMyOGQ1ZTNkIn0.4ymA4a48mJvwQogw22Zi-eGHcRNLNvt8fUAvTW1iRN0}"},
   data: {
                 email: "evan.chen@acer.com",
                 password: "1qaz@WSX"

@@ -1,34 +1,24 @@
 // Variables globales et initialisation de l'application
-
+//jQuery("time.timeago").timeago();
 var $$ = Dom7;
 var page;
 //var data = "akak";
-session="Bearer {eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjQsImlzcyI6Imh0dHA6XC9cLzUyLjY5LjE0OC4xMzVcL3dzXC9hdXRoXC9sb2dpbiIsImlhdCI6MTQ2NzYwNDk2MywiZXhwIjoxNDY3NjkxMzYzLCJuYmYiOjE0Njc2MDQ5NjMsImp0aSI6IjViMThlYTBmOTY0NDIxOWViMjQzMTBiYjc1OGQzN2YyIn0.AjE3PodfrAlIarK_n-tkklA3gmdXPQFpjC-SZO8OeV4}";
+session="Bearer {eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjQsImlzcyI6Imh0dHA6XC9cLzUyLjY5LjE0OC4xMzVcL3dzXC9hdXRoXC9sb2dpbiIsImlhdCI6MTQ2ODIwODE1MiwiZXhwIjoxNDY4Mjk0NTUyLCJuYmYiOjE0NjgyMDgxNTIsImp0aSI6IjNjYzdjYjYzYjIzNTNhNjRjNzUwZTI1ZjM3ODZjOTIyIn0.3US-szhY8ovUK9CU2kva939H03iicAsQ0wHbsg3nH6U}";
 
 var rafraichir="";
-var myApp = new Framework7({fastCLicks: true, pushState: true, template7Pages: true, notificationHold: 2500, modalTitle:'TalkAdvisor'});
+var myApp = new Framework7({fastCLicks: true, pushState: false, template7Pages: true, notificationHold: 2500, modalTitle:'TalkAdvisor', animateNavBackIcon : true});
 var mainView = myApp.addView('.view-main', { dynamicNavbar: true });
 var formData;
 
-var string = "122";
-console.log(parseFloat(string));
 
-// initialize with defaults
-//$("#input-id").rating();
 
-// Search bar
-/*var mySearchbar = myApp.searchbar('.searchbar', {
-    searchList: '.list-block-search',
-    searchIn: '.item-title'
-});*/
-//var mySearchbar = $$('.searchbar')[0].f7Searchbar;
 
-// Now you can use it
-//mySearchbar.search('Hello world');
+
 
 // Functions
 
 getconnexion();
+
 
 function getconnexion() {
 	//page = $$('#tpl-connexion').html();
@@ -36,6 +26,7 @@ function getconnexion() {
 
 
 var template = $$('#tpl-reviews').html();
+//$("time.timeago").timeago();
 		var compiledTemplate = Template7.compile(template);
 
 var settings = {
@@ -67,12 +58,16 @@ var settings = {
 $.ajax(settings).done(function(data){
 
 page = compiledTemplate(data);
+
 //myApp.alert(sessionStorage['idSpeaker']);
-    console.log(data.reviews[2].review_rating[4].pivot.score_id);
+    console.log(data.reviews[2].review.speaker_id);
+    console.log(data);
+
     document.getElementById("container").innerHTML = page;
     $('#input-1, #input-2, #input-3, #input-4, #input-5').rating({min: 0.5, max: 5, step: 0.5, stars: 5, readonly : true,
       showCaption : false, size : 'xs',
       showClear : false});
+    $("time.timeago").timeago();
 
 
 
@@ -81,7 +76,10 @@ page = compiledTemplate(data);
 
 
 });
+
+
 }
+
 
 
 
@@ -120,3 +118,4 @@ ptrContent.on('refresh', function (e) {
 
 
 
+//jQuery("time.timeago").timeago();

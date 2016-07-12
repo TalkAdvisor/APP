@@ -1,8 +1,10 @@
 var $$ = Dom7;
 var page;
+var page2;
 sessionStorage['idSpeaker']="";
-sessionStorage['token']="Bearer {eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjQsImlzcyI6Imh0dHA6XC9cLzUyLjY5LjE0OC4xMzVcL3dzXC9hdXRoXC9sb2dpbiIsImlhdCI6MTQ2NzYwNDk2MywiZXhwIjoxNDY3NjkxMzYzLCJuYmYiOjE0Njc2MDQ5NjMsImp0aSI6IjViMThlYTBmOTY0NDIxOWViMjQzMTBiYjc1OGQzN2YyIn0.AjE3PodfrAlIarK_n-tkklA3gmdXPQFpjC-SZO8OeV4}";
+sessionStorage['token']="Bearer {eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjQsImlzcyI6Imh0dHA6XC9cLzUyLjY5LjE0OC4xMzVcL3dzXC9hdXRoXC9sb2dpbiIsImlhdCI6MTQ2ODI4OTI3MSwiZXhwIjoxNDY4Mzc1NjcxLCJuYmYiOjE0NjgyODkyNzEsImp0aSI6ImI0MjAwYTRhYWRkODlhN2RkZDFhYjkyYWMwZjdjNzZkIn0.umY29e9_gBlUKgXVznByUiy89Yr5g7QCR5M-BRilziI}";
 sessionStorage['login']="true";
+sessionStorage['nameSpeaker']="";
 
 
 
@@ -20,21 +22,9 @@ get_search_bar();
 
 
 function get_search_bar(){
-//var mySearchbar = $$('.searchbar')[0].f7Searchbar;
-//$$('#ici').show();
-// Now you can use it
-//mySearchbar.search('Hello world');
-/*$$(document).on('pageInit', function (e) {
-  // Do something here when page loaded and initialized
-*/
-//})
-
 var template = $$('#tpl-search-bar').html();
 		var compiledTemplate = Template7.compile(template);
-		//myApp.alert(compiledTemplate);
-
 		var settings = {
-
           "url": "http://52.69.148.135/ws/api/speakers",
           "type": "Get",
           "headers": {
@@ -57,28 +47,7 @@ var template = $$('#tpl-search-bar').html();
 
         $.ajax(settings).done(function(data){
         page = compiledTemplate(data);
-            //console.log(data);
             document.getElementById("container").innerHTML = page;
-
-
-
-		//$$.getJSON('js/speakers.json', function(json) {
-
-
-//page = compiledTemplate(json);
-//console.log(page);
-                   // populate the array
-                    //var jsonstring = JSON.stringify(json)
-		           //console.log(jsonstring);
-		           //jsonstring="{\"speakers\":"+jsonstring+"}";
-		           //console.log(jsonstring);
-		           //var json2 = $$.parseJSON(jsonstring);
-		           //console.log(JSON.stringify(json2));
-
-
-				   //console.log(page);
-				   //document.getElementById("ici").innerHTML = page;
-                    //myApp.alert('YOLO');
                     var mySearchbar = myApp.searchbar('.searchbar', {
                         searchList: '.list-block-search',
                         searchIn: '.item-title'
@@ -100,8 +69,26 @@ myApp.alert('YOLO');
 // FONCTION PRINCIPALE
 function get_specific_speaker() {
 
+// AFFICHAGE DU SPEAKER
+
 var template = $$('#tpl-specific-speaker').html();
 var compiledTemplate = Template7.compile(template);
+// basic use comes with defaults values
+  $(".my-rating").starRating({
+    initialRating: 0,
+    starSize: 25,
+    totalStars : 5,
+    disableAfterRate : false
+  });
+  $(".my-rating-read").starRating({
+    totalStars: 5,
+    starSize: 40,
+    emptyColor: 'lightgray',
+    hoverColor: 'salmon',
+    activeColor: 'crimson',
+    useGradient: false
+  });
+
 //PREPARATION DE LA REQUETE
 
 var settings = {
@@ -124,18 +111,17 @@ var settings = {
   };
 
 
-//myApp.alert("Le session storage (login) vaut "+sessionStorage['login']);
+
 //CHARGEMENT DES DONNEES DU SPEAKER
 
 
 
 
 $.ajax(settings).done(function(data){
-myApp.alert(data.speakers);
 page = compiledTemplate(data.speaker);
-//myApp.alert(sessionStorage['idSpeaker']);
-    //console.log(data.speakers);
-    document.getElementById("container").innerHTML = page;
+sessionStorage['nameSpeaker']=data.speaker.speaker_name;
+
+document.getElementById("container").innerHTML = page;
 
 
 
@@ -147,14 +133,6 @@ page = compiledTemplate(data.speaker);
 
 
 
-
-
-
-/*$$.getJSON('js/supalla.json', function(json) {
-
-    page = compiledTemplate(json.speakers);
-    console.log(json.speakers);
-    document.getElementById("container").innerHTML = template;*/
 
 
 
@@ -194,46 +172,66 @@ if (!sessionStorage['login']){
 else{
 
   myApp.popup('.popup-review');
-  $$('.form-to-json').on('click', function(){
-    var formData = myApp.formToJSON('#leave-a-review');
+  $('#leave-a-comment').hide();
+  $('#second-click').hide();
+  $$('#speaker-name').html(sessionStorage['nameSpeaker']);
+  $$('.first-click').on('click', function(){
+    $('#leave-a-comment').show();
+    $('#first-click').hide();
+    $('#second-click').show();
+    console.log('ici');
+    $$('.form-to-json').on('click', function(){
+        //console.log(document.getElementById("comment").value);
+            var formData = {
+                    'overall': $('.rating-overall').starRating('getRating'),
+                    'content': $('.rating-content').starRating('getRating'),
+                    'understand': $('.rating-understand').starRating('getRating'),
+                    'captivating': $('.rating-captivating').starRating('getRating'),
+                    'inspiring': $('.rating-inspiring').starRating('getRating'),
+                    'comment' :  document.getElementById("comment").value,
+                    'quote': document.getElementById("quote").value
+                    };
+                console.log(formData);
+                console.log($('.rating-inspiring').starRating('getRating'));
 
 
 
-    //});
+                //});
 
 
-    // POST DU REVIEW
+                // POST DU REVIEW
 
 
-    var settings = {
+                var settings = {
 
-      "crossDomain": true,
-      "url": "http://52.69.148.135/ws/api/reviews",
-      "method": "POST",
-      "headers": {
-        "authorization": sessionStorage['token']
-        },
-        data:{
-            user_name : "AntoineK.",
-            user_email : "lol@gmail.com",
-            comment : JSON.stringify(formData.comment),
-            speaker_id : "117008",
-            score : [formData.overall,formData.content,formData.understand,formData.captivating,formData.inspiring]
-            },
+                  "crossDomain": true,
+                  "url": "http://52.69.148.135/ws/api/reviews",
+                  "method": "POST",
+                  "headers": {
+                    "authorization": sessionStorage['token']
+                    },
+                    data:{
+                        user_id:"1",
+                        comment : JSON.stringify(formData.comment),
+                        speaker_id : sessionStorage['idSpeaker'],
+                        score : [formData.overall,formData.content,formData.understand,formData.captivating,formData.inspiring]
+                        },
 
-      "mimeType": "multipart/form-data",
-      success: function(data){
-                //myApp.alert(data);
-                },
-                error: function(){
-                myApp.alert('La requete n a pas abouti');
+                  "mimeType": "multipart/form-data",
+                  success: function(data){
+                            //myApp.alert(data);
+                            },
+                            error: function(){
+                            myApp.alert('La requete n a pas abouti');
+                            }
                 }
-    }
-console.log(settings.data.score);
-    $.ajax(settings).done(function (response) {
-      console.log(response);
-    });
-    // FIN DU POST
+            //console.log(settings.data.score);
+                $.ajax(settings).done(function (response) {
+                  //console.log(response);
+                });
+                // FIN DU POST
+        });
+
 
 
 
@@ -256,6 +254,7 @@ $$('.notification-default').on('click', function () {
     // RATINGS
 
 });
+/*
 $$("#overall-id").click(function(){
 var overall = (document.getElementById("overall-id").value);
 $$('#affiche-overall').html(overall);
@@ -281,10 +280,69 @@ var content = (document.getElementById("content-id").value)/20;
 var understand = (document.getElementById("understand-id").value)/20;
 var captivating = (document.getElementById("captivating-id").value)/20;
 var inspiring = (document.getElementById("inspiring-id").value)/20;
-
+*/
 }
 
 );
+
+
+// AFFICHAGE DES REVIEWS SUR LE SPEAKER
+
+var template2 = $$('#tpl-speaker-reviews').html();
+//console.log(template2);
+var compiledTemplate2 = Template7.compile(template2);
+
+//PREPARATION DE LA REQUETE
+
+var settings2 = {
+
+  "url": "http://52.69.148.135/ws/api/speakers/"+sessionStorage['idSpeaker']+"/review",
+  "type": "Get",
+  "headers": {
+    "authorization": sessionStorage['token']
+     },data: {
+                email: "evan.chen@acer.com",
+                password: "1qaz@WSX"
+            },
+   dataType :"json",
+ success: function(data2){
+  //console.log(data2.reviews[0].review_rating);
+  //console.log(data2.reviews[0].review_rating);
+  },
+  error: function(){
+  myApp.alert('La requete n a pas abouti');
+  }
+  };
+
+
+
+//CHARGEMENT DES DONNEES DU SPEAKER
+
+
+
+
+$.ajax(settings2).done(function(data){
+
+//console.log('ici');
+//console.log(compiledTemplate2);
+console.log(data.reviews[0].review_rating[0].pivot);
+page2 = compiledTemplate2(data);
+//console.log('ici2');
+
+    document.getElementById("speaker-reviews").innerHTML = page2;
+    $(".my-rating-read").starRating({
+        totalStars: 5,
+        starSize: 15,
+        readOnly : true
+      });
+        $("time.timeago").timeago();
+
+});
+
+// AVERAGE REVIEWS
+var template3 = $$('#tpl-average-reviews').html();
+document.getElementById("average-reviews").innerHTML = template3;
+
 }
 
 
