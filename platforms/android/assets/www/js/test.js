@@ -2,7 +2,7 @@ var $$ = Dom7;
 var page;
 var page2;
 sessionStorage['idSpeaker']="";
-sessionStorage['token']="Bearer {eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjQsImlzcyI6Imh0dHA6XC9cLzUyLjY5LjE0OC4xMzVcL3dzXC9hdXRoXC9sb2dpbiIsImlhdCI6MTQ2ODI4OTI3MSwiZXhwIjoxNDY4Mzc1NjcxLCJuYmYiOjE0NjgyODkyNzEsImp0aSI6ImI0MjAwYTRhYWRkODlhN2RkZDFhYjkyYWMwZjdjNzZkIn0.umY29e9_gBlUKgXVznByUiy89Yr5g7QCR5M-BRilziI}";
+sessionStorage['token']="Bearer {eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjQsImlzcyI6Imh0dHA6XC9cLzUyLjY5LjE0OC4xMzVcL3dzXC9hdXRoXC9sb2dpbiIsImlhdCI6MTQ2ODM3Nzc4NSwiZXhwIjoxNDY4NDY0MTg1LCJuYmYiOjE0NjgzNzc3ODUsImp0aSI6IjMzMzkzYTY1MThiZGFlNDA2Mzc0MDg4Nzg1NDhjMmRlIn0.aofPfCQuPSC1tg1tYqfq9ZrJj25M645by0743xxjp1s}";
 sessionStorage['login']="true";
 sessionStorage['nameSpeaker']="";
 
