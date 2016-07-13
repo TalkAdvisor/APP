@@ -24,6 +24,74 @@ get_welcome();
 function get_welcome(){
     var template = $$('#tpl-welcome').html();
     document.getElementById("container").innerHTML = template;
+
+    // AUTOCOMPLETE
+    var autocompleteDropdownAjax = myApp.autocomplete({
+        input: '#autocomplete-dropdown-ajax',
+        openIn: 'dropdown',
+        preloader: true, //enable preloader
+        valueProperty: 'id', //object's "value" property name
+        textProperty: 'name', //object's "text" property name
+        limit: 20, //limit to 20 results
+        //dropdownPlaceholderText: 'Try to look for a speaker',
+        expandInput: true, // expand input
+        source: function (autocomplete, query, render) {
+            var results = [];
+            if (query.length === 0) {
+                render(results);
+                return;
+            }
+            // Show Preloader
+            autocomplete.showPreloader();
+            // Do Ajax request to Autocomplete data
+            $$.ajax({
+                url: 'http://52.69.148.135/ws/api/speakers',
+                method: 'GET',
+                dataType: 'json',
+                "headers": {
+                            "authorization": sessionStorage['token']
+
+                            },
+                              data: {
+                                        email: "evan.chen@acer.com",
+                                        password: "1qaz@WSX"
+                                    },
+                //send "query" to server. Useful in case you generate response dynamically
+                data: {
+                    query: query
+                },
+                success: function (data) {
+                    // Find matched items
+                    for (var i = 0; i < data.speakers.length; i++) {
+                    if (data.speakers[i].speaker_name.toLowerCase().indexOf(query.toLowerCase()) >= 0){
+                            results.push(data.speakers[i].speaker_name);
+                            sessionStorage['idSpeaker']=data.speakers[i].id;
+
+                            }
+
+                    }
+                    // Hide Preoloader
+                    autocomplete.hidePreloader();
+                    // Render items by passing array with result items
+                    render(results);
+                },
+                error : function(data){
+                    console.log('error');
+                    },
+
+            });
+
+
+        },
+        onChange : function(autocomplete, value){
+            get_specific_speaker();
+
+        }
+
+    });
+
+
+    // END OF AUTOCOMPLETE
     $('#speaker-reviews').hide();
     $('#average-reviews').hide();
     }
