@@ -31,17 +31,15 @@
         </div>
         <div class="pages navbar-through toolbar-through">
             <div data-page="index" class="page">
-                <div class="page-content pull-to-refresh-content">
+                <div class="page-content">
 
-                    <div class="pull-to-refresh-layer">
-                        <div class="preloader"></div>
-                        <div class="pull-to-refresh-arrow"></div>
-                    </div>
+
 
                     <!-- Container -->
-
+                    <!--<a href="accueil.html" class="external">ici</a>-->
                     <div id="container"></div>
-                    <div id="average-reviews"></div>
+
+
                     <div id="speaker-reviews"></div>
 
 
@@ -74,19 +72,45 @@
             </ul>
         </div>
     </div>
+    </script>
+
+
+<script type="text/template7" id="tpl-3-best-speakers">
     <div class="content-block-title">3 best speakers</div>
     <!-- Inset content block -->
     <div class="content-block inset">
-        <div class="content-block-inner">
-            <p>Donec et nulla auctor massa pharetra adipiscing ut sit amet sem. Suspendisse molestie velit vitae mattis tincidunt. Ut sit amet quam mollis, vulputate turpis vel, sagittis felis. </p>
+        <img src="img/golden_medal.png" width="20%"/>
+        {{#each speakers}}
+        <div class="button" onclick="sessionStorage['idSpeaker']='{{id}}'; get_specific_speaker()">
+            {{speaker_name}}
         </div>
+        {{/each}}
     </div>
+    </script>
+<script type="text/template7" id="tpl-3-last-reviews">
     <div class="content-block-title">3 last reviews</div>
-    <!-- Inset content block -->
-    <div class="content-block inset">
-        <div class="content-block-inner">
-            <p>Donec et nulla auctor massa pharetra adipiscing ut sit amet sem. Suspendisse molestie velit vitae mattis tincidunt. Ut sit amet quam mollis, vulputate turpis vel, sagittis felis. </p>
-        </div>
+    <div class="list-block media-list">
+        <ul>
+            {{#each reviews}}
+            <li>
+
+                    <span class="item-content">
+                        <div class="item-media"><img src="img/obama.jpg" width="60" class="circular"/></div>
+                        <div class="item-inner">
+                            <div class="item-title-row">
+                                <div class="item-title">About Speaker N°{{review.speaker_id}}</div>
+                                <div class="item-after">{{#if review.user_id}}by user N°{{review.user_id}} {{else}}Unknown user{{/if}}</div>
+                            </div>
+                            <div class="item-subtitle"><time class="timeago" datetime="{{review.created_at}}">Impossible to load the date</time></div>
+                            <div class="item-text"><span class="my-rating-read" data-rating="{{review_rating[0].pivot.score_id}}"></span>
+                                <span class="more">{{#js_compare "this.review.comment === '\"\"'"}}No comment{{else}}{{review.comment}}{{/js_compare}} </span>
+                            </div>
+                    </span>
+            </li>
+            {{/each}}
+        </ul>
+
+
     </div>
     <div class="content-block-title">3 random quotes</div>
     <!-- Inset content block -->
@@ -138,17 +162,17 @@
 
 </script>
 
-<script type="text/template7" id="tpl-average-reviews">
-ICI les Average reviews
-</script>
+
 <script type="text/template7" id="tpl-specific-speaker">
 
     <div class="content-block">
 
             <div class="row">
                 <div class="col-50">
-
+{{#if speaker_photo}} <img src="https://s3-ap-northeast-1.amazonaws.com/talk-advisor/speakers/{{speaker_photo}}" width="100%"/>
+                    {{else}}
                     <img src="img/obama.jpg" width="100%"/>
+                    {{/if}}
 
                 </div>
                 <div class="col-50">
@@ -156,7 +180,7 @@ ICI les Average reviews
                     {{#if average_1}}
                     <div class="my-rating-read" data-rating="{{average_1}}"></div>
                     {{else}}
-                    <div class="my-rating-read" data-rating="2.5"></div>
+                    <div>NO AVERAGE RATING</div>
                     {{/if}}
 
 
@@ -176,10 +200,90 @@ ICI les Average reviews
             <div class="swiper-slide"><span>Plutot chinois ou plutot chez toi?</span></div>
         </div>
     </div>
+    <div class="content-block-title">Average reviews</div>
+    <div class="list-block">
+        <ul>
+            <li>
+                <div class="item-inner">
+                    <div class="item-title label">總和評分
+                        <a href="#" data-popover=".popover-about-overall" class="open-popover">
+                            <i class="fa fa-question-circle"></i></a>
+                    </div>
+                    <div class="item-after">
+                        {{#if average_1}}
+                        <span class="my-rating-read" data-rating="{{average_1}}"></span>
+                        {{else}}
+                        <span>NO AVERAGE RATING</span>
+                        {{/if}}
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <div class="item-title label">內容
+                        <a href="#" data-popover=".popover-about-content" class="open-popover">
+                            <i class="fa fa-question-circle"></i></a>
+                    </div>
+                    <div class="item-after">
+                        {{#if average_2}}
+                        <span class="my-rating-read" data-rating="{{average_2}}"></span>
+                        {{else}}
+                        <span>NO AVERAGE RATING</span>
+                        {{/if}}
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <div class="item-title label">容易懂
+                        <a href="#" data-popover=".popover-about-understand" class="open-popover">
+                            <i class="fa fa-question-circle"></i></a>
+                    </div>
+                    <div class="item-after">
+                        {{#if average_3}}
+                        <span class="my-rating-read" data-rating="{{average_3}}"></span>
+                        {{else}}
+                        <span>NO AVERAGE RATING</span>
+                        {{/if}}
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <div class="item-title label">啓發性
+                        <a href="#" data-popover=".popover-about-captivating" class="open-popover">
+                            <i class="fa fa-question-circle"></i></a>
+                    </div>
+                    <div class="item-after">
+                        {{#if average_4}}
+                        <span class="my-rating-read" data-rating="{{average_4}}"></span>
+                        {{else}}
+                        <span>NO AVERAGE RATING</span>
+                        {{/if}}
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <div class="item-title label">讓人投入
+                        <a href="#" data-popover=".popover-about-inspiring" class="open-popover">
+                            <i class="fa fa-question-circle"></i></a>
+                    </div>
+                    <div class="item-after">
+                        {{#if average_5}}
+                        <span class="my-rating-read" data-rating="{{average_5}}"></span>
+                        {{else}}
+                        <span>NO AVERAGE RATING</span>
+                        {{/if}}
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
     {{#if speaker_description}}
     <div class="content-block">
                         <div class="content-block-title">Description</div>
-                    <div class="content-block-inner">
+                    <div class="content-block-inner more">
                                  {{speaker_description}}
                         </div>
                 </div>
@@ -209,29 +313,33 @@ ICI les Average reviews
 
 
 <script type="text/template7" id="tpl-speaker-reviews">
-    <div class="list-block">
+    <div class="content-block-title">
+        Last reviews
+    </div>
+    <div class="list-block media-list">
 
 
 
             <ul>
                 {{#each reviews}}
                 <li>
-                    <div class="item-inner">
-                        <div class="item-title-row">
-                            <div class="item-title">{{#if review.user_id}}By {{review.user_id}} {{else}} Unknown user {{/if}}</div>
 
-                            <div class="item-text"><span class="my-rating-read" data-rating="{{review_rating[0].pivot.score_id}}"></span>{{#if review.comment}}{{review.comment}}{{else}}{{review.user_name}} didn't leave any comment.{{/if}}</div>
-
-                        </div>
-
-
-
-                        <div class="item-after"><time class="timeago" datetime="{{review.created_at}}">Impossible to load the date</time></div>
-
-
-                        </div>
+                    <span class="item-content">
+                        <div class="item-media"><img src="img/obama.jpg" width="60" class="circular"/></div>
+                        <div class="item-inner">
+                            <div class="item-title-row">
+                                <div class="item-title">{{#if review.user_id}}by user N°{{review.user_id}} {{else}}Unknown user{{/if}}</div>
+                                <div class="item-after"></div>
+                            </div>
+                            <div class="item-subtitle"><time class="timeago" datetime="{{review.created_at}}">Impossible to load the date</time></div>
+                            <div class="item-text"><span class="my-rating-read" data-rating="{{review_rating[0].pivot.score_id}}"></span>
+                                <span class="more">{{#js_compare "this.review.comment === '\"\"'"}}No comment{{else}}{{review.comment}}{{/js_compare}} </span>
+                            </div>
+                    </span>
                 </li>
                 {{/each}}
+
+
 
             </ul>
 
@@ -239,18 +347,7 @@ ICI les Average reviews
     </div>
 </script>
 
-<!-- POPUP DESCRIPTION-->
-<div class="popup popup-alone">
-    <div class="content-block">
-        François Hollande
-    </div>
-    François Hollande, né le 12 août 1954 à Rouen, en Seine-Inférieure, est un homme d'État français. Il est président de la République française depuis 2012.
 
-    Magistrat à la Cour des comptes, et avocat pendant quelques mois entre 1996 et 1997, il est premier secrétaire du Parti socialiste de 1997 à 2008, pendant la troisième cohabitation puis dans l'opposition. Maire de Tulle de 2001 à 2008, il est député de la première circonscription de la Corrèze de 1988 à 1993 et de nouveau de 1997 à 2012, et préside le conseil général de la Corrèze de 2008 à 2012.
-
-    Désigné candidat du PS et du PRG à l'élection présidentielle de 2012 à l'issue d'une primaire, il emporte le second tour avec 51,64 % des voix face au président sortant, Nicolas Sarkozy, le 6 mai 2012. Il prend ses fonctions de président de la République française le 15 mai 2012.
-
-</div>
 
 
 <!-- POPUP LEAVE A REVIEW-->

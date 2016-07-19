@@ -27,29 +27,42 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/www/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-23.041666">
-              <caret line="125" column="86" selection-start-line="125" selection-start-column="86" selection-end-line="125" selection-end-column="146" />
+            <state vertical-scroll-proportion="-7.0588236">
+              <caret line="272" column="41" selection-start-line="272" selection-start-column="41" selection-end-line="272" selection-end-column="41" />
               <folding>
-                <element signature="e#1926#3685#0" expanded="false" />
-                <element signature="e#4889#4978#0" expanded="false" />
-                <element signature="e#7916#8874#0" expanded="false" />
-                <element signature="e#8906#14452#0" expanded="false" />
-                <element signature="e#14458#14717#0" expanded="false" />
-                <element signature="e#14718#14963#0" expanded="false" />
-                <element signature="e#14964#15217#0" expanded="false" />
-                <element signature="e#15218#15467#0" expanded="false" />
-                <element signature="e#15468#15726#0" expanded="false" />
-                <element signature="e#15763#18512#0" expanded="false" />
+                <element signature="e#23#903#0" expanded="false" />
+                <element signature="e#912#1722#0" expanded="false" />
+                <element signature="e#1723#2295#0" expanded="false" />
+                <element signature="e#2298#2751#0" expanded="false" />
+                <element signature="e#2752#4490#0" expanded="false" />
+                <element signature="e#4492#5692#0" expanded="false" />
+                <element signature="e#11313#12659#0" expanded="false" />
+                <element signature="e#18245#18504#0" expanded="false" />
+                <element signature="e#18505#18750#0" expanded="false" />
+                <element signature="e#18751#19004#0" expanded="false" />
+                <element signature="e#19005#19254#0" expanded="false" />
+                <element signature="e#19255#19513#0" expanded="false" />
+                <element signature="e#19550#22299#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="test.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/www/js/test.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.32608697">
-              <caret line="62" column="42" selection-start-line="62" selection-start-column="42" selection-end-line="62" selection-end-column="42" />
+            <state vertical-scroll-proportion="-11.925926">
+              <caret line="612" column="0" selection-start-line="612" selection-start-column="0" selection-end-line="612" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="framework7.ios.min.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/assets/www/css/framework7.ios.min.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="14" column="58278" selection-start-line="14" selection-start-column="58278" selection-end-line="14" selection-end-column="58278" />
               <folding />
             </state>
           </provider>
@@ -65,11 +78,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.css" pinned="false" current-in-tab="false">
+      <file leaf-file-name="index.css" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/assets/www/css/index.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="142" column="19" selection-start-line="142" selection-start-column="19" selection-end-line="142" selection-end-column="19" />
+            <state vertical-scroll-proportion="0.9567723">
+              <caret line="184" column="0" selection-start-line="184" selection-start-column="0" selection-end-line="184" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -80,7 +93,9 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="5" column="297" selection-start-line="5" selection-start-column="297" selection-end-line="5" selection-end-column="297" />
-              <folding />
+              <folding>
+                <element signature="e#0#2675#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -88,8 +103,8 @@
       <file leaf-file-name="accueil.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/www/accueil.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.0">
-              <caret line="44" column="12" selection-start-line="44" selection-start-column="12" selection-end-line="52" selection-end-column="18" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="57" column="7" selection-start-line="57" selection-start-column="7" selection-end-line="57" selection-end-column="90" />
               <folding />
             </state>
           </provider>
@@ -99,7 +114,7 @@
         <entry file="file://$PROJECT_DIR$/assets/www/js/accueil.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="64" column="19" selection-start-line="6" selection-start-column="0" selection-end-line="64" selection-end-column="19" />
+              <caret line="14" column="10" selection-start-line="14" selection-start-column="10" selection-end-line="14" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -1028,7 +1043,7 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="$PROJECT_DIR$" value="5864544742000" />
+        <entry key="$PROJECT_DIR$" value="5866904286000" />
       </map>
     </option>
     <option name="projectBuildClasspath">
@@ -1314,15 +1329,17 @@
         <option value="$PROJECT_DIR$/assets/www/testbdd.html" />
         <option value="$PROJECT_DIR$/assets/www/specific_speaker.html" />
         <option value="$PROJECT_DIR$/assets/www/js/stars.js" />
-        <option value="$PROJECT_DIR$/assets/www/stars.html" />
         <option value="$PROJECT_DIR$/assets/www/js/specific_speaker.js" />
         <option value="$PROJECT_DIR$/assets/www/js/index.js" />
         <option value="$PROJECT_DIR$/assets/www/about.html" />
-        <option value="$PROJECT_DIR$/assets/www/css/index.css" />
-        <option value="$PROJECT_DIR$/assets/www/accueil.html" />
+        <option value="$PROJECT_DIR$/assets/www/css/framework7.ios.min.css" />
+        <option value="$PROJECT_DIR$/build.gradle" />
+        <option value="$PROJECT_DIR$/assets/www/stars.html" />
         <option value="$PROJECT_DIR$/assets/www/js/accueil.js" />
-        <option value="$PROJECT_DIR$/assets/www/index.html" />
+        <option value="$PROJECT_DIR$/assets/www/accueil.html" />
         <option value="$PROJECT_DIR$/assets/www/js/test.js" />
+        <option value="$PROJECT_DIR$/assets/www/index.html" />
+        <option value="$PROJECT_DIR$/assets/www/css/index.css" />
       </list>
     </option>
   </component>
@@ -1354,7 +1371,7 @@
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
   <component name="ProjectView">
-    <navigator currentView="AndroidView" proportions="" version="1">
+    <navigator currentView="ProjectPane" proportions="" version="1">
       <flattenPackages />
       <showMembers />
       <showModules />
@@ -1366,6 +1383,83 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CordovaLib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="www" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="www" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="AndroidView">
         <subPane>
           <PATH>
@@ -1458,10 +1552,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="ProjectPane" />
-      <pane id="Scope" />
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1474,6 +1564,7 @@
     <property name="FullScreen" value="true" />
     <property name="android.project.structure.last.selected" value="android" />
     <property name="android.project.structure.proportion" value="0.15" />
+    <property name="restartRequiresConfirmation" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -1481,7 +1572,7 @@
       <recent name="$PROJECT_DIR$/assets/www/css" />
     </key>
   </component>
-  <component name="RunManager" selected="Android Application.android">
+  <component name="RunManager" selected="Android Application.TalkAdivsor">
     <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
       <module name="" />
       <option name="ACTIVITY_CLASS" value="" />
@@ -1556,6 +1647,33 @@
       <envs />
       <method />
     </configuration>
+    <configuration default="true" type="GradleRunConfiguration" factoryName="Gradle">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/CordovaLib" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="assemble" />
+          </list>
+        </option>
+        <option name="vmOptions" value="" />
+      </ExternalSystemSettings>
+      <method />
+    </configuration>
+    <configuration default="true" type="GroovyScriptRunConfiguration" factoryName="Groovy">
+      <module name="" />
+      <setting name="path" value="" />
+      <setting name="vmparams" value="" />
+      <setting name="params" value="" />
+      <setting name="workDir" value="file://$PROJECT_DIR$" />
+      <setting name="debug" value="false" />
+      <method />
+    </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <module name="" />
@@ -1618,7 +1736,7 @@
       <listeners />
       <method />
     </configuration>
-    <configuration default="false" name="android" type="AndroidRunConfigurationType" factoryName="Android Application">
+    <configuration default="false" name="TalkAdivsor" type="AndroidRunConfigurationType" factoryName="Android Application">
       <module name="android" />
       <option name="ACTIVITY_CLASS" value="" />
       <option name="MODE" value="default_activity" />
@@ -1636,19 +1754,19 @@
       <option name="CLEAR_LOGCAT" value="false" />
       <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
       <option name="FILTER_LOGCAT_AUTOMATICALLY" value="true" />
-      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="0" />
-      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
-      <option name="SELECTED_CLOUD_DEVICE_CONFIGURATION_ID" value="0" />
-      <option name="SELECTED_CLOUD_DEVICE_PROJECT_ID" value="" />
+      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
+      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="Please select a project..." />
+      <option name="SELECTED_CLOUD_DEVICE_CONFIGURATION_ID" value="-1" />
+      <option name="SELECTED_CLOUD_DEVICE_PROJECT_ID" value="Please select a project..." />
       <option name="IS_VALID_CLOUD_MATRIX_SELECTION" value="false" />
-      <option name="INVALID_CLOUD_MATRIX_SELECTION_ERROR" value="" />
+      <option name="INVALID_CLOUD_MATRIX_SELECTION_ERROR" value="Cloud configuration not specified" />
       <option name="IS_VALID_CLOUD_DEVICE_SELECTION" value="false" />
-      <option name="INVALID_CLOUD_DEVICE_SELECTION_ERROR" value="" />
+      <option name="INVALID_CLOUD_DEVICE_SELECTION_ERROR" value="Cloud configuration not specified" />
       <option name="CLOUD_DEVICE_SERIAL_NUMBER" value="" />
       <method />
     </configuration>
     <list size="1">
-      <item index="0" class="java.lang.String" itemvalue="Android Application.android" />
+      <item index="0" class="java.lang.String" itemvalue="Android Application.TalkAdivsor" />
     </list>
     <configuration name="&lt;template&gt;" type="Applet" default="true" selected="false">
       <option name="MAIN_CLASS_NAME" />
@@ -1700,13 +1818,13 @@
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.012379643" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.0068775793" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296146" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.0" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2734375" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16015625" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32599726" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -1761,31 +1879,41 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/assets/www/js/test.js</url>
-          <line>107</line>
+          <line>232</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/assets/www/index.html</url>
-          <line>414</line>
+          <line>511</line>
           <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/assets/www/js/test.js</url>
-          <line>152</line>
+          <line>277</line>
           <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/assets/www/js/test.js</url>
-          <line>261</line>
+          <line>425</line>
           <option name="timeStamp" value="22" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/assets/www/index.html</url>
-          <line>210</line>
+          <line>314</line>
           <option name="timeStamp" value="23" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/assets/www/js/test.js</url>
+          <line>230</line>
+          <option name="timeStamp" value="25" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/assets/www/index.html</url>
+          <line>302</line>
+          <option name="timeStamp" value="26" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="24" />
+      <option name="time" value="30" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1793,24 +1921,10 @@
     <entry file="file://$PROJECT_DIR$/assets/www/js/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="5" column="297" selection-start-line="5" selection-start-column="297" selection-end-line="5" selection-end-column="297" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/www/js/test.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="141" column="0" selection-start-line="141" selection-start-column="0" selection-end-line="141" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/www/js/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
           <caret line="5" column="300" selection-start-line="5" selection-start-column="300" selection-end-line="5" selection-end-column="300" />
-          <folding />
+          <folding>
+            <element signature="e#0#2675#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1819,16 +1933,19 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="131" column="104" selection-start-line="131" selection-start-column="104" selection-end-line="131" selection-end-column="104" />
           <folding>
-            <element signature="e#1926#3685#0" expanded="false" />
-            <element signature="e#4889#4978#0" expanded="false" />
-            <element signature="e#7916#8874#0" expanded="false" />
-            <element signature="e#8906#14452#0" expanded="false" />
-            <element signature="e#14458#14717#0" expanded="false" />
-            <element signature="e#14718#14963#0" expanded="false" />
-            <element signature="e#14964#15217#0" expanded="false" />
-            <element signature="e#15218#15467#0" expanded="false" />
-            <element signature="e#15468#15726#0" expanded="false" />
-            <element signature="e#15763#18512#0" expanded="false" />
+            <element signature="e#23#903#0" expanded="false" />
+            <element signature="e#912#1722#0" expanded="false" />
+            <element signature="e#1723#2295#0" expanded="false" />
+            <element signature="e#2298#2751#0" expanded="false" />
+            <element signature="e#2752#4490#0" expanded="false" />
+            <element signature="e#4492#5692#0" expanded="false" />
+            <element signature="e#11313#12659#0" expanded="false" />
+            <element signature="e#18245#18504#0" expanded="false" />
+            <element signature="e#18505#18750#0" expanded="false" />
+            <element signature="e#18751#19004#0" expanded="false" />
+            <element signature="e#19005#19254#0" expanded="false" />
+            <element signature="e#19255#19513#0" expanded="false" />
+            <element signature="e#19550#22299#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1858,7 +1975,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="70" column="30" selection-start-line="70" selection-start-column="30" selection-end-line="70" selection-end-column="30" />
-          <folding />
+          <folding>
+            <element signature="e#0#2675#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1867,16 +1986,19 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="137" column="0" selection-start-line="137" selection-start-column="0" selection-end-line="137" selection-end-column="0" />
           <folding>
-            <element signature="e#1926#3685#0" expanded="false" />
-            <element signature="e#4889#4978#0" expanded="false" />
-            <element signature="e#7916#8874#0" expanded="false" />
-            <element signature="e#8906#14452#0" expanded="false" />
-            <element signature="e#14458#14717#0" expanded="false" />
-            <element signature="e#14718#14963#0" expanded="false" />
-            <element signature="e#14964#15217#0" expanded="false" />
-            <element signature="e#15218#15467#0" expanded="false" />
-            <element signature="e#15468#15726#0" expanded="false" />
-            <element signature="e#15763#18512#0" expanded="false" />
+            <element signature="e#23#903#0" expanded="false" />
+            <element signature="e#912#1722#0" expanded="false" />
+            <element signature="e#1723#2295#0" expanded="false" />
+            <element signature="e#2298#2751#0" expanded="false" />
+            <element signature="e#2752#4490#0" expanded="false" />
+            <element signature="e#4492#5692#0" expanded="false" />
+            <element signature="e#11313#12659#0" expanded="false" />
+            <element signature="e#18245#18504#0" expanded="false" />
+            <element signature="e#18505#18750#0" expanded="false" />
+            <element signature="e#18751#19004#0" expanded="false" />
+            <element signature="e#19005#19254#0" expanded="false" />
+            <element signature="e#19255#19513#0" expanded="false" />
+            <element signature="e#19550#22299#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1906,7 +2028,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="74" column="25" selection-start-line="74" selection-start-column="25" selection-end-line="74" selection-end-column="25" />
-          <folding />
+          <folding>
+            <element signature="e#0#2675#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1923,16 +2047,19 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="67" column="0" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
           <folding>
-            <element signature="e#1926#3685#0" expanded="false" />
-            <element signature="e#4889#4978#0" expanded="false" />
-            <element signature="e#7916#8874#0" expanded="false" />
-            <element signature="e#8906#14452#0" expanded="false" />
-            <element signature="e#14458#14717#0" expanded="false" />
-            <element signature="e#14718#14963#0" expanded="false" />
-            <element signature="e#14964#15217#0" expanded="false" />
-            <element signature="e#15218#15467#0" expanded="false" />
-            <element signature="e#15468#15726#0" expanded="false" />
-            <element signature="e#15763#18512#0" expanded="false" />
+            <element signature="e#23#903#0" expanded="false" />
+            <element signature="e#912#1722#0" expanded="false" />
+            <element signature="e#1723#2295#0" expanded="false" />
+            <element signature="e#2298#2751#0" expanded="false" />
+            <element signature="e#2752#4490#0" expanded="false" />
+            <element signature="e#4492#5692#0" expanded="false" />
+            <element signature="e#11313#12659#0" expanded="false" />
+            <element signature="e#18245#18504#0" expanded="false" />
+            <element signature="e#18505#18750#0" expanded="false" />
+            <element signature="e#18751#19004#0" expanded="false" />
+            <element signature="e#19005#19254#0" expanded="false" />
+            <element signature="e#19255#19513#0" expanded="false" />
+            <element signature="e#19550#22299#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1964,16 +2091,19 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="500" column="0" selection-start-line="500" selection-start-column="0" selection-end-line="500" selection-end-column="0" />
           <folding>
-            <element signature="e#1926#3685#0" expanded="false" />
-            <element signature="e#4889#4978#0" expanded="false" />
-            <element signature="e#7916#8874#0" expanded="false" />
-            <element signature="e#8906#14452#0" expanded="false" />
-            <element signature="e#14458#14717#0" expanded="false" />
-            <element signature="e#14718#14963#0" expanded="false" />
-            <element signature="e#14964#15217#0" expanded="false" />
-            <element signature="e#15218#15467#0" expanded="false" />
-            <element signature="e#15468#15726#0" expanded="false" />
-            <element signature="e#15763#18512#0" expanded="false" />
+            <element signature="e#23#903#0" expanded="false" />
+            <element signature="e#912#1722#0" expanded="false" />
+            <element signature="e#1723#2295#0" expanded="false" />
+            <element signature="e#2298#2751#0" expanded="false" />
+            <element signature="e#2752#4490#0" expanded="false" />
+            <element signature="e#4492#5692#0" expanded="false" />
+            <element signature="e#11313#12659#0" expanded="false" />
+            <element signature="e#18245#18504#0" expanded="false" />
+            <element signature="e#18505#18750#0" expanded="false" />
+            <element signature="e#18751#19004#0" expanded="false" />
+            <element signature="e#19005#19254#0" expanded="false" />
+            <element signature="e#19255#19513#0" expanded="false" />
+            <element signature="e#19550#22299#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2111,13 +2241,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/www/stars.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-22.5">
-          <caret line="36" column="7" selection-start-line="36" selection-start-column="7" selection-end-line="36" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/www/specific_speaker.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-8.75">
@@ -2139,10 +2262,49 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/assets/www/about.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.375">
+          <caret line="15" column="10" selection-start-line="15" selection-start-column="10" selection-end-line="15" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/www/css/framework7.ios.colors.min.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.6132073">
+          <caret line="14" column="44" selection-start-line="14" selection-start-column="26" selection-end-line="14" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.35877863">
+          <caret line="34" column="61" selection-start-line="34" selection-start-column="61" selection-end-line="34" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/www/stars.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="72" column="20" selection-start-line="72" selection-start-column="20" selection-end-line="72" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/assets/www/css/framework7.ios.min.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.7777777">
-          <caret line="14" column="52618" selection-start-line="14" selection-start-column="52608" selection-end-line="14" selection-end-column="52618" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="14" column="58278" selection-start-line="14" selection-start-column="58278" selection-end-line="14" selection-end-column="58278" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/www/js/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="5" column="297" selection-start-line="5" selection-start-column="297" selection-end-line="5" selection-end-column="297" />
+          <folding>
+            <element signature="e#0#2675#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2154,68 +2316,56 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/www/about.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.375">
-          <caret line="15" column="10" selection-start-line="15" selection-start-column="10" selection-end-line="15" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/www/css/index.css">
+    <entry file="file://$PROJECT_DIR$/assets/www/js/accueil.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="142" column="19" selection-start-line="142" selection-start-column="19" selection-end-line="142" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/www/js/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="5" column="297" selection-start-line="5" selection-start-column="297" selection-end-line="5" selection-end-column="297" />
+          <caret line="14" column="10" selection-start-line="14" selection-start-column="10" selection-end-line="14" selection-end-column="14" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/www/accueil.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.0">
-          <caret line="44" column="12" selection-start-line="44" selection-start-column="12" selection-end-line="52" selection-end-column="18" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="57" column="7" selection-start-line="57" selection-start-column="7" selection-end-line="57" selection-end-column="90" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/www/js/accueil.js">
+    <entry file="file://$PROJECT_DIR$/assets/www/js/test.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="64" column="19" selection-start-line="6" selection-start-column="0" selection-end-line="64" selection-end-column="19" />
+        <state vertical-scroll-proportion="-11.925926">
+          <caret line="612" column="0" selection-start-line="612" selection-start-column="0" selection-end-line="612" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/www/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-23.041666">
-          <caret line="125" column="86" selection-start-line="125" selection-start-column="86" selection-end-line="125" selection-end-column="146" />
+        <state vertical-scroll-proportion="-7.0588236">
+          <caret line="272" column="41" selection-start-line="272" selection-start-column="41" selection-end-line="272" selection-end-column="41" />
           <folding>
-            <element signature="e#1926#3685#0" expanded="false" />
-            <element signature="e#4889#4978#0" expanded="false" />
-            <element signature="e#7916#8874#0" expanded="false" />
-            <element signature="e#8906#14452#0" expanded="false" />
-            <element signature="e#14458#14717#0" expanded="false" />
-            <element signature="e#14718#14963#0" expanded="false" />
-            <element signature="e#14964#15217#0" expanded="false" />
-            <element signature="e#15218#15467#0" expanded="false" />
-            <element signature="e#15468#15726#0" expanded="false" />
-            <element signature="e#15763#18512#0" expanded="false" />
+            <element signature="e#23#903#0" expanded="false" />
+            <element signature="e#912#1722#0" expanded="false" />
+            <element signature="e#1723#2295#0" expanded="false" />
+            <element signature="e#2298#2751#0" expanded="false" />
+            <element signature="e#2752#4490#0" expanded="false" />
+            <element signature="e#4492#5692#0" expanded="false" />
+            <element signature="e#11313#12659#0" expanded="false" />
+            <element signature="e#18245#18504#0" expanded="false" />
+            <element signature="e#18505#18750#0" expanded="false" />
+            <element signature="e#18751#19004#0" expanded="false" />
+            <element signature="e#19005#19254#0" expanded="false" />
+            <element signature="e#19255#19513#0" expanded="false" />
+            <element signature="e#19550#22299#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/www/js/test.js">
+    <entry file="file://$PROJECT_DIR$/assets/www/css/index.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.32608697">
-          <caret line="62" column="42" selection-start-line="62" selection-start-column="42" selection-end-line="62" selection-end-column="42" />
+        <state vertical-scroll-proportion="0.9567723">
+          <caret line="184" column="0" selection-start-line="184" selection-start-column="0" selection-end-line="184" selection-end-column="0" />
           <folding />
         </state>
       </provider>

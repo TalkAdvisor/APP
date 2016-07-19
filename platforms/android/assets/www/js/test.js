@@ -2,7 +2,7 @@ var $$ = Dom7;
 var page;
 var page2;
 sessionStorage['idSpeaker']="";
-sessionStorage['token']="Bearer {eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjQsImlzcyI6Imh0dHA6XC9cLzUyLjY5LjE0OC4xMzVcL3dzXC9hdXRoXC9sb2dpbiIsImlhdCI6MTQ2ODM3Nzc4NSwiZXhwIjoxNDY4NDY0MTg1LCJuYmYiOjE0NjgzNzc3ODUsImp0aSI6IjMzMzkzYTY1MThiZGFlNDA2Mzc0MDg4Nzg1NDhjMmRlIn0.aofPfCQuPSC1tg1tYqfq9ZrJj25M645by0743xxjp1s}";
+sessionStorage['token']="";
 sessionStorage['login']="true";
 sessionStorage['nameSpeaker']="";
 
@@ -22,78 +22,203 @@ var mainView = myApp.addView('.view-main');
 
 get_welcome();
 function get_welcome(){
-    var template = $$('#tpl-welcome').html();
-    document.getElementById("container").innerHTML = template;
+var settings = {
+          "url": "http://52.69.148.135/ws/auth/login",
+          "type": "Post",
+          data: {
+                        email: "evan.chen@acer.com",
+                        password: "1qaz@WSX"
+                    },
+           dataType :"json",
+         success: function(data){
+          //myApp.alert(data.token);
+          },
+          error: function(){
+          myApp.alert('La requete n a pas abouti');
+          }
+          };
 
-    // AUTOCOMPLETE
-    var autocompleteDropdownAjax = myApp.autocomplete({
-        input: '#autocomplete-dropdown-ajax',
-        openIn: 'dropdown',
-        preloader: true, //enable preloader
-        valueProperty: 'id', //object's "value" property name
-        textProperty: 'name', //object's "text" property name
-        limit: 20, //limit to 20 results
-        //dropdownPlaceholderText: 'Try to look for a speaker',
-        expandInput: true, // expand input
-        source: function (autocomplete, query, render) {
-            var results = [];
-            if (query.length === 0) {
-                render(results);
-                return;
-            }
-            // Show Preloader
-            autocomplete.showPreloader();
-            // Do Ajax request to Autocomplete data
-            $$.ajax({
-                url: 'http://52.69.148.135/ws/api/speakers',
-                method: 'GET',
-                dataType: 'json',
-                "headers": {
-                            "authorization": sessionStorage['token']
+        // RECUPERATION DU TOKEN
 
+        $.ajax(settings).done(function(data){
+            //console.log('ici');
+            sessionStorage['token']="Bearer {"+data.token+"}";
+            console.log(sessionStorage['token']);
+
+var page = $$('#tpl-welcome').html();
+            document.getElementById("container").innerHTML = page;
+            // AUTOCOMPLETE
+                var autocompleteDropdownAjax = myApp.autocomplete({
+                    input: '#autocomplete-dropdown-ajax',
+                    openIn: 'dropdown',
+                    preloader: true, //enable preloader
+                    valueProperty: 'id', //object's "value" property name
+                    textProperty: 'name', //object's "text" property name
+                    limit: 20, //limit to 20 results
+                    //dropdownPlaceholderText: 'Try to look for a speaker',
+                    expandInput: true, // expand input
+                    source: function (autocomplete, query, render) {
+                        var results = [];
+                        if (query.length === 0) {
+                            render(results);
+                            return;
+                        }
+                        // Show Preloader
+                        autocomplete.showPreloader();
+                        // Do Ajax request to Autocomplete data
+                        $$.ajax({
+                            url: 'http://52.69.148.135/ws/api/speakers',
+                            method: 'GET',
+                            dataType: 'json',
+                            "headers": {
+                                        "authorization": sessionStorage['token']
+
+                                        },
+                                          data: {
+                                                    email: "evan.chen@acer.com",
+                                                    password: "1qaz@WSX"
+                                                },
+                            //send "query" to server. Useful in case you generate response dynamically
+                            data: {
+                                query: query
                             },
-                              data: {
-                                        email: "evan.chen@acer.com",
-                                        password: "1qaz@WSX"
-                                    },
-                //send "query" to server. Useful in case you generate response dynamically
-                data: {
-                    query: query
-                },
-                success: function (data) {
-                    // Find matched items
-                    for (var i = 0; i < data.speakers.length; i++) {
-                    if (data.speakers[i].speaker_name.toLowerCase().indexOf(query.toLowerCase()) >= 0){
-                            results.push(data.speakers[i].speaker_name);
-                            sessionStorage['idSpeaker']=data.speakers[i].id;
+                            success: function (data) {
+                                // Find matched items
+                                for (var i = 0; i < data.speakers.length; i++) {
+                                if (data.speakers[i].speaker_name.toLowerCase().indexOf(query.toLowerCase()) >= 0){
+                                        results.push(data.speakers[i].speaker_name);
+                                        sessionStorage['idSpeaker']=data.speakers[i].id;
 
-                            }
+                                        }
+
+                                }
+                                // Hide Preoloader
+                                autocomplete.hidePreloader();
+                                // Render items by passing array with result items
+                                render(results);
+                            },
+                            error : function(data){
+                                console.log('error');
+                                },
+
+                        });
+
+
+                    },
+                    onChange : function(autocomplete, value){
+                        get_specific_speaker();
 
                     }
-                    // Hide Preoloader
-                    autocomplete.hidePreloader();
-                    // Render items by passing array with result items
-                    render(results);
-                },
-                error : function(data){
-                    console.log('error');
+
+                });
+
+
+
+
+// REQUETE 3 BEST SPEAKERS
+
+            var template2 = $$('#tpl-3-best-speakers').html();
+                var compiledTemplate2 = Template7.compile(template2);
+
+
+
+
+                var settings2 = {
+
+                  "url": "http://52.69.148.135/ws/api/speakers/rating/max/3",
+                  "type": "Get",
+                  "headers": {
+                    "authorization": sessionStorage['token']
                     },
+                   dataType :"json",
+                 success: function(data){
+                  //myApp.alert(data);
+                  },
+                  error: function(){
+                  myApp.alert('La requete n a pas abouti');
+                  }
+                  };
+
+
+
+            $.ajax(settings2).done(function(data){
+            console.log(data.speakers);
+            page2 = compiledTemplate2(data);
+            $('#container').append(page2);
+            });
+
+            // FIN REQUETE 3 BEST SPEAKERS
+
+            // REQUETE 3 LAST REVIEWS
+
+                        var template3 = $$('#tpl-3-last-reviews').html();
+                            var compiledTemplate3 = Template7.compile(template3);
+
+
+
+
+                            var settings3 = {
+
+                              "url": "http://52.69.148.135/ws/api/reviews/last/3",
+                              "type": "Get",
+                              "headers": {
+                                "authorization": sessionStorage['token']
+                                },
+                               dataType :"json",
+                             success: function(data){
+                              //myApp.alert(data);
+                              },
+                              error: function(){
+                              myApp.alert('La requete n a pas abouti');
+                              }
+                              };
+
+
+
+                        $.ajax(settings3).done(function(data){
+
+                        console.log(data.reviews[0].review);
+                        page3 = compiledTemplate3(data);
+                        $('#container').append(page3);
+                        $(".my-rating-read").starRating({
+                                totalStars: 5,
+                                starSize: 15,
+                                readOnly : true
+                              });
+                        $("time.timeago").timeago();
+                        });
+
+                        // FIN REQUETE 3 LAST REVIEWS
+
+
 
             });
 
 
-        },
-        onChange : function(autocomplete, value){
-            get_specific_speaker();
 
-        }
 
-    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     // END OF AUTOCOMPLETE
     $('#speaker-reviews').hide();
-    $('#average-reviews').hide();
+
     }
 
 
@@ -154,7 +279,7 @@ function get_specific_speaker() {
 
 // AFFICHAGE DU SPEAKER
 $('#speaker-reviews').show();
-    $('#average-reviews').show();
+
 var template = $$('#tpl-specific-speaker').html();
 var compiledTemplate = Template7.compile(template);
 // basic use comes with defaults values
@@ -172,6 +297,8 @@ var compiledTemplate = Template7.compile(template);
     activeColor: 'crimson',
     useGradient: false
   });
+
+
 
 
 //PREPARATION DE LA REQUETE
@@ -212,6 +339,42 @@ document.getElementById("container").innerHTML = page;
     pagination:'.swiper-1 .swiper-pagination',
     spaceBetween: 50
   });
+  // READ MORE AND READ LESS DESCRIPTION
+
+     // Configure/customize these variables.
+         var showChar = 100;  // How many characters are shown by default
+         var ellipsestext = "...";
+         var moretext = "Read more";
+         var lesstext = "Read less";
+
+
+         $('.more').each(function() {
+             var content = $(this).html();
+
+             if(content.length > showChar) {
+
+                 var c = content.substr(0, showChar);
+                 var h = content.substr(showChar, content.length - showChar);
+
+                 var html = c + '<span class="moreellipses">' + ellipsestext+ '&nbsp;</span><span class="morecontent"><span>' + h + '</span>&nbsp;&nbsp;<a href="" class="morelink">' + moretext + '</a></span>';
+
+                 $(this).html(html);
+             }
+
+         });
+
+         $(".morelink").click(function(){
+             if($(this).hasClass("less")) {
+                 $(this).removeClass("less");
+                 $(this).html(moretext);
+             } else {
+                 $(this).addClass("less");
+                 $(this).html(lesstext);
+             }
+             $(this).parent().prev().toggle();
+             $(this).prev().toggle();
+             return false;
+         });
 
 
 
@@ -255,11 +418,16 @@ var myPhotoBrowserPopupDark = myApp.photoBrowser({
 });
 
 $$('.open-about').on('click', function () {
+
 if (!sessionStorage['login']){
     //myApp.alert('Pas de login, pas de review :(');
     myApp.popup('.popup-inscription');
 }
 else{
+
+$('#leave-a-comment').show();
+$('#first-click').show();
+
 
   myApp.popup('.popup-review');
   $('#leave-a-comment').hide();
@@ -318,12 +486,15 @@ else{
                 }
             //console.log(settings.data.score);
                 $.ajax(settings).done(function (response) {
+
                   //console.log(response);
                 });
+
                 // FIN DU POST
         });
 
-
+$('#leave-a-comment').show();
+                $('#second-click').show();
 
 
 
@@ -345,33 +516,7 @@ $$('.notification-default').on('click', function () {
     // RATINGS
 
 });
-/*
-$$("#overall-id").click(function(){
-var overall = (document.getElementById("overall-id").value);
-$$('#affiche-overall').html(overall);
-});
-$$("#content-id").click(function(){
-var content = (document.getElementById("content-id").value);
-$$('#affiche-content').html(content);
-});
-$$("#understand-id").click(function(){
-var understand = (document.getElementById("understand-id").value);
-$$('#affiche-understand').html(understand);
-});
-$$("#captivating-id").click(function(){
-var captivating = (document.getElementById("captivating-id").value);
-$$('#affiche-captivating').html(captivating);
-});
-$$("#inspiring-id").click(function(){
-var inspiring = (document.getElementById("inspiring-id").value);
-$$('#affiche-inspiring').html(inspiring);
-});
 
-var content = (document.getElementById("content-id").value)/20;
-var understand = (document.getElementById("understand-id").value)/20;
-var captivating = (document.getElementById("captivating-id").value)/20;
-var inspiring = (document.getElementById("inspiring-id").value)/20;
-*/
 }
 
 );
@@ -427,12 +572,48 @@ page2 = compiledTemplate2(data);
         readOnly : true
       });
         $("time.timeago").timeago();
+        // READ MORE AND READ LESS DESCRIPTION
+
+             // Configure/customize these variables.
+                 var showChar = 100;  // How many characters are shown by default
+                 var ellipsestext = "...";
+                 var moretext = "Read more";
+                 var lesstext = "Read less";
+
+
+                 $('.more').each(function() {
+                     var content = $(this).html();
+
+                     if(content.length > showChar) {
+
+                         var c = content.substr(0, showChar);
+                         var h = content.substr(showChar, content.length - showChar);
+
+                         var html = c + '<span class="moreellipses">' + ellipsestext+ '&nbsp;</span><span class="morecontent"><span>' + h + '</span>&nbsp;&nbsp;<a href="" class="morelink">' + moretext + '</a></span>';
+
+                         $(this).html(html);
+                     }
+
+                 });
+
+                 $(".morelink").click(function(){
+                     if($(this).hasClass("less")) {
+                         $(this).removeClass("less");
+                         $(this).html(moretext);
+                     } else {
+                         $(this).addClass("less");
+                         $(this).html(lesstext);
+                     }
+                     $(this).parent().prev().toggle();
+                     $(this).prev().toggle();
+                     return false;
+                 });
+
+
 
 });
 
-// AVERAGE REVIEWS
-var template3 = $$('#tpl-average-reviews').html();
-document.getElementById("average-reviews").innerHTML = template3;
+
 
 }
 
