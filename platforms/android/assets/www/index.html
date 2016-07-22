@@ -91,7 +91,7 @@
             </ul>
         </div>
     </div>
-    </script>
+</script>
 
 
 <script type="text/template7" id="tpl-3-best-speakers">
@@ -105,12 +105,12 @@
                     <span class="item-content">
                         <div class="item-media">{{#if speakers[0].speaker_photo}} <img src="https://s3-ap-northeast-1.amazonaws.com/talk-advisor/speakers/{{speakers[0].speaker_photo}}" width="60" class="circular"/>
                             {{else}}
-                            <img src="img/obama.jpg" width="60" class="circular"/>
+                            <img src="img/hollande.jpg" width="60" class="circular"/>
                             {{/if}}
                         </div>
                         <div class="item-inner">
                             <div class="item-title-row">
-                                <div class="item-title"><img src="img/Gold_medal_icon.svg"/> {{speakers[0].speaker_name}}</div>
+                                <div class="item-title"><img src="img/Gold_medal_icon.svg.png" width="16"/> {{speakers[0].speaker_name}}</div>
                                 <div class="item-after"><span class="my-rating-read" data-rating="{{speakers[0].average_1}}"></span></div>
                             </div>
                             <div class="item-subtitle">with {{speakers[0].average_1}}/5 pts over {{speakers[0].number_reviews}} ratings.</div>
@@ -124,12 +124,12 @@
                     <span class="item-content">
                         <div class="item-media">{{#if speakers[1].speaker_photo}} <img src="https://s3-ap-northeast-1.amazonaws.com/talk-advisor/speakers/{{speakers[1].speaker_photo}}" width="60" class="circular"/>
                             {{else}}
-                            <img src="img/obama.jpg" width="60" class="circular"/>
+                            <img src="img/hollande.jpg" width="60" class="circular"/>
                             {{/if}}
                         </div>
                         <div class="item-inner">
                             <div class="item-title-row">
-                                <div class="item-title"><img src="img/Silver_medal_icon.svg"/> {{speakers[1].speaker_name}}</div>
+                                <div class="item-title"><img src="img/Silver_medal_icon.svg.png" width="16"/> {{speakers[1].speaker_name}}</div>
                                 <div class="item-after"><span class="my-rating-read" data-rating="{{speakers[1].average_1}}"></span></div>
                             </div>
                             <div class="item-subtitle">with {{speakers[1].average_1}}/5 pts over {{speakers[1].number_reviews}} ratings.</div>
@@ -143,7 +143,7 @@
                     <span class="item-content">
                         <div class="item-media">{{#if speakers[2].speaker_photo}} <img src="https://s3-ap-northeast-1.amazonaws.com/talk-advisor/speakers/{{speakers[2].speaker_photo}}" width="60" class="circular"/>
                             {{else}}
-                            <img src="img/obama.jpg" width="60" class="circular"/>
+                            <img src="img/hollande.jpg" width="60" class="circular"/>
                             {{/if}}
                         </div>
                         <div class="item-inner">
@@ -159,20 +159,20 @@
 
         </ul>
 
-        </div>
+    </div>
 
 
-    </script>
+</script>
 <script type="text/template7" id="tpl-3-last-reviews">
     <div id="tpl-number-reviews" class="content-block-title">Last reviews</div>
     <div class="list-block media-list">
         <ul>
             {{#each reviews}}
             <a href="#" onclick="sessionStorage['idSpeaker']='{{review.speaker_id}}'; get_specific_speaker()">
-            <li>
+                <li>
 
                     <span class="item-content">
-                        <div class="item-media"><img src="img/obama.jpg" width="60" class="circular"/></div>
+                        <div class="item-media"><img src="img/hollande.jpg" width="60" class="circular"/></div>
                         <div class="item-inner">
                             <div class="item-title-row">
                                 <div class="item-title">About Speaker N°{{review.speaker_id}}</div>
@@ -183,8 +183,8 @@
                                 <span class="more">{{#js_compare "this.review.comment === '\"\"'"}}No comment{{else}}{{review.comment}}{{/js_compare}} </span>
                             </div>
                     </span>
-            </li>
-                </a>
+                </li>
+            </a>
             {{/each}}
         </ul>
     </div>
@@ -200,42 +200,42 @@
 </script>
 
 <script type="text/template7" id="tpl-search-bar">
-<div data-page="home" class="page">
+    <div data-page="home" class="page">
 
-    <form data-search-list=".list-block-search" data-search-in=".item-title" class="searchbar">
-        <div class="searchbar-input">
-            <input type="search" placeholder="Search"><a href="#" class="searchbar-clear"></a>
-        </div><a href="#" class="searchbar-cancel">Cancel</a>
-    </form>
+        <form data-search-list=".list-block-search" data-search-in=".item-title" class="searchbar">
+            <div class="searchbar-input">
+                <input type="search" placeholder="Search"><a href="#" class="searchbar-clear"></a>
+            </div><a href="#" class="searchbar-cancel">Cancel</a>
+        </form>
 
 
-    <div class="searchbar-overlay"></div>
+        <div class="searchbar-overlay"></div>
 
-    <div class="page-content">
+        <div class="page-content">
 
-        <div class="content-block searchbar-not-found">
-            <div class="content-block-inner">Nothing found</div>
+            <div class="content-block searchbar-not-found">
+                <div class="content-block-inner">Nothing found</div>
+            </div>
+
+
+            <div class="list-block list-block-search searchbar-found">
+                <ul>
+                    {{#each speakers}}
+                    <li class="item-content">
+                        <div class="item-inner">
+                            <div class="item-title">{{speaker_name}} </div>
+                            <div class="item-after"><div class="button" href="#" onclick="sessionStorage['idSpeaker']='{{id}}'; get_specific_speaker()">See the profile</div></div>
+
+                        </div>
+                    </li>
+
+
+                    {{/each}}
+                </ul>
+            </div>
         </div>
 
-
-        <div class="list-block list-block-search searchbar-found">
-            <ul>
-                {{#each speakers}}
-                <li class="item-content">
-                    <div class="item-inner">
-                        <div class="item-title">{{speaker_name}} </div>
-                        <div class="item-after"><div class="button" href="#" onclick="sessionStorage['idSpeaker']='{{id}}'; get_specific_speaker()">See the profile</div></div>
-
-                    </div>
-                </li>
-
-
-                {{/each}}
-            </ul>
-        </div>
     </div>
-
-</div>
 
 </script>
 
@@ -244,27 +244,27 @@
 
     <div class="content-block">
 
-            <div class="row">
-                <div class="col-50">
-{{#if speaker_photo}} <img src="https://s3-ap-northeast-1.amazonaws.com/talk-advisor/speakers/{{speaker_photo}}" width="100%" class="semi-circular"/>
-                    {{else}}
-                    <img src="img/obama.jpg" width="100%" class="semi-circular"/>
-                    {{/if}}
+        <div class="row">
+            <div class="col-50">
+                {{#if speaker_photo}} <img src="https://s3-ap-northeast-1.amazonaws.com/talk-advisor/speakers/{{speaker_photo}}" width="100%" class="semi-circular"/>
+                {{else}}
+                <img src="img/hollande.jpg" width="100%" class="semi-circular"/>
+                {{/if}}
 
-                </div>
-                <div class="col-50">
-                    <h3>{{speaker_name}}</h3>
-                    {{#if average_1}}
-                    <div class="my-rating-read" data-rating="{{average_1}}"></div>
-                    {{else}}
-                    <div>NO AVERAGE RATING</div>
-                    {{/if}}
-
-
-                    <a href="#" class="button open-login button-fill button-small color-yellow">Rate me</a>
-
-                    </div>
             </div>
+            <div class="col-50">
+                <h3>{{speaker_name}}</h3>
+                {{#if average_1}}
+                <div class="my-rating-read" data-rating="{{average_1}}"></div>
+                {{else}}
+                <div>NO AVERAGE RATING</div>
+                {{/if}}
+
+
+                <a href="#" class="button open-login button-fill button-small color-yellow">Rate me</a>
+
+            </div>
+        </div>
 
     </div>
     <div class="content-block-title">Best quotes of {{speaker_name}}</div>
@@ -359,11 +359,11 @@
     </div>
     {{#if speaker_description}}
     <div class="content-block">
-                        <div class="content-block-title">Description</div>
-                    <div class="content-block-inner more">
-                                 {{speaker_description}}
-                        </div>
-                </div>
+        <div class="content-block-title">Description</div>
+        <div class="content-block-inner more">
+            {{speaker_description}}
+        </div>
+    </div>
     {{/if}}
     <!-- VIDEOS -->
     {{#if video}}
@@ -386,13 +386,13 @@
 
 
 
-            <ul>
-                {{#each reviews}}
+        <ul>
+            {{#each reviews}}
 
-                <li>
+            <li>
 
                     <span class="item-content">
-                        <div class="item-media"><img src="img/obama.jpg" width="60" class="circular"/></div>
+                        <div class="item-media"><img src="img/hollande.jpg" width="60" class="circular"/></div>
                         <div class="item-inner">
                             <div class="item-title-row">
                                 <div class="item-title">{{#if review.user_id}}by user N°{{review.user_id}} {{else}}Unknown user{{/if}}</div>
@@ -403,12 +403,12 @@
                                 <span class="more">{{#js_compare "this.review.comment === '\"\"'"}}No comment{{else}}{{review.comment}}{{/js_compare}} </span>
                             </div>
                     </span>
-                </li>
-                {{/each}}
+            </li>
+            {{/each}}
 
 
 
-            </ul>
+        </ul>
 
 
     </div>
@@ -508,7 +508,7 @@
 
                 </div>
 
-               </ul>
+            </ul>
 
         </form>
         <div class="row" id="first-click">
