@@ -5,6 +5,8 @@ sessionStorage['idSpeaker']="";
 sessionStorage['token']="";
 sessionStorage['login']="true";
 sessionStorage['nameSpeaker']="";
+sessionStorage['number_reviews']=3;
+
 
 
 
@@ -16,12 +18,13 @@ var myApp = new Framework7({
     // ... other parameters
 });
 var mainView = myApp.addView('.view-main');
-
+//myApp.showPreloader();
 
 
 
 get_welcome();
 function get_welcome(){
+myApp.showIndicator();
 var settings = {
           "url": "http://52.69.148.135/ws/auth/login",
           "type": "Post",
@@ -142,9 +145,10 @@ var page = $$('#tpl-welcome').html();
 
 
             $.ajax(settings2).done(function(data){
-            console.log(data.speakers);
+            console.log('REPONSE ARIANE '+data.speakers);
             page2 = compiledTemplate2(data);
             $('#container').append(page2);
+            myApp.hideIndicator();
             });
 
             // FIN REQUETE 3 BEST SPEAKERS
@@ -159,7 +163,7 @@ var page = $$('#tpl-welcome').html();
 
                             var settings3 = {
 
-                              "url": "http://52.69.148.135/ws/api/reviews/last/3",
+                              "url": "http://52.69.148.135/ws/api/reviews/last/"+sessionStorage['number_reviews']+"",
                               "type": "Get",
                               "headers": {
                                 "authorization": sessionStorage['token']
@@ -179,13 +183,51 @@ var page = $$('#tpl-welcome').html();
 
                         console.log(data.reviews[0].review);
                         page3 = compiledTemplate3(data);
+
                         $('#container').append(page3);
+                        $('#tpl-number-reviews').html(""+sessionStorage['number_reviews']+" last reviews");
                         $(".my-rating-read").starRating({
                                 totalStars: 5,
-                                starSize: 15,
+                                starSize: 20,
                                 readOnly : true
                               });
                         $("time.timeago").timeago();
+                        // READ MORE AND READ LESS DESCRIPTION
+
+                                     // Configure/customize these variables.
+                                         var showChar = 100;  // How many characters are shown by default
+                                         var ellipsestext = "...";
+                                         var moretext = "Read more";
+                                         var lesstext = "Read less";
+
+
+                                         $('.more').each(function() {
+                                             var content = $(this).html();
+
+                                             if(content.length > showChar) {
+
+                                                 var c = content.substr(0, showChar);
+                                                 var h = content.substr(showChar, content.length - showChar);
+
+                                                 var html = c + '<span class="moreellipses">' + ellipsestext+ '&nbsp;</span><span class="morecontent"><span>' + h + '</span>&nbsp;&nbsp;<a href="" class="morelink">' + moretext + '</a></span>';
+
+                                                 $(this).html(html);
+                                             }
+
+                                         });
+
+                                         $(".morelink").click(function(){
+                                             if($(this).hasClass("less")) {
+                                                 $(this).removeClass("less");
+                                                 $(this).html(moretext);
+                                             } else {
+                                                 $(this).addClass("less");
+                                                 $(this).html(lesstext);
+                                             }
+                                             $(this).parent().prev().toggle();
+                                             $(this).prev().toggle();
+                                             return false;
+                                         });
                         });
 
                         // FIN REQUETE 3 LAST REVIEWS
@@ -217,7 +259,9 @@ var page = $$('#tpl-welcome').html();
 
 
     // END OF AUTOCOMPLETE
-    $('#speaker-reviews').hide();
+
+
+    //myApp.hidePreloader();
 
     }
 
@@ -225,11 +269,19 @@ var page = $$('#tpl-welcome').html();
 //myApp.alert(sessionStorage['token']);
 //get_search_bar();
 
-
+function see_more_reviews(){
+    var calcul=sessionStorage['number_reviews'];
+    console.log(calcul);
+    calcul=+calcul +3;
+    sessionStorage['number_reviews']=calcul;
+    console.log(calcul);
+    get_welcome();
+    }
 
 
 function get_search_bar(){
 
+myApp.showIndicator();
 var template = $$('#tpl-search-bar').html();
 		var compiledTemplate = Template7.compile(template);
 		var settings = {
@@ -256,6 +308,7 @@ var template = $$('#tpl-search-bar').html();
         $.ajax(settings).done(function(data){
         page = compiledTemplate(data);
             document.getElementById("container").innerHTML = page;
+            myApp.hideIndicator();
                     var mySearchbar = myApp.searchbar('.searchbar', {
                         searchList: '.list-block-search',
                         searchIn: '.item-title'
@@ -276,22 +329,22 @@ myApp.alert('YOLO');
 
 // FONCTION PRINCIPALE
 function get_specific_speaker() {
-
+myApp.showIndicator();
 // AFFICHAGE DU SPEAKER
-$('#speaker-reviews').show();
+
 
 var template = $$('#tpl-specific-speaker').html();
 var compiledTemplate = Template7.compile(template);
 // basic use comes with defaults values
   $(".my-rating").starRating({
     initialRating: 0,
-    starSize: 25,
+    starSize: 50,
     totalStars : 5,
     disableAfterRate : false
   });
   $(".my-rating-read").starRating({
     totalStars: 5,
-    starSize: 40,
+    starSize: 100,
     emptyColor: 'lightgray',
     hoverColor: 'salmon',
     activeColor: 'crimson',
@@ -334,6 +387,7 @@ page = compiledTemplate(data.speaker);
 sessionStorage['nameSpeaker']=data.speaker.speaker_name;
 
 document.getElementById("container").innerHTML = page;
+myApp.hideIndicator();
 // 1 Slide Per View, 50px Between
   var mySwiper1 = myApp.swiper('.swiper-1', {
     pagination:'.swiper-1 .swiper-pagination',
@@ -402,26 +456,32 @@ $$('.pb-standalone-video').on('click', function () {
 var myPhotoBrowserPopupDark = myApp.photoBrowser({
     photos : [
         {
-            html: '<iframe src="https://www.youtube.com/embed/nSDa0FRw2cs" frameborder="0" allowfullscreen></iframe>',
-            caption: 'HOLLANDE : Ses pires Gaffes et Bourdes - La honte !'
-        },
+            html: '<iframe width="560" height="315" src="https://www.youtube.com/embed/dm9nqukato4" frameborder="0" allowfullscreen></iframe>',
+            caption: 'Zach Supalla (Spark Labs) Interview - OSCON 2014'
+        }
+        /*,
         {
             url: 'http://lorempixel.com/1024/1024/sports/2/',
             caption: 'Second Caption Text'
         },
         {
             url: 'http://lorempixel.com/1024/1024/sports/3/',
-        },
+        },*/
     ],
     theme: 'dark',
     type: 'standalone'
 });
 
-$$('.open-about').on('click', function () {
+$$('.open-login').on('click', function () {
 
-if (!sessionStorage['login']){
+if (sessionStorage['login']){
     //myApp.alert('Pas de login, pas de review :(');
-    myApp.popup('.popup-inscription');
+    myApp.popup('.popup-login');
+    $$('.open-registration').on('click', function(){
+        myApp.closeModal('.popup-login');
+        myApp.popup('.popup-registration');
+        });
+
 }
 else{
 
@@ -561,14 +621,15 @@ $.ajax(settings2).done(function(data){
 
 //console.log('ici');
 //console.log(compiledTemplate2);
-console.log(data.reviews[0].review_rating[0].pivot);
+console.log('yolo : '+data.reviews[0].review_rating[0].pivot);
 page2 = compiledTemplate2(data);
 //console.log('ici2');
 
-    document.getElementById("speaker-reviews").innerHTML = page2;
+
+    $('#container').append(page2);
     $(".my-rating-read").starRating({
         totalStars: 5,
-        starSize: 15,
+        starSize: 20,
         readOnly : true
       });
         $("time.timeago").timeago();
@@ -617,6 +678,19 @@ page2 = compiledTemplate2(data);
 
 }
 
+$$('.tabbar .tab-link').on('click', function () {
+   $$('.tabbar .active').removeClass('active');
+   $$(this).addClass('active');
+});
+
+document.addEventListener("backbutton", backKeyDown, true);
+
+
+function backKeyDown() {
+    // Call my back key code here.
+    get_welcome();
+    //$.mobile.changePage("#homepage", "slideup");
+}
 
 
 

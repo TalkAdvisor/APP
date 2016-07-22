@@ -25,7 +25,6 @@
     <div class="view view-main">
         <div class="navbar">
             <div class="navbar-inner">
-                <div class="left sliding"><a href="#" onclick="get_welcome()">Back to the index</a></div>
                 <div class="center sliding">TalkAdvisor</div>
             </div>
         </div>
@@ -36,11 +35,9 @@
 
 
                     <!-- Container -->
-                    <!--<a href="accueil.html" class="external">ici</a>-->
+
                     <div id="container"></div>
 
-
-                    <div id="speaker-reviews"></div>
 
 
 
@@ -55,6 +52,28 @@
 
         </div>
 
+        <div class="toolbar tabbar tabbar-labels">
+            <div class="toolbar-inner">
+                <a href="#tab1" onclick="get_welcome()" class="tab-link active">
+                    <i class="fa fa-home fa-2x"></i>
+                    <span class="tabbar-label">Home</span>
+                </a>
+                <a href="#tab2" onclick="get_search_bar()" class="tab-link">
+                    <i class="fa fa-search fa-2x"></i>
+                    <span class="tabbar-label">Search</span>
+                </a>
+                <a href="#tab3" class="tab-link">
+                    <i class="fa fa-user fa-2x"></i>
+                    <span class="tabbar-label">My profile</span>
+                </a>
+                <a href="http://217.199.187.199/modal-question-du-jour.com/facebook-test.html" class="external tab-link">
+                    <i class="fa fa-info fa-2x"></i>
+                    <span class="tabbar-label">Facebook</span>
+                </a>
+            </div>
+        </div>
+        -->
+
     </div>
 </div>
 <script type="text/template7" id="tpl-welcome">
@@ -65,7 +84,7 @@
         <div class="list-block">
             <ul>
                 <li class="item-content">
-                    <div class="item-title label">Speaker</div>
+                    <div class="item-title label search"><i class="fa fa-search"></i></div>
                     <div class="item-input">
                         <input type="text" placeholder="Find a speaker" id="autocomplete-dropdown-ajax"></div>
                 </li>
@@ -78,20 +97,78 @@
 <script type="text/template7" id="tpl-3-best-speakers">
     <div class="content-block-title">3 best speakers</div>
     <!-- Inset content block -->
-    <div class="content-block inset">
-        <img src="img/golden_medal.png" width="20%"/>
-        {{#each speakers}}
-        <div class="button" onclick="sessionStorage['idSpeaker']='{{id}}'; get_specific_speaker()">
-            {{speaker_name}}
+    <div class="list-block media-list">
+        <ul>
+            <a href="#" onclick="sessionStorage['idSpeaker']='{{speakers[0].id}}'; get_specific_speaker()">
+                <li>
+
+                    <span class="item-content">
+                        <div class="item-media">{{#if speakers[0].speaker_photo}} <img src="https://s3-ap-northeast-1.amazonaws.com/talk-advisor/speakers/{{speakers[0].speaker_photo}}" width="60" class="circular"/>
+                            {{else}}
+                            <img src="img/obama.jpg" width="60" class="circular"/>
+                            {{/if}}
+                        </div>
+                        <div class="item-inner">
+                            <div class="item-title-row">
+                                <div class="item-title"><img src="img/Gold_medal_icon.svg"/> {{speakers[0].speaker_name}}</div>
+                                <div class="item-after"><span class="my-rating-read" data-rating="{{speakers[0].average_1}}"></span></div>
+                            </div>
+                            <div class="item-subtitle">with {{speakers[0].average_1}}/5 pts over {{speakers[0].number_reviews}} ratings.</div>
+                            <div class="item-text">Click to see the speaker profile</div>
+                    </span>
+                </li>
+            </a>
+            <a href="#" onclick="sessionStorage['idSpeaker']='{{speakers[1].id}}'; get_specific_speaker()">
+                <li>
+
+                    <span class="item-content">
+                        <div class="item-media">{{#if speakers[1].speaker_photo}} <img src="https://s3-ap-northeast-1.amazonaws.com/talk-advisor/speakers/{{speakers[1].speaker_photo}}" width="60" class="circular"/>
+                            {{else}}
+                            <img src="img/obama.jpg" width="60" class="circular"/>
+                            {{/if}}
+                        </div>
+                        <div class="item-inner">
+                            <div class="item-title-row">
+                                <div class="item-title"><img src="img/Silver_medal_icon.svg"/> {{speakers[1].speaker_name}}</div>
+                                <div class="item-after"><span class="my-rating-read" data-rating="{{speakers[1].average_1}}"></span></div>
+                            </div>
+                            <div class="item-subtitle">with {{speakers[1].average_1}}/5 pts over {{speakers[1].number_reviews}} ratings.</div>
+                            <div class="item-text">Click to see the speaker profile</div>
+                    </span>
+                </li>
+            </a>
+            <a href="#" onclick="sessionStorage['idSpeaker']='{{speakers[2].id}}'; get_specific_speaker()">
+                <li>
+
+                    <span class="item-content">
+                        <div class="item-media">{{#if speakers[2].speaker_photo}} <img src="https://s3-ap-northeast-1.amazonaws.com/talk-advisor/speakers/{{speakers[2].speaker_photo}}" width="60" class="circular"/>
+                            {{else}}
+                            <img src="img/obama.jpg" width="60" class="circular"/>
+                            {{/if}}
+                        </div>
+                        <div class="item-inner">
+                            <div class="item-title-row">
+                                <div class="item-title"><img src="img/Bronze_medal_icon.svg.png" width="16px"/> {{speakers[2].speaker_name}}</div>
+                                <div class="item-after"><span class="my-rating-read" data-rating="{{speakers[2].average_1}}"></span></div>
+                            </div>
+                            <div class="item-subtitle">with {{speakers[2].average_1}}/5 pts over {{speakers[2].number_reviews}} ratings.</div>
+                            <div class="item-text">Click to see the speaker profile</div>
+                    </span>
+                </li>
+            </a>
+
+        </ul>
+
         </div>
-        {{/each}}
-    </div>
+
+
     </script>
 <script type="text/template7" id="tpl-3-last-reviews">
-    <div class="content-block-title">3 last reviews</div>
+    <div id="tpl-number-reviews" class="content-block-title">Last reviews</div>
     <div class="list-block media-list">
         <ul>
             {{#each reviews}}
+            <a href="#" onclick="sessionStorage['idSpeaker']='{{review.speaker_id}}'; get_specific_speaker()">
             <li>
 
                     <span class="item-content">
@@ -107,11 +184,11 @@
                             </div>
                     </span>
             </li>
+                </a>
             {{/each}}
         </ul>
-
-
     </div>
+    <a class="right" onclick="see_more_reviews()">See more reviews</a>
     <div class="content-block-title">3 random quotes</div>
     <!-- Inset content block -->
     <div class="content-block inset">
@@ -169,9 +246,9 @@
 
             <div class="row">
                 <div class="col-50">
-{{#if speaker_photo}} <img src="https://s3-ap-northeast-1.amazonaws.com/talk-advisor/speakers/{{speaker_photo}}" width="100%"/>
+{{#if speaker_photo}} <img src="https://s3-ap-northeast-1.amazonaws.com/talk-advisor/speakers/{{speaker_photo}}" width="100%" class="semi-circular"/>
                     {{else}}
-                    <img src="img/obama.jpg" width="100%"/>
+                    <img src="img/obama.jpg" width="100%" class="semi-circular"/>
                     {{/if}}
 
                 </div>
@@ -184,7 +261,7 @@
                     {{/if}}
 
 
-                    <a href="#" class="button open-about button-fill button-small color-yellow">Rate me</a>
+                    <a href="#" class="button open-login button-fill button-small color-yellow">Rate me</a>
 
                     </div>
             </div>
@@ -200,7 +277,7 @@
             <div class="swiper-slide"><span>Plutot chinois ou plutot chez toi?</span></div>
         </div>
     </div>
-    <div class="content-block-title">Average reviews</div>
+    <div class="content-block-title">Average reviews <b>over <b>{{number_reviews}} ratings</b></div>
     <div class="list-block">
         <ul>
             <li>
@@ -293,7 +370,7 @@
     <div class="content-block-inner">
         <iframe width="100%" height="315" src="http://{{video}}" frameborder="0" allowfullscreen></iframe>
         <p>Lorem ipsum dolor sit amet...</p>
-        <div class="col-50"><a href="#" class="button pb-standalone-video">Standalone</a>
+        <div class="col-50"><a href="#" class="button pb-standalone-video">See more videos</a>
         </div>
     </div>
     {{/if}}
@@ -301,17 +378,6 @@
 
 
 </script>
-
-
-
-
-
-
-
-
-
-
-
 <script type="text/template7" id="tpl-speaker-reviews">
     <div class="content-block-title">
         Last reviews
@@ -322,6 +388,7 @@
 
             <ul>
                 {{#each reviews}}
+
                 <li>
 
                     <span class="item-content">
@@ -346,10 +413,6 @@
 
     </div>
 </script>
-
-
-
-
 <!-- POPUP LEAVE A REVIEW-->
 <div class="popup popup-review">
 
@@ -459,10 +522,119 @@
 
     </div>
 </div>
+<!--POPUP LOGIN IF NO CONNEXION-->
+<div class="popup popup-login">
+    <div class="content-block">
+        <a href="#" class="button button-fill button-big color-yellow">You need to be logged in to leave a review</a>
+        <div class="list-block">
+            <ul>
+                <li>
+                    <div class="item-content">
+                        <div class="item-inner">
+                            <div class="item-input">
+                                <input type="text" placeholder="Email">
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="item-content">
+                        <div class="item-inner">
+                            <div class="item-input">
+                                <input type="password" placeholder="Password">
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+
+        </div>
+        <div class="row">
+            <div class="col-50"></div>
+            <div class="col-50"><a href="#" class="button button-fill button-big color-green  close-popup notification-default ">Login</a></div>
+        </div>
+    </div>
+    <h2 class="center">Or connect by Facebook</h2>
+    <div class="content-block">
+        <a href="#" class="button button-fill button-big color-blue">Fb login</a>
+    </div>
+    <h3 class="right">Not yet <a href="#" class="open-registration">registered</a>?</h3>
+</div>
+<!--POPUP REGISTER IF NO LOGIN-->
+<div class="popup popup-registration">
+    <div class="content-block">
+        <a href="#" class="button button-fill button-big color-blue">Facebook registration</a>
+    </div>
+    <h2 class="center">or</h2>
+    <div class="content-block">
+        <a href="#" class="button button-fill button-big color-yellow">Registration</a>
+        <div class="list-block">
+            <ul>
+                <li>
+                    <div class="item-content">
+                        <div class="item-inner">
+                            <div class="item-title label">Public info</div>
+                            <div class="item-input">
+                                <input type="text" placeholder="Username">
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="item-content">
+                        <div class="item-inner">
+                            <div class="item-title label"></div>
+                            <div class="item-input">
+                                <input type="text" placeholder="Picture upload">
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="item-content">
+                        <div class="item-inner">
+                            <div class="item-title label">Private info</div>
+                            <div class="item-input">
+                                <input type="text" placeholder="Phone number">
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="item-content">
+
+                        <div class="item-inner">
+                            <div class="item-title label"></div>
+                            <div class="item-input">
+                                <input type="text" placeholder="Email">
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="item-content">
+
+                        <div class="item-inner">
+                            <div class="item-title label"></div>
+                            <div class="item-input">
+                                <input type="password" placeholder="Password">
+                            </div>
+                        </div>
+                    </div>
+                </li>
 
 
 
+            </ul>
 
+        </div>
+        <div class="row">
+            <div class="col-50"><a href="#" class="button button-fill button-big color-red  close-popup">Cancel</a></div>
+            <div class="col-50"><a href="#" class="button button-fill button-big color-green  close-popup notification-default ">Sign in ! </a></div>
+        </div>
+
+    </div>
+</div>
 
 <div class="popover popover-about-overall">
     <div class="popover-angle"></div>
@@ -511,80 +683,13 @@
 </div>
 
 
-<!--POPUP REGISTER IF NO LOGIN-->
-<div class="popup popup-inscription">
-    <div class="content-block">
-        <a href="#" class="button button-fill button-big color-yellow">Please sign in TalkAdvisor</a>
-        <div class="list-block">
-            <ul>
-                <li>
-                    <div class="item-content">
-                        <div class="item-media"><i class="fa fa-comments-o"></i></div>
-                        <div class="item-inner">
-                            <div class="item-title label">Login</div>
-                            <div class="item-input">
-                                <input type="text" placeholder="Please enter your login">
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="item-content">
-                        <div class="item-media"><i class="fa fa-comments-o"></i></div>
-                        <div class="item-inner">
-                            <div class="item-title label">Email</div>
-                            <div class="item-input">
-                                <input type="text" placeholder="Please enter your email">
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="item-content">
-                        <div class="item-media"><i class="fa fa-pencil"></i></div>
-                        <div class="item-inner">
-                            <div class="item-title label">Password</div>
-                            <div class="item-input">
-                                <input type="password" placeholder="Please enter your password">
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="item-content">
-                        <div class="item-media"><i class="fa fa-pencil"></i></div>
-                        <div class="item-inner">
-                            <div class="item-title label">Confirm password</div>
-                            <div class="item-input">
-                                <input type="password" placeholder="Please confirm your password">
-                            </div>
-                        </div>
-                    </div>
-                </li>
-
-
-
-            </ul>
-
-        </div>
-        <div class="row">
-            <div class="col-50"><a href="#" class="button button-fill button-big color-red  close-popup">Remind me Later</a></div>
-            <div class="col-50"><a href="#" class="button button-fill button-big color-green  close-popup notification-default ">Sign in ! </a></div>
-        </div>
-
-    </div>
-</div>
-
-
-
-
-
 
 <script type="text/javascript" src="js/framework7.min.js"></script>
 <!-- Path to your app js-->
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/jquery.timeago.js"></script>
 <script type="text/javascript" src="js/jquery.star-rating-svg.js"></script>
+<script type="text/javascript" src="cordova.js"></script>
 <script type="text/javascript" src="js/test.js"></script>
 
 

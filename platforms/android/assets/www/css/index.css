@@ -176,6 +176,10 @@ div[class*="col-"] {
 	border-radius: 50%;
 	}
 
+.semi-circular{
+    border-radius : 10%;
+}
+
 .list-block .item-after{
     font-size : 13px;
     }
@@ -183,3 +187,26 @@ div[class*="col-"] {
 .row .col-50{
     height : 100%;
 }
+
+.list-block .item-media+ .item-inner{
+    color : black;
+}
+
+.list-block .item-title.label.search {
+    width : 10%;
+}
+
+
+.list-block .item-content-dropdown-expand .item-title.label{
+    width : 35%;
+    }
+
+.center{
+    margin :auto;
+    text-align : center;
+    }
+
+.right{
+    text-align : right;
+    margin-right : 15px;
+    }
