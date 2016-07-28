@@ -43,6 +43,7 @@
 
                 </div>
             </div>
+
             <div id="ici"></div>
 
 
@@ -62,7 +63,7 @@
                     <i class="fa fa-search fa-2x"></i>
                     <span class="tabbar-label">Search</span>
                 </a>
-                <a href="#tab3" class="tab-link">
+                <a href="#tab3" onclick="get_my_profile()" class="tab-link">
                     <i class="fa fa-user fa-2x"></i>
                     <span class="tabbar-label">My profile</span>
                 </a>
@@ -234,7 +235,7 @@
                             <div class="item-title">{{#if speaker_photo}} <img src="https://s3-ap-northeast-1.amazonaws.com/talk-advisor/speakers/{{speaker_photo}}" width="60" class="circular"/>
                             {{else}}
                             <img src="img/hollande.jpg" width="60" class="circular"/>
-                            {{/if}}{{speaker_photo}} {{speaker_name}} </div>
+                            {{/if}} {{speaker_name}} </div>
                             <div class="item-after"><div class="button" href="#" onclick="sessionStorage['idSpeaker']='{{id}}'; get_specific_speaker()">See the profile</div></div>
 
                         </div>
@@ -696,6 +697,75 @@
         </div>
     </div>
 </div>
+<div class="login-screen">
+    <div class="view">
+      <div class="page">
+        <div class="page-content login-screen-content">
+          <div class="login-screen-title">Log in TalkAdvisor</div>
+          <form id="form-login">
+            <div class="list-block">
+              <ul>
+                <li class="item-content">
+                  <div class="item-inner">
+                    <div class="item-title label">Email</div>
+                    <div class="item-input">
+                      <input type="text" name="email" placeholder="Your email">
+                    </div>
+                  </div>
+                </li>
+                <li class="item-content">
+                  <div class="item-inner">
+                    <div class="item-title label">Password</div>
+                    <div class="item-input">
+                      <input type="password" name="password" placeholder="Your password">
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="list-block">
+              <ul>
+                <li><a href="#" onclick="login()" class="item-link list-button">Sign In</a>
+                </li>
+              </ul>
+              <div class="list-block-label">
+                <p>You must be logged in to leave reviews and ratings</p>
+                <p><a href="#" class="close-login-screen">Not yet registered?</a></p>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+<script type="text/template7" id="tpl-my-profile">
+
+    <div class="content-block-title">My profile</div>
+    <!-- Inset content block -->
+    <div class="content-block">
+    <a href="#" class="open-login-screen">Open Login Screen</a>
+        <div class="list-block">
+            <ul>
+                <li class="item-content">
+                    My profile content
+                    ID ={{user.id}}
+                </li>
+                <li class="item-content">
+                    Name= {{user.name}}
+                    </li>
+                <li class="item-content">
+                    
+                    email ={{user.email}}
+                </li>
+                <li class="item-content">
+                    created at ={{user.created_at}}
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</script>
+
 
 
 

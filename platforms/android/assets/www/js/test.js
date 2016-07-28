@@ -6,6 +6,7 @@ sessionStorage['token']="";
 sessionStorage['login']="true";
 sessionStorage['nameSpeaker']="";
 sessionStorage['number_reviews']=3;
+sessionStorage['idUser']="";
 //console.log(StatusBar);
 
 
@@ -729,6 +730,104 @@ page2 = compiledTemplate2(data);
 
 
 }
+
+function get_my_profile(){
+  console.log(sessionStorage['idUser']);
+  if (sessionStorage['idUser']==""){
+    console.log('toto');
+    myApp.loginScreen();
+  }
+  else{
+    console.log('rara');
+  var template = $('#tpl-my-profile').html();
+  var compiledTemplate = Template7.compile(template);
+
+//PREPARATION DE LA REQUETE
+
+var settings = {
+
+  "url": "http://52.69.148.135/ws/api/user/"+sessionStorage['idUser']+"",
+  "type": "Get",
+  "headers": {
+    "authorization": sessionStorage['token']
+     },data: {
+                email: "evan.chen@acer.com",
+                password: "1qaz@WSX"
+            },
+   dataType :"json",
+ success: function(data){
+  console.log(data);
+  //console.log(data2.reviews[0].review_rating);
+  //console.log(data2.reviews[0].review_rating);
+  },
+  error: function(){
+  myApp.alert('La requete n a pas abouti');
+  }
+  };
+
+
+
+//CHARGEMENT DES DONNEES DU SPEAKER
+
+
+
+
+$.ajax(settings).done(function(data){
+  page = compiledTemplate(data);
+  
+  $('#container').html(page);
+});
+  }
+  
+}
+
+function login(){
+  //console.log('ici');
+  var formData = myApp.formToJSON('#form-login');
+  console.log(JSON.stringify(formData));
+  console.log(formData.email);
+
+                var settings = {
+
+                  "crossDomain": true,
+                  "url": "http://52.69.148.135/ws/api/user/login",
+                  "method": "POST",
+                  "headers": {
+                    "authorization": sessionStorage['token']
+                    },
+                    data:{
+                        'email' : formData.email,
+                        'password' : formData.password
+                        },
+                  dataType : "json",
+
+                  "mimeType": "multipart/form-data",
+                  success: function(data){
+                            //myApp.alert(data);
+                            },
+                            error: function(){
+                            myApp.alert('La requete n a pas abouti');
+                            }
+                }
+            //console.log(settings.data.score);
+                $.ajax(settings).done(function (response) {
+                  if (response.message =="success"){
+                    console.log('success');
+                    sessionStorage['idUser']=response.user.id;
+                    myApp.alert("Connexion successfull")
+                     myApp.closeModal('.login-screen');
+                  get_my_profile();
+                  }
+                  else{
+                    console.log('deny');
+                    myApp.alert('Wrong email / password')
+                  }
+                  
+                  
+                });
+}
+
+
 
 $$('.tabbar .tab-link').on('click', function () {
    $$('.tabbar .active').removeClass('active');
