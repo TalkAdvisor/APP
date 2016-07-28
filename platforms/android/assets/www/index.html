@@ -223,7 +223,10 @@
                     {{#each speakers}}
                     <li class="item-content">
                         <div class="item-inner">
-                            <div class="item-title">{{speaker_name}} </div>
+                            <div class="item-title">{{#if speaker_photo}} <img src="https://s3-ap-northeast-1.amazonaws.com/talk-advisor/speakers/{{speaker_photo}}" width="60" class="circular"/>
+                            {{else}}
+                            <img src="img/hollande.jpg" width="60" class="circular"/>
+                            {{/if}}{{speaker_photo}} {{speaker_name}} </div>
                             <div class="item-after"><div class="button" href="#" onclick="sessionStorage['idSpeaker']='{{id}}'; get_specific_speaker()">See the profile</div></div>
 
                         </div>
@@ -246,16 +249,16 @@
 
         <div class="row">
             <div class="col-50">
-                {{#if speaker_photo}} <img src="https://s3-ap-northeast-1.amazonaws.com/talk-advisor/speakers/{{speaker_photo}}" width="100%" class="semi-circular"/>
+                {{#if speaker.speaker_photo}} <img src="https://s3-ap-northeast-1.amazonaws.com/talk-advisor/speakers/{{speaker.speaker_photo}}" width="100%" class="semi-circular"/>
                 {{else}}
                 <img src="img/hollande.jpg" width="100%" class="semi-circular"/>
                 {{/if}}
 
             </div>
             <div class="col-50">
-                <h3>{{speaker_name}}</h3>
-                {{#if average_1}}
-                <div class="my-rating-read" data-rating="{{average_1}}"></div>
+                <h3>{{speaker.speaker_name}}</h3>
+                {{#if speaker.average_1}}
+                <div class="my-rating-read" data-rating="{{speaker.average_1}}"></div>
                 {{else}}
                 <div>NO AVERAGE RATING</div>
                 {{/if}}
@@ -267,7 +270,7 @@
         </div>
 
     </div>
-    <div class="content-block-title">Best quotes of {{speaker_name}}</div>
+    <div class="content-block-title">Best quotes of {{speaker.speaker_name}}</div>
     <div class="swiper-container swiper-1">
         <div class="swiper-pagination"></div>
         <div class="swiper-wrapper">
@@ -277,7 +280,7 @@
             <div class="swiper-slide"><span>Plutot chinois ou plutot chez toi?</span></div>
         </div>
     </div>
-    <div class="content-block-title">Average reviews <b>over <b>{{number_reviews}} ratings</b></div>
+    <div class="content-block-title">Average reviews <b>over <b>{{speaker.number_reviews}} ratings</b></div>
     <div class="list-block">
         <ul>
             <li>
@@ -287,8 +290,8 @@
                             <i class="fa fa-question-circle"></i></a>
                     </div>
                     <div class="item-after">
-                        {{#if average_1}}
-                        <span class="my-rating-read" data-rating="{{average_1}}"></span>
+                        {{#if speaker.average_1}}
+                        <span class="my-rating-read" data-rating="{{speaker.average_1}}"></span>
                         {{else}}
                         <span>NO AVERAGE RATING</span>
                         {{/if}}
@@ -302,8 +305,8 @@
                             <i class="fa fa-question-circle"></i></a>
                     </div>
                     <div class="item-after">
-                        {{#if average_2}}
-                        <span class="my-rating-read" data-rating="{{average_2}}"></span>
+                        {{#if speaker.average_2}}
+                        <span class="my-rating-read" data-rating="{{speaker.average_2}}"></span>
                         {{else}}
                         <span>NO AVERAGE RATING</span>
                         {{/if}}
@@ -317,8 +320,8 @@
                             <i class="fa fa-question-circle"></i></a>
                     </div>
                     <div class="item-after">
-                        {{#if average_3}}
-                        <span class="my-rating-read" data-rating="{{average_3}}"></span>
+                        {{#if speaker.average_3}}
+                        <span class="my-rating-read" data-rating="{{speaker.average_3}}"></span>
                         {{else}}
                         <span>NO AVERAGE RATING</span>
                         {{/if}}
@@ -332,8 +335,8 @@
                             <i class="fa fa-question-circle"></i></a>
                     </div>
                     <div class="item-after">
-                        {{#if average_4}}
-                        <span class="my-rating-read" data-rating="{{average_4}}"></span>
+                        {{#if speaker.average_4}}
+                        <span class="my-rating-read" data-rating="{{speaker.average_4}}"></span>
                         {{else}}
                         <span>NO AVERAGE RATING</span>
                         {{/if}}
@@ -347,8 +350,8 @@
                             <i class="fa fa-question-circle"></i></a>
                     </div>
                     <div class="item-after">
-                        {{#if average_5}}
-                        <span class="my-rating-read" data-rating="{{average_5}}"></span>
+                        {{#if speaker.average_5}}
+                        <span class="my-rating-read" data-rating="{{speaker.average_5}}"></span>
                         {{else}}
                         <span>NO AVERAGE RATING</span>
                         {{/if}}
@@ -356,19 +359,19 @@
                 </div>
             </li>
         </ul>
-    </div>
-    {{#if speaker_description}}
+    </div>  
+    {{#if speaker.speaker_description}}
     <div class="content-block">
         <div class="content-block-title">Description</div>
         <div class="content-block-inner more">
-            {{speaker_description}}
+            {{speaker.speaker_description}}
         </div>
     </div>
     {{/if}}
     <!-- VIDEOS -->
-    {{#if video}}
+    {{#if speaker.video}}
     <div class="content-block-inner">
-        <iframe width="100%" height="315" src="http://{{video}}" frameborder="0" allowfullscreen></iframe>
+        <iframe width="100%" height="315" src="http://{{speaker.video}}" frameborder="0" allowfullscreen></iframe>
         <p>Lorem ipsum dolor sit amet...</p>
         <div class="col-50"><a href="#" class="button pb-standalone-video">See more videos</a>
         </div>

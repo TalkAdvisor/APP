@@ -1,49 +1,700 @@
 <!DOCTYPE html>
-<!--
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-     KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
--->
 <html>
-    <head>
-        <!--
-        Customize this policy to fit your own app's needs. For more guidance, see:
-            https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
-        Some notes:
-            * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
-            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
-            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
-                * Enable inline JS: add 'unsafe-inline' to default-src
-        -->
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
-        <meta name="format-detection" content="telephone=no">
-        <meta name="msapplication-tap-highlight" content="no">
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
-        <link rel="stylesheet" type="text/css" href="css/index.css">
-        <title>Hello World</title>
-    </head>
-    <body>
-        <div class="app">
-            <h1>Apache Cordova</h1>
-            <div id="deviceready" class="blink">
-                <p class="event listening">Connecting to Device</p>
-                <p class="event received">Device is Ready</p>
+<head>
+    <!-- Required meta tags-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <!-- Your app title -->
+    <title>TalkAdvisor</title>
+
+
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <!-- Path to Framework7 Library CSS, iOS Theme -->
+    <link rel="stylesheet" href="css/framework7.ios.min.css">
+    <!-- Path to Framework7 color related styles, iOS Theme -->
+    <link rel="stylesheet" href="css/framework7.ios.colors.min.css">
+    <!-- Path to your custom app styles-->
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" type="text/css" href="css/star-rating-svg.css">
+</head>
+<body>
+
+<div class="views">
+    <div class="view view-main">
+        <div class="navbar">
+            <div class="navbar-inner">
+                <div class="center sliding">TalkAdvisor</div>
             </div>
         </div>
-        <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
-    </body>
+        <div class="pages navbar-through toolbar-through">
+            <div data-page="index" class="page">
+                <div class="page-content">
+
+
+
+                    <!-- Container -->
+
+                    <div id="container"></div>
+
+
+
+
+                </div>
+            </div>
+            <div id="ici"></div>
+
+
+
+
+
+
+        </div>
+
+        <div class="toolbar tabbar tabbar-labels">
+            <div class="toolbar-inner">
+                <a href="#tab1" onclick="get_welcome()" class="tab-link active">
+                    <i class="fa fa-home fa-2x"></i>
+                    <span class="tabbar-label">Home</span>
+                </a>
+                <a href="#tab2" onclick="get_search_bar()" class="tab-link">
+                    <i class="fa fa-search fa-2x"></i>
+                    <span class="tabbar-label">Search</span>
+                </a>
+                <a href="#tab3" class="tab-link">
+                    <i class="fa fa-user fa-2x"></i>
+                    <span class="tabbar-label">My profile</span>
+                </a>
+                <a href="http://217.199.187.199/modal-question-du-jour.com/facebook-test.html" class="external tab-link">
+                    <i class="fa fa-info fa-2x"></i>
+                    <span class="tabbar-label">Facebook</span>
+                </a>
+            </div>
+        </div>
+        -->
+
+    </div>
+</div>
+<script type="text/template7" id="tpl-welcome">
+
+    <div class="content-block-title">Want to find a speaker?</div>
+    <!-- Inset content block -->
+    <div class="content-block">
+        <div class="list-block">
+            <ul>
+                <li class="item-content">
+                    <div class="item-title label search"><i class="fa fa-search"></i></div>
+                    <div class="item-input">
+                        <input type="text" placeholder="Find a speaker" id="autocomplete-dropdown-ajax"></div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</script>
+
+
+<script type="text/template7" id="tpl-3-best-speakers">
+    <div class="content-block-title">3 best speakers</div>
+    <!-- Inset content block -->
+    <div class="list-block media-list">
+        <ul>
+            <a href="#" onclick="sessionStorage['idSpeaker']='{{speakers[0].id}}'; get_specific_speaker()">
+                <li>
+
+                    <span class="item-content">
+                        <div class="item-media">{{#if speakers[0].speaker_photo}} <img src="https://s3-ap-northeast-1.amazonaws.com/talk-advisor/speakers/{{speakers[0].speaker_photo}}" width="60" class="circular"/>
+                            {{else}}
+                            <img src="img/hollande.jpg" width="60" class="circular"/>
+                            {{/if}}
+                        </div>
+                        <div class="item-inner">
+                            <div class="item-title-row">
+                                <div class="item-title"><img src="img/Gold_medal_icon.svg.png" width="16"/> {{speakers[0].speaker_name}}</div>
+                                <div class="item-after"><span class="my-rating-read" data-rating="{{speakers[0].average_1}}"></span></div>
+                            </div>
+                            <div class="item-subtitle">with {{speakers[0].average_1}}/5 pts over {{speakers[0].number_reviews}} ratings.</div>
+                            <div class="item-text">Click to see the speaker profile</div>
+                    </span>
+                </li>
+            </a>
+            <a href="#" onclick="sessionStorage['idSpeaker']='{{speakers[1].id}}'; get_specific_speaker()">
+                <li>
+
+                    <span class="item-content">
+                        <div class="item-media">{{#if speakers[1].speaker_photo}} <img src="https://s3-ap-northeast-1.amazonaws.com/talk-advisor/speakers/{{speakers[1].speaker_photo}}" width="60" class="circular"/>
+                            {{else}}
+                            <img src="img/hollande.jpg" width="60" class="circular"/>
+                            {{/if}}
+                        </div>
+                        <div class="item-inner">
+                            <div class="item-title-row">
+                                <div class="item-title"><img src="img/Silver_medal_icon.svg.png" width="16"/> {{speakers[1].speaker_name}}</div>
+                                <div class="item-after"><span class="my-rating-read" data-rating="{{speakers[1].average_1}}"></span></div>
+                            </div>
+                            <div class="item-subtitle">with {{speakers[1].average_1}}/5 pts over {{speakers[1].number_reviews}} ratings.</div>
+                            <div class="item-text">Click to see the speaker profile</div>
+                    </span>
+                </li>
+            </a>
+            <a href="#" onclick="sessionStorage['idSpeaker']='{{speakers[2].id}}'; get_specific_speaker()">
+                <li>
+
+                    <span class="item-content">
+                        <div class="item-media">{{#if speakers[2].speaker_photo}} <img src="https://s3-ap-northeast-1.amazonaws.com/talk-advisor/speakers/{{speakers[2].speaker_photo}}" width="60" class="circular"/>
+                            {{else}}
+                            <img src="img/hollande.jpg" width="60" class="circular"/>
+                            {{/if}}
+                        </div>
+                        <div class="item-inner">
+                            <div class="item-title-row">
+                                <div class="item-title"><img src="img/Bronze_medal_icon.svg.png" width="16px"/> {{speakers[2].speaker_name}}</div>
+                                <div class="item-after"><span class="my-rating-read" data-rating="{{speakers[2].average_1}}"></span></div>
+                            </div>
+                            <div class="item-subtitle">with {{speakers[2].average_1}}/5 pts over {{speakers[2].number_reviews}} ratings.</div>
+                            <div class="item-text">Click to see the speaker profile</div>
+                    </span>
+                </li>
+            </a>
+
+        </ul>
+
+    </div>
+
+
+</script>
+<script type="text/template7" id="tpl-3-last-reviews">
+    <div id="tpl-number-reviews" class="content-block-title">Last reviews</div>
+    <div class="list-block media-list">
+        <ul>
+            {{#each reviews}}
+            <a href="#" onclick="sessionStorage['idSpeaker']='{{review.speaker_id}}'; get_specific_speaker()">
+                <li>
+
+                    <span class="item-content">
+                        <div class="item-media"><img src="img/hollande.jpg" width="60" class="circular"/></div>
+                        <div class="item-inner">
+                            <div class="item-title-row">
+                                <div class="item-title">About Speaker N°{{review.speaker_id}}</div>
+                                <div class="item-after">{{#if review.user_id}}by user N°{{review.user_id}} {{else}}Unknown user{{/if}}</div>
+                            </div>
+                            <div class="item-subtitle"><time class="timeago" datetime="{{review.created_at}}">Impossible to load the date</time></div>
+                            <div class="item-text"><span class="my-rating-read" data-rating="{{review_rating[0].pivot.score_id}}"></span>
+                                <span class="more">{{#js_compare "this.review.comment === '\"\"'"}}No comment{{else}}{{review.comment}}{{/js_compare}} </span>
+                            </div>
+                    </span>
+                </li>
+            </a>
+            {{/each}}
+        </ul>
+    </div>
+    <a class="right" onclick="see_more_reviews()">See more reviews</a>
+    <div class="content-block-title">3 random quotes</div>
+    <!-- Inset content block -->
+    <div class="content-block inset">
+        <div class="content-block-inner">
+            <p>Donec et nulla auctor massa pharetra adipiscing ut sit amet sem. Suspendisse molestie velit vitae mattis tincidunt. Ut sit amet quam mollis, vulputate turpis vel, sagittis felis. </p>
+        </div>
+    </div>
+
+</script>
+
+<script type="text/template7" id="tpl-search-bar">
+    <div data-page="home" class="page">
+
+        <form data-search-list=".list-block-search" data-search-in=".item-title" class="searchbar">
+            <div class="searchbar-input">
+                <input type="search" placeholder="Search"><a href="#" class="searchbar-clear"></a>
+            </div><a href="#" class="searchbar-cancel">Cancel</a>
+        </form>
+
+
+        <div class="searchbar-overlay"></div>
+
+        <div class="page-content">
+
+            <div class="content-block searchbar-not-found">
+                <div class="content-block-inner">Nothing found</div>
+            </div>
+
+
+            <div class="list-block list-block-search searchbar-found">
+                <ul>
+                    {{#each speakers}}
+                    <li class="item-content">
+                        <div class="item-inner">
+                            <div class="item-title">{{#if speaker_photo}} <img src="https://s3-ap-northeast-1.amazonaws.com/talk-advisor/speakers/{{speaker_photo}}" width="60" class="circular"/>
+                            {{else}}
+                            <img src="img/hollande.jpg" width="60" class="circular"/>
+                            {{/if}}{{speaker_photo}} {{speaker_name}} </div>
+                            <div class="item-after"><div class="button" href="#" onclick="sessionStorage['idSpeaker']='{{id}}'; get_specific_speaker()">See the profile</div></div>
+
+                        </div>
+                    </li>
+
+
+                    {{/each}}
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+</script>
+
+
+<script type="text/template7" id="tpl-specific-speaker">
+
+    <div class="content-block">
+
+        <div class="row">
+            <div class="col-50">
+                {{#if speaker.speaker_photo}} <img src="https://s3-ap-northeast-1.amazonaws.com/talk-advisor/speakers/{{speaker.speaker_photo}}" width="100%" class="semi-circular"/>
+                {{else}}
+                <img src="img/hollande.jpg" width="100%" class="semi-circular"/>
+                {{/if}}
+
+            </div>
+            <div class="col-50">
+                <h3>{{speaker.speaker_name}}</h3>
+                {{#if speaker.average_1}}
+                <div class="my-rating-read" data-rating="{{speaker.average_1}}"></div>
+                {{else}}
+                <div>NO AVERAGE RATING</div>
+                {{/if}}
+
+
+                <a href="#" class="button open-login button-fill button-small color-yellow">Rate me</a>
+
+            </div>
+        </div>
+
+    </div>
+    <div class="content-block-title">Best quotes of {{speaker.speaker_name}}</div>
+    <div class="swiper-container swiper-1">
+        <div class="swiper-pagination"></div>
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"><span>Peu importe qu'un chat soit noir ou blanc, tant qu'il attrape les souris.</span></div>
+            <div class="swiper-slide"><span>Ah que quoi? (Johny)</span></div>
+
+            <div class="swiper-slide"><span>Plutot chinois ou plutot chez toi?</span></div>
+        </div>
+    </div>
+    <div class="content-block-title">Average reviews <b>over <b>{{speaker.number_reviews}} ratings</b></div>
+    <div class="list-block">
+        <ul>
+            <li>
+                <div class="item-inner">
+                    <div class="item-title label">總和評分
+                        <a href="#" data-popover=".popover-about-overall" class="open-popover">
+                            <i class="fa fa-question-circle"></i></a>
+                    </div>
+                    <div class="item-after">
+                        {{#if speaker.average_1}}
+                        <span class="my-rating-read" data-rating="{{speaker.average_1}}"></span>
+                        {{else}}
+                        <span>NO AVERAGE RATING</span>
+                        {{/if}}
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <div class="item-title label">內容
+                        <a href="#" data-popover=".popover-about-content" class="open-popover">
+                            <i class="fa fa-question-circle"></i></a>
+                    </div>
+                    <div class="item-after">
+                        {{#if speaker.average_2}}
+                        <span class="my-rating-read" data-rating="{{speaker.average_2}}"></span>
+                        {{else}}
+                        <span>NO AVERAGE RATING</span>
+                        {{/if}}
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <div class="item-title label">容易懂
+                        <a href="#" data-popover=".popover-about-understand" class="open-popover">
+                            <i class="fa fa-question-circle"></i></a>
+                    </div>
+                    <div class="item-after">
+                        {{#if speaker.average_3}}
+                        <span class="my-rating-read" data-rating="{{speaker.average_3}}"></span>
+                        {{else}}
+                        <span>NO AVERAGE RATING</span>
+                        {{/if}}
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <div class="item-title label">啓發性
+                        <a href="#" data-popover=".popover-about-captivating" class="open-popover">
+                            <i class="fa fa-question-circle"></i></a>
+                    </div>
+                    <div class="item-after">
+                        {{#if speaker.average_4}}
+                        <span class="my-rating-read" data-rating="{{speaker.average_4}}"></span>
+                        {{else}}
+                        <span>NO AVERAGE RATING</span>
+                        {{/if}}
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <div class="item-title label">讓人投入
+                        <a href="#" data-popover=".popover-about-inspiring" class="open-popover">
+                            <i class="fa fa-question-circle"></i></a>
+                    </div>
+                    <div class="item-after">
+                        {{#if speaker.average_5}}
+                        <span class="my-rating-read" data-rating="{{speaker.average_5}}"></span>
+                        {{else}}
+                        <span>NO AVERAGE RATING</span>
+                        {{/if}}
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>  
+    {{#if speaker.speaker_description}}
+    <div class="content-block">
+        <div class="content-block-title">Description</div>
+        <div class="content-block-inner more">
+            {{speaker.speaker_description}}
+        </div>
+    </div>
+    {{/if}}
+    <!-- VIDEOS -->
+    {{#if speaker.video}}
+    <div class="content-block-inner">
+        <iframe width="100%" height="315" src="http://{{speaker.video}}" frameborder="0" allowfullscreen></iframe>
+        <p>Lorem ipsum dolor sit amet...</p>
+        <div class="col-50"><a href="#" class="button pb-standalone-video">See more videos</a>
+        </div>
+    </div>
+    {{/if}}
+
+
+
+</script>
+<script type="text/template7" id="tpl-speaker-reviews">
+    <div class="content-block-title">
+        Last reviews
+    </div>
+    <div class="list-block media-list">
+
+
+
+        <ul>
+            {{#each reviews}}
+
+            <li>
+
+                    <span class="item-content">
+                        <div class="item-media"><img src="img/hollande.jpg" width="60" class="circular"/></div>
+                        <div class="item-inner">
+                            <div class="item-title-row">
+                                <div class="item-title">{{#if review.user_id}}by user N°{{review.user_id}} {{else}}Unknown user{{/if}}</div>
+                                <div class="item-after"></div>
+                            </div>
+                            <div class="item-subtitle"><time class="timeago" datetime="{{review.created_at}}">Impossible to load the date</time></div>
+                            <div class="item-text"><span class="my-rating-read" data-rating="{{review_rating[0].pivot.score_id}}"></span>
+                                <span class="more">{{#js_compare "this.review.comment === '\"\"'"}}No comment{{else}}{{review.comment}}{{/js_compare}} </span>
+                            </div>
+                    </span>
+            </li>
+            {{/each}}
+
+
+
+        </ul>
+
+
+    </div>
+</script>
+<!-- POPUP LEAVE A REVIEW-->
+<div class="popup popup-review">
+
+    <div class="content-block">
+
+        <a href="#" class="button button-fill button-big color-yellow">Please rate <span id="speaker-name"></span></a>
+        <form class="list-block" id="leave-a-review">
+            <ul>
+                <li>
+                    <div class="item-content">
+                        <div class="item-media"><i class="fa fa-star"></i></div>
+                        <div class="item-inner">
+
+                            <div class="item-title label">總和評分
+                                <a href="#" data-popover=".popover-about-overall" class="open-popover">
+                                    <i class="fa fa-question-circle"></i></a>
+                            </div>
+                            <div class="item-input">
+                                <div class="my-rating rating-overall"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </li>
+                <li>
+                    <div class="item-content">
+                        <div class="item-media"><i class="fa fa-star"></i></div>
+                        <div class="item-inner">
+                            <div class="item-title label">內容 <a href="#" data-popover=".popover-about-content" class="open-popover"><i class="fa fa-question-circle"></i></a></div>
+                            <div class="item-input">
+                                <div class="my-rating rating-content"></div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="item-content">
+                        <div class="item-media"><i class="fa fa-star"></i></div>
+                        <div class="item-inner">
+                            <div class="item-title label">容易懂 <a href="#" data-popover=".popover-about-understand" class="open-popover"><i class="fa fa-question-circle"></i></a></div>
+                            <div class="item-input">
+                                <div class="my-rating rating-understand"></div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="item-content">
+                        <div class="item-media"><i class="fa fa-star"></i></div>
+                        <div class="item-inner">
+                            <div class="item-title label">啓發性 <a href="#" data-popover=".popover-about-captivating" class="open-popover"><i class="fa fa-question-circle"></i></a></div>
+                            <div class="item-input">
+                                <div class="my-rating rating-captivating"></div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="item-content">
+                        <div class="item-media"><i class="fa fa-star"></i></div>
+                        <div class="item-inner">
+                            <div class="item-title label">讓人投入 <a href="#" data-popover=".popover-about-inspiring" class="open-popover"><i class="fa fa-question-circle"></i></a></div>
+                            <div class="item-input">
+                                <div class="my-rating rating-inspiring"></div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <div id="leave-a-comment">
+                    <h3>Thank you for your review, please leave us a now a comment</h3>
+                    <li>
+                        <div class="item-content">
+                            <div class="item-media"><i class="fa fa-comments-o"></i></div>
+                            <div class="item-inner">
+                                <div class="item-title label">Quote</div>
+                                <div class="item-input">
+                                    <input type="text" name="quote" id="quote" placeholder="Enter a quote">
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content">
+                            <div class="item-media"><i class="fa fa-pencil"></i></div>
+                            <div class="item-inner">
+                                <div class="item-title label">Comment</div>
+                                <div class="item-input">
+                                    <textarea name="comment" id="comment" placeholder="Leave a comment"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                </div>
+
+            </ul>
+
+        </form>
+        <div class="row" id="first-click">
+            <div class="col-50"><a href="#" class="button button-fill button-big color-red  close-popup">Cancel</a></div>
+            <div class="col-50"><a href="#" class="button button-fill button-big color-green first-click">Done</a></div>
+        </div>
+        <div class="row" id="second-click">
+            <div class="col-50"><a href="#" class="button button-fill button-big color-red  close-popup">No comment and quote</a></div>
+            <div class="col-50"><a href="#" class="button button-fill button-big color-green  close-popup notification-default form-to-json">Done</a></div>
+        </div>
+
+    </div>
+</div>
+<!--POPUP LOGIN IF NO CONNEXION-->
+<div class="popup popup-login">
+    <div class="content-block">
+        <a href="#" class="button button-fill button-big color-yellow">You need to be logged in to leave a review</a>
+        <div class="list-block">
+            <ul>
+                <li>
+                    <div class="item-content">
+                        <div class="item-inner">
+                            <div class="item-input">
+                                <input type="text" placeholder="Email">
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="item-content">
+                        <div class="item-inner">
+                            <div class="item-input">
+                                <input type="password" placeholder="Password">
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+
+        </div>
+        <div class="row">
+            <div class="col-50"></div>
+            <div class="col-50"><a href="#" class="button button-fill button-big color-green  close-popup notification-default ">Login</a></div>
+        </div>
+    </div>
+    <h2 class="center">Or connect by Facebook</h2>
+    <div class="content-block">
+        <a href="#" class="button button-fill button-big color-blue">Fb login</a>
+    </div>
+    <h3 class="right">Not yet <a href="#" class="open-registration">registered</a>?</h3>
+</div>
+<!--POPUP REGISTER IF NO LOGIN-->
+<div class="popup popup-registration">
+    <div class="content-block">
+        <a href="#" class="button button-fill button-big color-blue">Facebook registration</a>
+    </div>
+    <h2 class="center">or</h2>
+    <div class="content-block">
+        <a href="#" class="button button-fill button-big color-yellow">Registration</a>
+        <div class="list-block">
+            <ul>
+                <li>
+                    <div class="item-content">
+                        <div class="item-inner">
+                            <div class="item-title label">Public info</div>
+                            <div class="item-input">
+                                <input type="text" placeholder="Username">
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="item-content">
+                        <div class="item-inner">
+                            <div class="item-title label"></div>
+                            <div class="item-input">
+                                <input type="text" placeholder="Picture upload">
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="item-content">
+                        <div class="item-inner">
+                            <div class="item-title label">Private info</div>
+                            <div class="item-input">
+                                <input type="text" placeholder="Phone number">
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="item-content">
+
+                        <div class="item-inner">
+                            <div class="item-title label"></div>
+                            <div class="item-input">
+                                <input type="text" placeholder="Email">
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="item-content">
+
+                        <div class="item-inner">
+                            <div class="item-title label"></div>
+                            <div class="item-input">
+                                <input type="password" placeholder="Password">
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+
+
+            </ul>
+
+        </div>
+        <div class="row">
+            <div class="col-50"><a href="#" class="button button-fill button-big color-red  close-popup">Cancel</a></div>
+            <div class="col-50"><a href="#" class="button button-fill button-big color-green  close-popup notification-default ">Sign in ! </a></div>
+        </div>
+
+    </div>
+</div>
+
+<div class="popover popover-about-overall">
+    <div class="popover-angle"></div>
+    <div class="popover-inner">
+        <div class="content-block">
+            <p>總和評分</p>
+            <p>滿意度的指標，觀眾有沒有得到、聽到、學到想要得到、聽到、學到的東西</p>
+        </div>
+    </div>
+</div>
+<div class="popover popover-about-content">
+    <div class="popover-angle"></div>
+    <div class="popover-inner">
+        <div class="content-block">
+            <p>內容</p>
+            <p>與預告講題的相關度、適合本場演講的觀眾等等</p>
+        </div>
+    </div>
+</div>
+<div class="popover popover-about-understand">
+    <div class="popover-angle"></div>
+    <div class="popover-inner">
+        <div class="content-block">
+            <p>容易懂</p>
+            <p>調理清晰，講話速度恰當，舉例子，好的視覺支援 等等</p>
+        </div>
+    </div>
+</div>
+<div class="popover popover-about-captivating">
+    <div class="popover-angle"></div>
+    <div class="popover-inner">
+        <div class="content-block">
+            <p>啓發性</p>
+            <p>讓人有新的想法、聯想到自己事業或人生等等</p>
+        </div>
+    </div>
+</div>
+<div class="popover popover-about-inspiring">
+    <div class="popover-angle"></div>
+    <div class="popover-inner">
+        <div class="content-block">
+            <p>讓人投入</p>
+            <p>帶動氣氛的能力，讓人專注於講師，包含講師講笑話、感人故事等等</p>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/javascript" src="js/framework7.min.js"></script>
+<!-- Path to your app js-->
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/jquery.timeago.js"></script>
+<script type="text/javascript" src="js/jquery.star-rating-svg.js"></script>
+<script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript" src="js/test.js"></script>
+
+
+</body>
 </html>

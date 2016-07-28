@@ -6,7 +6,7 @@ sessionStorage['token']="";
 sessionStorage['login']="true";
 sessionStorage['nameSpeaker']="";
 sessionStorage['number_reviews']=3;
-
+//console.log(StatusBar);
 
 
 
@@ -29,8 +29,8 @@ var settings = {
           "url": "http://52.69.148.135/ws/auth/login",
           "type": "Post",
           data: {
-                        email: "evan.chen@acer.com",
-                        password: "1qaz@WSX"
+                        email: "test@gmail.com",
+                        password: "test123"
                     },
            dataType :"json",
          success: function(data){
@@ -182,6 +182,8 @@ var page = $$('#tpl-welcome').html();
                         $.ajax(settings3).done(function(data){
 
                         console.log(data.reviews[0].review);
+                        console.log(data.reviews[1].review);
+                        console.log(data.reviews[2].review);
                         page3 = compiledTemplate3(data);
 
                         $('#container').append(page3);
@@ -307,6 +309,7 @@ var template = $$('#tpl-search-bar').html();
 
         $.ajax(settings).done(function(data){
         page = compiledTemplate(data);
+        console.log(data.speakers[0].speaker_photo);
             document.getElementById("container").innerHTML = page;
             myApp.hideIndicator();
                     var mySearchbar = myApp.searchbar('.searchbar', {
@@ -358,7 +361,7 @@ var compiledTemplate = Template7.compile(template);
 
 var settings = {
 
-  "url": "http://52.69.148.135/ws/api/speakers/"+sessionStorage['idSpeaker']+"",
+  "url": "http://52.69.148.135/ws/api/speakers/"+sessionStorage['idSpeaker']+"/quote/3",
   "type": "Get",
   "headers": {
     "authorization": sessionStorage['token']
@@ -383,17 +386,11 @@ var settings = {
 
 
 $.ajax(settings).done(function(data){
-page = compiledTemplate(data.speaker);
+  console.log(data);
+page = compiledTemplate(data);
+console.log(data.quotes);
 sessionStorage['nameSpeaker']=data.speaker.speaker_name;
-
-document.getElementById("container").innerHTML = page;
-myApp.hideIndicator();
-// 1 Slide Per View, 50px Between
-  var mySwiper1 = myApp.swiper('.swiper-1', {
-    pagination:'.swiper-1 .swiper-pagination',
-    spaceBetween: 50
-  });
-  // READ MORE AND READ LESS DESCRIPTION
+// READ MORE AND READ LESS DESCRIPTION
 
      // Configure/customize these variables.
          var showChar = 100;  // How many characters are shown by default
@@ -403,6 +400,7 @@ myApp.hideIndicator();
 
 
          $('.more').each(function() {
+           console.log('hehetoi');
              var content = $(this).html();
 
              if(content.length > showChar) {
@@ -418,6 +416,7 @@ myApp.hideIndicator();
          });
 
          $(".morelink").click(function(){
+            console.log('hihikoeur');
              if($(this).hasClass("less")) {
                  $(this).removeClass("less");
                  $(this).html(moretext);
@@ -430,6 +429,14 @@ myApp.hideIndicator();
              return false;
          });
 
+document.getElementById("container").innerHTML = page;
+myApp.hideIndicator();
+// 1 Slide Per View, 50px Between
+  var mySwiper1 = myApp.swiper('.swiper-1', {
+    pagination:'.swiper-1 .swiper-pagination',
+    spaceBetween: 50
+  });
+  
 
 
 
