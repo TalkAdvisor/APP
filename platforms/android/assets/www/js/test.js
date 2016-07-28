@@ -736,6 +736,11 @@ function get_my_profile(){
   if (sessionStorage['idUser']==""){
     console.log('toto');
     myApp.loginScreen();
+    $$('.open-registration').click(function(){
+        myApp.closeModal('.login-screen');
+        console.log('POPUP');
+        myApp.popup('.popup-registration');
+      });
   }
   else{
     console.log('rara');
@@ -842,6 +847,8 @@ function backKeyDown() {
     get_welcome();
     //$.mobile.changePage("#homepage", "slideup");
 }
+
+
 
 
 
