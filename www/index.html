@@ -585,13 +585,14 @@
     <div class="content-block">
         <a href="#" class="button button-fill button-big color-yellow">Registration</a>
         <div class="list-block">
+            <form id="form-registration">
             <ul>
                 <li>
                     <div class="item-content">
                         <div class="item-inner">
                             <div class="item-title label">Public info</div>
                             <div class="item-input">
-                                <input type="text" placeholder="Username">
+                                <input type="text" name="username" placeholder="Username">
                             </div>
                         </div>
                     </div>
@@ -622,7 +623,7 @@
                         <div class="item-inner">
                             <div class="item-title label"></div>
                             <div class="item-input">
-                                <input type="text" placeholder="Email">
+                                <input type="text" name="email" placeholder="Email">
                             </div>
                         </div>
                     </div>
@@ -633,7 +634,7 @@
                         <div class="item-inner">
                             <div class="item-title label"></div>
                             <div class="item-input">
-                                <input type="password" placeholder="Password">
+                                <input type="password" name="password" placeholder="Password">
                             </div>
                         </div>
                     </div>
@@ -642,11 +643,12 @@
 
 
             </ul>
+        </form>
 
         </div>
         <div class="row">
             <div class="col-50"><a href="#" class="button button-fill button-big color-red  close-popup">Cancel</a></div>
-            <div class="col-50"><a href="#" class="button button-fill button-big color-green  close-popup notification-default ">Sign in ! </a></div>
+            <div class="col-50"><a href="#" class="button button-fill button-big color-green" onclick="register()">Sign in ! </a></div>
         </div>
 
     </div>
@@ -743,7 +745,6 @@
     <div class="content-block-title">My profile</div>
     <!-- Inset content block -->
     <div class="content-block">
-    <a href="#" class="open-login-screen">Open Login Screen</a>
         <div class="list-block">
             <ul>
                 <li class="item-content">

@@ -833,11 +833,74 @@ function login(){
 }
 
 
+function register(){
+  //console.log('ici');
+  var formData = myApp.formToJSON('#form-registration');
+  console.log(JSON.stringify(formData));
+  console.log(formData.email);
+
+                var settings = {
+
+                  "crossDomain": true,
+                  "url": "http://52.69.148.135/ws/api/user/register",
+                  "method": "POST",
+                  "headers": {
+                    "authorization": sessionStorage['token']
+                    },
+                    data:{
+                        'email' : formData.email,
+                        'password' : formData.password,
+                        'name' : formData.username
+                        },
+                  dataType : "json",
+
+                  "mimeType": "multipart/form-data",
+                  success: function(data){
+                            //myApp.alert(data);
+                            },
+                            error: function(){
+                            myApp.alert('La requete n a pas abouti, maybe the email is already token?');
+                            }
+                }
+            //console.log(settings.data.score);
+                $.ajax(settings).done(function (response) {
+                  console.log(response);
+                  if (response.user){
+                    console.log(response.user.id);
+                    myApp.closeModal('.popup-registration');
+                    myApp.addNotification({
+                    title: 'TalkAdvisor',
+                     message: 'You are now registered and logged in TalkAdvisor',
+                    hold:3000
+                    });
+
+                    sessionStorage['idUser']=response.user.id;
+
+
+                  }
+
+                  
+                  
+                });
+}
+
+
+
+
 
 $$('.tabbar .tab-link').on('click', function () {
    $$('.tabbar .active').removeClass('active');
    $$(this).addClass('active');
 });
+
+$$('.notification-default').on('click', function () {
+    myApp.addNotification({
+        title: 'TalkAdvisor',
+        message: 'Thanks for leaving a review !',
+        hold:3000
+    });
+  });
+
 
 document.addEventListener("backbutton", backKeyDown, true);
 
