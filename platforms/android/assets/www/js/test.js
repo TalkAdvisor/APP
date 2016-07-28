@@ -46,7 +46,7 @@ var settings = {
         $.ajax(settings).done(function(data){
             //console.log('ici');
             sessionStorage['token']="Bearer {"+data.token+"}";
-            console.log(sessionStorage['token']);
+            //console.log(sessionStorage['token']);
 
 var page = $$('#tpl-welcome').html();
             document.getElementById("container").innerHTML = page;
@@ -145,11 +145,11 @@ var page = $$('#tpl-welcome').html();
 
 
             $.ajax(settings2).done(function(data){
-            console.log('REPONSE ARIANE '+data.speakers);
+            //console.log('REPONSE ARIANE '+data.speakers);
             page2 = compiledTemplate2(data);
             $('#container').append(page2);
-            myApp.hideIndicator();
-            });
+            
+            
 
             // FIN REQUETE 3 BEST SPEAKERS
 
@@ -180,13 +180,14 @@ var page = $$('#tpl-welcome').html();
 
 
                         $.ajax(settings3).done(function(data){
-
-                        console.log(data.reviews[0].review);
-                        console.log(data.reviews[1].review);
-                        console.log(data.reviews[2].review);
+                          myApp.hideIndicator();
+                        //console.log(data.reviews[0].review);
+                        //console.log(data.reviews[1].review);
+                        //console.log(data.reviews[2].review);
                         page3 = compiledTemplate3(data);
 
                         $('#container').append(page3);
+                        
                         $('#tpl-number-reviews').html(""+sessionStorage['number_reviews']+" last reviews");
                         $(".my-rating-read").starRating({
                                 totalStars: 5,
@@ -233,14 +234,55 @@ var page = $$('#tpl-welcome').html();
                         });
 
                         // FIN REQUETE 3 LAST REVIEWS
+                          // REQUETE 3 LAST REVIEWS
+
+                        var template4 = $$('#tpl-3-random-quotes').html();
+                            var compiledTemplate4 = Template7.compile(template4);
+
+
+
+
+                            var settings4 = {
+
+                              "url": "http://52.69.148.135/ws/api/reviews/quote/3",
+                              "type": "Get",
+                              "headers": {
+                                "authorization": sessionStorage['token']
+                                },
+                               dataType :"json",
+                             success: function(data){
+                              //myApp.alert(data);
+                              },
+                              error: function(){
+                              myApp.alert('La requete n a pas abouti');
+                              }
+                              };
+
+
+
+                        $.ajax(settings4).done(function(data){
+                          console.log(data);
+                          myApp.hideIndicator();
+                        //console.log(data.reviews[0].review);
+                        //console.log(data.reviews[1].review);
+                        //console.log(data.reviews[2].review);
+                        page4 = compiledTemplate4(data);
+
+                        $('#container').append(page4);
+                        var mySwiper2 = myApp.swiper('.swiper-2', {
+    pagination:'.swiper-2 .swiper-pagination',
+    spaceBetween: 50
+  });
+
 
 
 
             });
+                        
 
+});
 
-
-
+});
 
 
 
@@ -273,10 +315,10 @@ var page = $$('#tpl-welcome').html();
 
 function see_more_reviews(){
     var calcul=sessionStorage['number_reviews'];
-    console.log(calcul);
+    //console.log(calcul);
     calcul=+calcul +3;
     sessionStorage['number_reviews']=calcul;
-    console.log(calcul);
+    //console.log(calcul);
     get_welcome();
     }
 
@@ -309,7 +351,7 @@ var template = $$('#tpl-search-bar').html();
 
         $.ajax(settings).done(function(data){
         page = compiledTemplate(data);
-        console.log(data.speakers[0].speaker_photo);
+        //console.log(data.speakers[0].speaker_photo);
             document.getElementById("container").innerHTML = page;
             myApp.hideIndicator();
                     var mySearchbar = myApp.searchbar('.searchbar', {
@@ -386,7 +428,7 @@ var settings = {
 
 
 $.ajax(settings).done(function(data){
-  console.log(data);
+  //console.log(data);
 page = compiledTemplate(data);
 console.log(data.quotes);
 sessionStorage['nameSpeaker']=data.speaker.speaker_name;
@@ -400,7 +442,7 @@ sessionStorage['nameSpeaker']=data.speaker.speaker_name;
 
 
          $('.more').each(function() {
-           console.log('hehetoi');
+           //console.log('hehetoi');
              var content = $(this).html();
 
              if(content.length > showChar) {
@@ -416,7 +458,7 @@ sessionStorage['nameSpeaker']=data.speaker.speaker_name;
          });
 
          $(".morelink").click(function(){
-            console.log('hihikoeur');
+            //console.log('hihikoeur');
              if($(this).hasClass("less")) {
                  $(this).removeClass("less");
                  $(this).html(moretext);
@@ -429,6 +471,9 @@ sessionStorage['nameSpeaker']=data.speaker.speaker_name;
              return false;
          });
 
+
+         //END OF READ MORE / READ LESS DESCRIPTION
+
 document.getElementById("container").innerHTML = page;
 myApp.hideIndicator();
 // 1 Slide Per View, 50px Between
@@ -436,7 +481,7 @@ myApp.hideIndicator();
     pagination:'.swiper-1 .swiper-pagination',
     spaceBetween: 50
   });
-  
+
 
 
 
@@ -504,7 +549,7 @@ $('#first-click').show();
     $('#leave-a-comment').show();
     $('#first-click').hide();
     $('#second-click').show();
-    console.log('ici');
+    //console.log('ici');
     $$('.form-to-json').on('click', function(){
         //console.log(document.getElementById("comment").value);
             var formData = {
@@ -516,8 +561,8 @@ $('#first-click').show();
                     'comment' :  document.getElementById("comment").value,
                     'quote': document.getElementById("quote").value
                     };
-                console.log(formData);
-                console.log($('.rating-inspiring').starRating('getRating'));
+                //console.log(formData);
+                //console.log($('.rating-inspiring').starRating('getRating'));
 
 
 

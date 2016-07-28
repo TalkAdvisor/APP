@@ -189,13 +189,21 @@
         </ul>
     </div>
     <a class="right" onclick="see_more_reviews()">See more reviews</a>
-    <div class="content-block-title">3 random quotes</div>
-    <!-- Inset content block -->
-    <div class="content-block inset">
-        <div class="content-block-inner">
-            <p>Donec et nulla auctor massa pharetra adipiscing ut sit amet sem. Suspendisse molestie velit vitae mattis tincidunt. Ut sit amet quam mollis, vulputate turpis vel, sagittis felis. </p>
+</script>
+<script type="text/template7" id="tpl-3-random-quotes">
+    <div class="content-block-title">Random quotes</div>
+    <div class="swiper-container swiper-2">
+        <div class="swiper-pagination"></div>
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"><span>{{quotes[0]}}</span></div>
+            
+            <div class="swiper-slide"><span>{{quotes[1]}}</span></div>
+
+            <div class="swiper-slide"><span>{{quotes[3]}}</span></div>
+            
         </div>
     </div>
+</script>
 
 </script>
 
@@ -270,14 +278,18 @@
         </div>
 
     </div>
+<!--{{#js_compare "this.quotes === '\[\"\"\]'"}}No comment{{else}}iii{{/js_compare}}-->
+
     <div class="content-block-title">Best quotes of {{speaker.speaker_name}}</div>
     <div class="swiper-container swiper-1">
         <div class="swiper-pagination"></div>
         <div class="swiper-wrapper">
-            <div class="swiper-slide"><span>Peu importe qu'un chat soit noir ou blanc, tant qu'il attrape les souris.</span></div>
+            <div class="swiper-slide"><span>{{quotes}}</span></div>
+            <!--
             <div class="swiper-slide"><span>Ah que quoi? (Johny)</span></div>
 
             <div class="swiper-slide"><span>Plutot chinois ou plutot chez toi?</span></div>
+            -->
         </div>
     </div>
     <div class="content-block-title">Average reviews <b>over <b>{{speaker.number_reviews}} ratings</b></div>
