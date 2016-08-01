@@ -210,3 +210,7 @@ div[class*="col-"] {
     text-align : right;
     margin-right : 15px;
     }
+
+.list-block.media-list .item-title {
+    font-size: 15px;
+}

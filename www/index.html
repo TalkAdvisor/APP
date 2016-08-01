@@ -169,15 +169,15 @@
     <div class="list-block media-list">
         <ul>
             {{#each reviews}}
-            <a href="#" onclick="sessionStorage['idSpeaker']='{{review.speaker_id}}'; get_specific_speaker()">
+            <a href="#" onclick="sessionStorage['idSpeaker']='{{review.speaker.id}}'; get_specific_speaker()">
                 <li>
 
                     <span class="item-content">
                         <div class="item-media"><img src="img/hollande.jpg" width="60" class="circular"/></div>
                         <div class="item-inner">
                             <div class="item-title-row">
-                                <div class="item-title">About Speaker N°{{review.speaker_id}}</div>
-                                <div class="item-after">{{#if review.user_id}}by user N°{{review.user_id}} {{else}}Unknown user{{/if}}</div>
+                                <div class="item-title">About {{review.speaker.speaker_name}}</div>
+                                <div class="item-after">{{#if review.user.name}}by {{review.user.name}} {{else}}Unknown user{{/if}}</div>
                             </div>
                             <div class="item-subtitle"><time class="timeago" datetime="{{review.created_at}}">Impossible to load the date</time></div>
                             <div class="item-text"><span class="my-rating-read" data-rating="{{review_rating[0].pivot.score_id}}"></span>
@@ -273,7 +273,7 @@
                 {{/if}}
 
 
-                <a href="#" class="button open-login button-fill button-small color-yellow">Rate me</a>
+                <a href="#" class="button rate-me button-fill button-small color-yellow">Rate me</a>
 
             </div>
         </div>
@@ -408,10 +408,13 @@
             <li>
 
                     <span class="item-content">
-                        <div class="item-media"><img src="img/hollande.jpg" width="60" class="circular"/></div>
+                        <div class="item-media">{{#if review.user.profile_picture}} <img src="https://s3-ap-northeast-1.amazonaws.com/talk-advisor/speakers/{{review.user.profile_picture}}" width="60" class="circular"/>
+                            {{else}}
+                            <img src="img/hollande.jpg" width="60" class="circular"/>
+                            {{/if}}</div>
                         <div class="item-inner">
                             <div class="item-title-row">
-                                <div class="item-title">{{#if review.user_id}}by user N°{{review.user_id}} {{else}}Unknown user{{/if}}</div>
+                                <div class="item-title">{{#if review.user.name}}by {{review.user.name}} {{else}}Unknown user{{/if}}</div>
                                 <div class="item-after"></div>
                             </div>
                             <div class="item-subtitle"><time class="timeago" datetime="{{review.created_at}}">Impossible to load the date</time></div>
