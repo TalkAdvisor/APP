@@ -210,3 +210,29 @@ div[class*="col-"] {
     text-align : right;
     margin-right : 15px;
     }
+
+.list-block.media-list .item-title {
+    font-size: 15px;
+}
+
+.content-block-inner{
+    font-weight: null;
+    font-size : 15px;
+}
+
+.list-block .item-title.label {
+    width : 40%;
+    /*padding-left : 10px;*/
+}
+
+.list-block .item-title.label.details {
+    padding-left: 10px;
+}
+
+element.style {
+    padding-left: 10px;
+}
+
+.italic{
+    font-style: italic;
+}

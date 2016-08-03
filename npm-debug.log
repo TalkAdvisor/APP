@@ -1,0 +1,21 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'version', 'cordova' ]
+2 info using npm@2.11.3
+3 info using node@v0.12.7
+4 error version No valid package.json found
+5 verbose stack SyntaxError: Unexpected token u
+5 verbose stack     at Object.parse (native)
+5 verbose stack     at /usr/local/lib/node_modules/npm/lib/version.js:32:19
+5 verbose stack     at evalmachine.<anonymous>:263:20
+5 verbose stack     at OpenReq.Req.done (/usr/local/lib/node_modules/npm/node_modules/graceful-fs/graceful-fs.js:141:5)
+5 verbose stack     at OpenReq.done (/usr/local/lib/node_modules/npm/node_modules/graceful-fs/graceful-fs.js:61:22)
+5 verbose stack     at FSReqWrap.oncomplete (evalmachine.<anonymous>:95:15)
+6 verbose cwd /Users/antoinekeller/Documents/INF471T/workspace/TalkAdvisor
+7 error Darwin 15.3.0
+8 error argv "node" "/usr/local/bin/npm" "version" "cordova"
+9 error node v0.12.7
+10 error npm  v2.11.3
+11 error Unexpected token u
+12 error If you need help, you may report this error at:
+12 error     <https://github.com/npm/npm/issues>
+13 verbose exit [ 1, true ]

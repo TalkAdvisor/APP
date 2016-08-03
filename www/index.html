@@ -200,7 +200,7 @@
             
             <div class="swiper-slide"><span>{{quotes[1]}}</span></div>
 
-            <div class="swiper-slide"><span>{{quotes[3]}}</span></div>
+            <div class="swiper-slide"><span>{{quotes[2]}}</span></div>
             
         </div>
     </div>
@@ -271,9 +271,15 @@
                 {{else}}
                 <div>NO AVERAGE RATING</div>
                 {{/if}}
+                {{#if speaker.speaker_company}}
+                <div>
+                    Working at <span class="italic">{{speaker.speaker_company}}</span>
+                    </div>
+                {{/if}}
 
 
-                <a href="#" class="button rate-me button-fill button-small color-yellow">Rate me</a>
+                <a href="#" class="button rate-me button-fill button-small color-yellow" id="rate-me-able">Rate me</a>
+                <a href="#" class="button button-fill button-small color-yellow" id="rate-me-disable">You already rated me</a>
 
             </div>
         </div>
@@ -285,7 +291,9 @@
     <div class="swiper-container swiper-1">
         <div class="swiper-pagination"></div>
         <div class="swiper-wrapper">
-            <div class="swiper-slide"><span>{{quotes}}</span></div>
+        {{#each quotes}}
+            <div class="swiper-slide"><span>{{this}}</span></div>
+        {{/each}}
             <!--
             <div class="swiper-slide"><span>Ah que quoi? (Johny)</span></div>
 
@@ -298,7 +306,7 @@
         <ul>
             <li>
                 <div class="item-inner">
-                    <div class="item-title label">總和評分
+                    <div class="item-title label details">總和評分
                         <a href="#" data-popover=".popover-about-overall" class="open-popover">
                             <i class="fa fa-question-circle"></i></a>
                     </div>
@@ -313,7 +321,7 @@
             </li>
             <li>
                 <div class="item-inner">
-                    <div class="item-title label">內容
+                    <div class="item-title label details">內容
                         <a href="#" data-popover=".popover-about-content" class="open-popover">
                             <i class="fa fa-question-circle"></i></a>
                     </div>
@@ -328,7 +336,7 @@
             </li>
             <li>
                 <div class="item-inner">
-                    <div class="item-title label">容易懂
+                    <div class="item-title label details">容易懂
                         <a href="#" data-popover=".popover-about-understand" class="open-popover">
                             <i class="fa fa-question-circle"></i></a>
                     </div>
@@ -343,7 +351,7 @@
             </li>
             <li>
                 <div class="item-inner">
-                    <div class="item-title label">啓發性
+                    <div class="item-title label details">啓發性
                         <a href="#" data-popover=".popover-about-captivating" class="open-popover">
                             <i class="fa fa-question-circle"></i></a>
                     </div>
@@ -358,7 +366,7 @@
             </li>
             <li>
                 <div class="item-inner">
-                    <div class="item-title label">讓人投入
+                    <div class="item-title label details">讓人投入
                         <a href="#" data-popover=".popover-about-inspiring" class="open-popover">
                             <i class="fa fa-question-circle"></i></a>
                     </div>
@@ -419,7 +427,13 @@
                             </div>
                             <div class="item-subtitle"><time class="timeago" datetime="{{review.created_at}}">Impossible to load the date</time></div>
                             <div class="item-text"><span class="my-rating-read" data-rating="{{review_rating[0].pivot.score_id}}"></span>
-                                <span class="more">{{#js_compare "this.review.comment === '\"\"'"}}No comment{{else}}{{review.comment}}{{/js_compare}} </span>
+                                <span class="more">{{#js_compare "this.review.comment === '\"\"'"}}No comment{{else}}
+                                <?php 
+                                $desc2 = "{{review.comment}}";
+                                echo nl2br($desc2);
+                                echo ("LOL");
+                                ?>
+                                {{/js_compare}} </span>
                             </div>
                     </span>
             </li>
@@ -736,6 +750,7 @@
               <div class="list-block-label">
                 <p>You must be logged in to leave reviews and ratings</p>
                 <p><a href="#" class="close-login-screen open-registration">Not yet registered?</a></p>
+
               </div>
             </div>
           </form>
@@ -764,7 +779,8 @@
                 <li class="item-content">
                     created at ={{user.created_at}}
                 </li>
-
+                <li class="item-content">
+                    Picture = {{user.profile_picture}}
             </ul>
         </div>
     </div>
