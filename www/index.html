@@ -67,8 +67,8 @@
                     <i class="fa fa-user fa-2x"></i>
                     <span class="tabbar-label">My profile</span>
                 </a>
-                <a href="http://217.199.187.199/modal-question-du-jour.com/facebook-test.html" class="external tab-link">
-                    <i class="fa fa-info fa-2x"></i>
+                <a href="http://217.199.187.199/modal-question-du-jour.com/facebook-test2.html" class="external tab-link">
+                    <i class="fa fa-facebook-official fa-2x"></i>
                     <span class="tabbar-label">Facebook</span>
                 </a>
             </div>
@@ -169,23 +169,35 @@
     <div class="list-block media-list">
         <ul>
             {{#each reviews}}
-            <a href="#" onclick="sessionStorage['idSpeaker']='{{review.speaker.id}}'; get_specific_speaker()">
+            
                 <li>
 
                     <span class="item-content">
-                        <div class="item-media"><img src="img/hollande.jpg" width="60" class="circular"/></div>
+                    
+                        <div class="item-media">
+                        <a href="#" onclick="sessionStorage['idSpecificUser']='{{review.user.id}}'; get_specific_user()">
+                        {{#if review.user.profile_picture}} <img src="https://s3-ap-northeast-1.amazonaws.com/talk-advisor/users/{{review.user.profile_picture}}" width="60" class="circular"/>
+                            {{else}}
+                            <img src="img/hollande.jpg" width="60" class="circular"/>
+                            {{/if}}
+                        </a>
+                        </div>
+                        
                         <div class="item-inner">
+                        <a href="#" onclick="sessionStorage['idSpeaker']='{{review.speaker.id}}'; get_specific_speaker()">
                             <div class="item-title-row">
                                 <div class="item-title">About {{review.speaker.speaker_name}}</div>
                                 <div class="item-after">{{#if review.user.name}}by {{review.user.name}} {{else}}Unknown user{{/if}}</div>
                             </div>
                             <div class="item-subtitle"><time class="timeago" datetime="{{review.created_at}}">Impossible to load the date</time></div>
-                            <div class="item-text"><span class="my-rating-read" data-rating="{{review_rating[0].pivot.score_id}}"></span>
+                            <div class="item-text 3-last-reviews"><span class="my-rating-read" data-rating="{{review_rating[0].pivot.score_id}}"></span>
                                 <span class="more">{{#js_compare "this.review.comment === '\"\"'"}}No comment{{else}}{{review.comment}}{{/js_compare}} </span>
                             </div>
+                        </a>
+                        </div>
                     </span>
                 </li>
-            </a>
+            
             {{/each}}
         </ul>
     </div>
@@ -266,6 +278,7 @@
             </div>
             <div class="col-50">
                 <h3>{{speaker.speaker_name}}</h3>
+                <h4>{{speaker.english_name}}
                 {{#if speaker.average_1}}
                 <div class="my-rating-read" data-rating="{{speaker.average_1}}"></div>
                 {{else}}
@@ -383,7 +396,7 @@
     </div>  
     {{#if speaker.speaker_description}}
     <div class="content-block">
-        <div class="content-block-title">Description</div>
+        <div class="content-block-title">Description {{#if speaker.source}}from {{speaker.source}}{{/if}}</div>
         <div class="content-block-inner more">
             {{speaker.speaker_description}}
         </div>
@@ -416,23 +429,23 @@
             <li>
 
                     <span class="item-content">
-                        <div class="item-media">{{#if review.user.profile_picture}} <img src="https://s3-ap-northeast-1.amazonaws.com/talk-advisor/speakers/{{review.user.profile_picture}}" width="60" class="circular"/>
+                        <div class="item-media">
+                        <a href="#" onclick="sessionStorage['idSpecificUser']='{{review.user.id}}'; get_specific_user()">
+                        {{#if review.user.profile_picture}} <img src="https://s3-ap-northeast-1.amazonaws.com/talk-advisor/users/{{review.user.profile_picture}}" width="60" class="circular"/>
                             {{else}}
                             <img src="img/hollande.jpg" width="60" class="circular"/>
-                            {{/if}}</div>
+                            {{/if}}
+                            </a>
+                            </div>
                         <div class="item-inner">
                             <div class="item-title-row">
-                                <div class="item-title">{{#if review.user.name}}by {{review.user.name}} {{else}}Unknown user{{/if}}</div>
+                                <div class="item-title">{{#if review.user.name}}{{review.user.name}} {{else}}Unknown user{{/if}}</div>
                                 <div class="item-after"></div>
                             </div>
                             <div class="item-subtitle"><time class="timeago" datetime="{{review.created_at}}">Impossible to load the date</time></div>
                             <div class="item-text"><span class="my-rating-read" data-rating="{{review_rating[0].pivot.score_id}}"></span>
-                                <span class="more">{{#js_compare "this.review.comment === '\"\"'"}}No comment{{else}}
-                                <?php 
-                                $desc2 = "{{review.comment}}";
-                                echo nl2br($desc2);
-                                echo ("LOL");
-                                ?>
+                                <span class="more">{{#js_compare "this.review.comment === '\"\"'"}}No comment{{else}}{{review.comment}}
+
                                 {{/js_compare}} </span>
                             </div>
                     </span>
@@ -596,7 +609,7 @@
 <!--POPUP REGISTER IF NO LOGIN-->
 <div class="popup popup-registration">
     <div class="content-block">
-        <a href="#" class="button button-fill button-big color-blue">Facebook registration</a>
+        <a href="http://217.199.187.199/modal-question-du-jour.com/facebook-test2.html" class="button button-fill button-big color-blue external">Facebook registration</a>
     </div>
     <h2 class="center">or</h2>
     <div class="content-block">
@@ -629,7 +642,7 @@
                         <div class="item-inner">
                             <div class="item-title label">Private info</div>
                             <div class="item-input">
-                                <input type="text" placeholder="Phone number">
+                                <input type="text" placeholder="Phone number" name="phone_number">
                             </div>
                         </div>
                     </div>
@@ -753,7 +766,9 @@
 
               </div>
             </div>
+            
           </form>
+          <a href="#" class="close-login-screen"><div class="button color-red button-fill cancel">Cancel</div></a>
         </div>
       </div>
     </div>
@@ -761,28 +776,77 @@
 <script type="text/template7" id="tpl-my-profile">
 
     <div class="content-block-title">My profile</div>
-    <!-- Inset content block -->
-    <div class="content-block">
-        <div class="list-block">
-            <ul>
-                <li class="item-content">
-                    My profile content
-                    ID ={{user.id}}
-                </li>
-                <li class="item-content">
-                    Name= {{user.name}}
-                    </li>
-                <li class="item-content">
-                    
-                    email ={{user.email}}
-                </li>
-                <li class="item-content">
-                    created at ={{user.created_at}}
-                </li>
-                <li class="item-content">
-                    Picture = {{user.profile_picture}}
-            </ul>
-        </div>
+    <div class="card demo-card-header-pic">
+  <div style="background-image:url({{#if user.profile_picture}}
+                https://s3-ap-northeast-1.amazonaws.com/talk-advisor/users/{{user.profile_picture}}{{else}}img/hollande.jpg{{/if}})" valign="bottom" class="card-header color-white no-border italic">{{user.name}}</div>
+  <div class="card-content">
+    <div class="card-content-inner">
+      <p class="color-gray">Account created on {{user.created_at}}</p>
+      <p>Email : {{user.email}}</p>
+    </div>
+  </div>
+  <div class="card-footer">
+    <a href="#" class="link"></a>
+    <a href="#" class="link">Update my profile</a>
+  </div>
+</div>
+</script>
+
+<script type="text/template7" id="tpl-specific-profile">
+
+    <div class="content-block-title">{{user.name}}&rsquo;s profile</div>
+    <div class="card demo-card-header-pic">
+  <div style="background-image:url({{#if user.profile_picture}}
+                https://s3-ap-northeast-1.amazonaws.com/talk-advisor/users/{{user.profile_picture}}{{else}}img/hollande.jpg{{/if}})" valign="bottom" class="card-header color-white no-border italic">{{user.name}}</div>
+  <div class="card-content">
+    <div class="card-content-inner">
+      <p class="color-gray">Account created on {{user.created_at}}</p>
+    </div>
+  </div>
+  <div class="card-footer">
+    <a href="#" class="link"></a>
+    <a href="#" class="link">See the statistics</a>
+  </div>
+</div>
+
+<div class="content-block-title">{{user.name}}&rsquo;s last reviews</div>
+<div class="list-block media-list">
+
+
+
+        <ul>
+            {{#each reviews}}
+
+            <li>
+
+                    <span class="item-content">
+                        <div class="item-media">
+                        <a href="#" onclick="sessionStorage['idSpecificUser']='1'; get_specific_user()">
+                        
+                            <img src="img/hollande.jpg" width="60" class="circular"/>
+                            
+                            </a>
+                            </div>
+                        <div class="item-inner">
+                            <div class="item-title-row">
+                                <div class="item-title">NAME</div>
+                                <div class="item-after"></div>
+                            </div>
+                            <div class="item-subtitle"><time class="timeago" datetime="{{created_at}}">Impossible to load the date</time></div>
+                            <div class="item-text">
+                                <span class="more">{{#js_compare "this.comment === '\"\"'"}}No comment{{else}}{{comment}}
+
+                                {{/js_compare}} </span>
+                            </div>
+                    </span>
+            </li>
+            {{/each}}
+
+
+
+        </ul>
+
+
     </div>
 </script>
 

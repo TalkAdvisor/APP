@@ -7,6 +7,7 @@ sessionStorage['login']=null;
 sessionStorage['nameSpeaker']="";
 sessionStorage['number_reviews']=3;
 sessionStorage['idUser']="";
+sessionStorage['idSpecificUser']="";
 //console.log(StatusBar);
 
 
@@ -441,6 +442,7 @@ var settings = {
   error: function(){
 myApp.alert('La requete n a pas abouti', function(){
                               myApp.hideIndicator();
+                              console.log('c est une catastrophe');
                             });  }
   };
 
@@ -452,7 +454,7 @@ myApp.alert('La requete n a pas abouti', function(){
 
 
 $.ajax(settings).done(function(data){
-  //console.log(data);
+  console.log(data);
 page = compiledTemplate(data);
 console.log(data.quotes);
 sessionStorage['nameSpeaker']=data.speaker.speaker_name;
@@ -870,6 +872,7 @@ page2 = compiledTemplate2(data);
 }
 
 function get_my_profile(){
+  
   console.log(sessionStorage['idUser']);
   if (sessionStorage['idUser']==""){
     console.log('toto');
@@ -882,6 +885,7 @@ function get_my_profile(){
   }
   else{
     console.log('rara');
+    myApp.showIndicator();
   var template = $('#tpl-my-profile').html();
   var compiledTemplate = Template7.compile(template);
 
@@ -920,6 +924,7 @@ $.ajax(settings).done(function(data){
   page = compiledTemplate(data);
   
   $('#container').html(page);
+  myApp.hideIndicator();
 });
   }
   
@@ -991,7 +996,8 @@ function register(){
                     data:{
                         'email' : formData.email,
                         'password' : formData.password,
-                        'name' : formData.username
+                        'name' : formData.username,
+                        'phone_number' : formData.photo_number
                         },
                   dataType : "json",
 
@@ -1025,6 +1031,90 @@ myApp.alert('La requete n a pas abouti', function(){
                   
                 });
 }
+
+function get_specific_user(){
+  myApp.showIndicator();
+  console.log("sessionStorage['idSpecificUser'] = "+sessionStorage['idSpecificUser']);
+var template = $('#tpl-specific-profile').html();
+  var compiledTemplate = Template7.compile(template);
+
+//PREPARATION DE LA REQUETE
+
+var settings = {
+
+  "url": "http://52.69.148.135/ws/api/user/"+sessionStorage['idSpecificUser']+"",
+  "type": "Get",
+  "headers": {
+    "authorization": sessionStorage['token']
+     },data: {
+                email: "evan.chen@acer.com",
+                password: "1qaz@WSX"
+            },
+   dataType :"json",
+ success: function(data){
+  console.log(data);
+  //console.log(data2.reviews[0].review_rating);
+  //console.log(data2.reviews[0].review_rating);
+  },
+  error: function(){
+myApp.alert('La requete n a pas abouti', function(){
+                              myApp.hideIndicator();
+                            });  }
+  };
+
+
+
+//CHARGEMENT DES DONNEES DU USER
+
+
+
+
+$.ajax(settings).done(function(data){
+  page = compiledTemplate(data);
+  console.log(data.reviews[0]);
+  $('#container').html(page);
+  $("time.timeago").timeago();
+        // READ MORE AND READ LESS DESCRIPTION
+
+             // Configure/customize these variables.
+                 var showChar = 100;  // How many characters are shown by default
+                 var ellipsestext = "...";
+                 var moretext = "Read more";
+                 var lesstext = "Read less";
+
+
+                 $('.more').each(function() {
+                     var content = $(this).html();
+
+                     if(content.length > showChar) {
+
+                         var c = content.substr(0, showChar);
+                         var h = content.substr(showChar, content.length - showChar);
+
+                         var html = c + '<span class="moreellipses">' + ellipsestext+ '&nbsp;</span><span class="morecontent"><span>' + h + '</span>&nbsp;&nbsp;<a href="" class="morelink">' + moretext + '</a></span>';
+
+                         $(this).html(html);
+                     }
+
+                 });
+
+                 $(".morelink").click(function(){
+                     if($(this).hasClass("less")) {
+                         $(this).removeClass("less");
+                         $(this).html(moretext);
+                     } else {
+                         $(this).addClass("less");
+                         $(this).html(lesstext);
+                     }
+                     $(this).parent().prev().toggle();
+                     $(this).prev().toggle();
+                     return false;
+                 });
+  myApp.hideIndicator();
+});
+  }
+  
+
 
 
 

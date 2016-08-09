@@ -870,6 +870,7 @@ page2 = compiledTemplate2(data);
 }
 
 function get_my_profile(){
+  
   console.log(sessionStorage['idUser']);
   if (sessionStorage['idUser']==""){
     console.log('toto');
@@ -882,6 +883,7 @@ function get_my_profile(){
   }
   else{
     console.log('rara');
+    myApp.showIndicator();
   var template = $('#tpl-my-profile').html();
   var compiledTemplate = Template7.compile(template);
 
@@ -920,6 +922,7 @@ $.ajax(settings).done(function(data){
   page = compiledTemplate(data);
   
   $('#container').html(page);
+  myApp.hideIndicator();
 });
   }
   
@@ -991,7 +994,8 @@ function register(){
                     data:{
                         'email' : formData.email,
                         'password' : formData.password,
-                        'name' : formData.username
+                        'name' : formData.username,
+                        'phone_number' : formData.photo_number
                         },
                   dataType : "json",
 

@@ -236,3 +236,16 @@ element.style {
 .italic{
     font-style: italic;
 }
+
+.cancel{
+    position : fixed;
+    width : 50%;
+    bottom : 0px;
+    margin : 10px;
+}
+
+.demo-card-header-pic .card-header {
+    height: 60vw;
+    background-size: cover;
+    background-position: center;
+  }
