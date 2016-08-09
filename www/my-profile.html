@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Your app title -->
+    <title>TalkAdvisor</title>
+
+<link rel="stylesheet" type="text/css" href="css/star-rating-svg.css">
+</head>
+<body>
+<div id="x">Line 1 \n \n
+Line 2
+
+
+
+
+Line 3
+</div>
+<script>
+var messagetoSend = document.getElementById('x').innerHTML;
+messagetoSend=messagetoSend.replace(/\n/g, "<br />");
+
+alert(messagetoSend);
+</script>
+</body>
+</html>

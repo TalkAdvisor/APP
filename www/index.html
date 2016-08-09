@@ -78,7 +78,6 @@
     </div>
 </div>
 <script type="text/template7" id="tpl-welcome">
-
     <div class="content-block-title">Want to find a speaker?</div>
     <!-- Inset content block -->
     <div class="content-block">
@@ -100,8 +99,8 @@
     <!-- Inset content block -->
     <div class="list-block media-list">
         <ul>
-            <a href="#" onclick="sessionStorage['idSpeaker']='{{speakers[0].id}}'; get_specific_speaker()">
-                <li>
+            
+                <li href="#" onclick="sessionStorage['idSpeaker']='{{speakers[0].id}}'; get_specific_speaker()">
 
                     <span class="item-content">
                         <div class="item-media">{{#if speakers[0].speaker_photo}} <img src="https://s3-ap-northeast-1.amazonaws.com/talk-advisor/speakers/{{speakers[0].speaker_photo}}" width="60" class="circular"/>
@@ -118,9 +117,9 @@
                             <div class="item-text">Click to see the speaker profile</div>
                     </span>
                 </li>
-            </a>
-            <a href="#" onclick="sessionStorage['idSpeaker']='{{speakers[1].id}}'; get_specific_speaker()">
-                <li>
+            
+            
+                <li href="#" onclick="sessionStorage['idSpeaker']='{{speakers[1].id}}'; get_specific_speaker()">
 
                     <span class="item-content">
                         <div class="item-media">{{#if speakers[1].speaker_photo}} <img src="https://s3-ap-northeast-1.amazonaws.com/talk-advisor/speakers/{{speakers[1].speaker_photo}}" width="60" class="circular"/>
@@ -137,9 +136,9 @@
                             <div class="item-text">Click to see the speaker profile</div>
                     </span>
                 </li>
-            </a>
-            <a href="#" onclick="sessionStorage['idSpeaker']='{{speakers[2].id}}'; get_specific_speaker()">
-                <li>
+            
+            
+                <li href="#" onclick="sessionStorage['idSpeaker']='{{speakers[2].id}}'; get_specific_speaker()">
 
                     <span class="item-content">
                         <div class="item-media">{{#if speakers[2].speaker_photo}} <img src="https://s3-ap-northeast-1.amazonaws.com/talk-advisor/speakers/{{speakers[2].speaker_photo}}" width="60" class="circular"/>
@@ -156,7 +155,7 @@
                             <div class="item-text">Click to see the speaker profile</div>
                     </span>
                 </li>
-            </a>
+            
 
         </ul>
 
@@ -239,21 +238,34 @@
             </div>
 
 
-            <div class="list-block list-block-search searchbar-found">
+            <div class="list-block list-block-search searchbar-found media-list">
                 <ul>
                     {{#each speakers}}
-                    <li class="item-content">
-                        <div class="item-inner">
-                            <div class="item-title">{{#if speaker_photo}} <img src="https://s3-ap-northeast-1.amazonaws.com/talk-advisor/speakers/{{speaker_photo}}" width="60" class="circular"/>
+                    
+                    <li class="item-content" href="#" onclick="sessionStorage['idSpeaker']='{{id}}'; get_specific_speaker()">
+                        
+                        <div class="item-media">
+                            {{#if speaker_photo}} <img src="https://s3-ap-northeast-1.amazonaws.com/talk-advisor/speakers/{{speaker_photo}}" width="60" class="circular"/>
                             {{else}}
                             <img src="img/hollande.jpg" width="60" class="circular"/>
-                            {{/if}} {{speaker_name}} </div>
-                            <div class="item-after"><div class="button" href="#" onclick="sessionStorage['idSpeaker']='{{id}}'; get_specific_speaker()">See the profile</div></div>
-
+                            {{/if}}
                         </div>
+                        <div class="item-inner">
+                            <div class="item-title-row">
+                                <div class="item-title">{{speaker_name}}</div>
+                                <div class="item-after"><span class="my-rating-read" data-rating="{{average_1}}"></span></div>
+                            </div>
+                            <div class="item-subtitle">
+                                {{speaker_englishname}}
+                            </div>
+                            <div class="item-text">
+                                {{speaker_company}} {{#if speaker_title}}- {{speaker_title}}{{/if}}
+                            </div>
+                        </div>
+                        
                     </li>
 
-
+                    
                     {{/each}}
                 </ul>
             </div>
@@ -277,8 +289,8 @@
 
             </div>
             <div class="col-50">
-                <h3>{{speaker.speaker_name}}</h3>
-                <h4>{{speaker.english_name}}
+                <h3>{{speaker.speaker_name}}</br>
+                {{speaker.speaker_englishname}}</h3>
                 {{#if speaker.average_1}}
                 <div class="my-rating-read" data-rating="{{speaker.average_1}}"></div>
                 {{else}}
@@ -286,7 +298,10 @@
                 {{/if}}
                 {{#if speaker.speaker_company}}
                 <div>
-                    Working at <span class="italic">{{speaker.speaker_company}}</span>
+                    <span>{{speaker.speaker_company}}</span>
+                    </div>
+                <div>
+                    {{speaker.speaker_title}}
                     </div>
                 {{/if}}
 
@@ -314,7 +329,7 @@
             -->
         </div>
     </div>
-    <div class="content-block-title">Average reviews <b>over <b>{{speaker.number_reviews}} ratings</b></div>
+    <div class="content-block-title">Average reviews over <b>{{speaker.number_reviews}} ratings</b></div>
     <div class="list-block">
         <ul>
             <li>
@@ -395,8 +410,9 @@
         </ul>
     </div>  
     {{#if speaker.speaker_description}}
+    <div class="content-block-title">Description {{#if speaker.source}}from {{speaker.source}}{{/if}}</div>
     <div class="content-block">
-        <div class="content-block-title">Description {{#if speaker.source}}from {{speaker.source}}{{/if}}</div>
+        
         <div class="content-block-inner more">
             {{speaker.speaker_description}}
         </div>
@@ -405,10 +421,9 @@
     <!-- VIDEOS -->
     {{#if speaker.video}}
     <div class="content-block-inner">
-        <iframe width="100%" height="315" src="http://{{speaker.video}}" frameborder="0" allowfullscreen></iframe>
-        <p>Lorem ipsum dolor sit amet...</p>
-        <div class="col-50"><a href="#" class="button pb-standalone-video">See more videos</a>
-        </div>
+        <div class="col-50">
+        <iframe width="100%" height="300" src="https://www.youtube.com/embed/1O-oaqVz3yI" frameborder="0" allowfullscreen></iframe>
+        </a>
     </div>
     {{/if}}
 
@@ -448,6 +463,7 @@
 
                                 {{/js_compare}} </span>
                             </div>
+
                     </span>
             </li>
             {{/each}}
@@ -465,7 +481,8 @@
     <div class="content-block">
 
         <a href="#" class="button button-fill button-big color-yellow">Please rate <span id="speaker-name"></span></a>
-        <form class="list-block" id="leave-a-review">
+        <form id="leave-a-review">
+            <div class="list-block">
             <ul>
                 <li>
                     <div class="item-content">
@@ -527,30 +544,29 @@
                         </div>
                     </div>
                 </li>
-                <div id="leave-a-comment">
-                    <h3>Thank you for your review, please leave us a now a comment</h3>
-                    <li>
+            </div>
+                <div id="leave-a-comment" class="list-block">
+                    <h3><i class="fa fa-comments-o"></i> Quote</h3>
+                    
                         <div class="item-content">
-                            <div class="item-media"><i class="fa fa-comments-o"></i></div>
                             <div class="item-inner">
-                                <div class="item-title label">Quote</div>
+                                
                                 <div class="item-input">
-                                    <input type="text" name="quote" id="quote" placeholder="Enter a quote">
+                                    <textarea  name="quote" id="quote" placeholder="Optional"></textarea>
                                 </div>
                             </div>
                         </div>
-                    </li>
-                    <li>
+                    
+                    <h3><i class="fa fa-pencil"></i> Comment</h3>
                         <div class="item-content">
-                            <div class="item-media"><i class="fa fa-pencil"></i></div>
                             <div class="item-inner">
-                                <div class="item-title label">Comment</div>
+                                
                                 <div class="item-input">
-                                    <textarea name="comment" id="comment" placeholder="Leave a comment"></textarea>
+                                    <textarea name="comment" id="comment" placeholder="Optional"></textarea>
                                 </div>
                             </div>
                         </div>
-                    </li>
+                    
 
                 </div>
 
@@ -562,7 +578,7 @@
             <div class="col-50"><a href="#" class="button button-fill button-big color-green first-click">Done</a></div>
         </div>
         <div class="row" id="second-click">
-            <div class="col-50"><a href="#" class="button button-fill button-big color-red  close-popup">No comment and quote</a></div>
+            <div class="col-50"><a href="#" class="button button-fill button-big color-red  close-popup">Cancel</a></div>
             <div class="col-50"><a href="#" class="button button-fill button-big color-green  close-popup notification-default form-to-json">Done</a></div>
         </div>
 
@@ -829,7 +845,7 @@
                             </div>
                         <div class="item-inner">
                             <div class="item-title-row">
-                                <div class="item-title">NAME</div>
+                                <div class="item-title">About {{</div>
                                 <div class="item-after"></div>
                             </div>
                             <div class="item-subtitle"><time class="timeago" datetime="{{created_at}}">Impossible to load the date</time></div>

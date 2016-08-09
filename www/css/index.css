@@ -261,3 +261,8 @@ element.style {
 .list-block .item-title {
     color : black;
 }
+
+h3{
+    margin-top:0em;
+    margin-bottom: 0em;
+}

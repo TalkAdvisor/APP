@@ -64,9 +64,10 @@ var page = $$('#tpl-welcome').html();
                     textProperty: 'name', //object's "text" property name
                     limit: 20, //limit to 20 results
                     //dropdownPlaceholderText: 'Try to look for a speaker',
-                    expandInput: true, // expand input
+                    expandInput: true, // expand input,
                     source: function (autocomplete, query, render) {
                         var results = [];
+                        var resultsid= [];
                         if (query.length === 0) {
                             render(results);
                             return;
@@ -95,7 +96,9 @@ var page = $$('#tpl-welcome').html();
                                 for (var i = 0; i < data.speakers.length; i++) {
                                 if (data.speakers[i].speaker_name.toLowerCase().indexOf(query.toLowerCase()) >= 0){
                                         results.push(data.speakers[i].speaker_name);
+                                        resultsid.push(data.speakers[i].id);
                                         sessionStorage['idSpeaker']=data.speakers[i].id;
+
 
                                         }
 
@@ -104,6 +107,7 @@ var page = $$('#tpl-welcome').html();
                                 autocomplete.hidePreloader();
                                 // Render items by passing array with result items
                                 render(results);
+                                sessionStorage['idSpeaker']=resultsid;
                             },
                             error : function(data){
                                 console.log('error');
@@ -115,10 +119,29 @@ var page = $$('#tpl-welcome').html();
                     },
                     onChange : function(autocomplete, value){
                         get_specific_speaker();
-
+                        
                     }
 
                 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -189,10 +212,14 @@ myApp.alert('La requete n a pas abouti', function(){
 
                         $.ajax(settings3).done(function(data){
                           myApp.hideIndicator();
-                        console.log(data);
+                        var test = data.reviews[1].review.comment;
                         //console.log(data.reviews[1].review);
                         //console.log(data.reviews[2].review);
-                        page3 = compiledTemplate3(data);
+                        var page3 = compiledTemplate3(data);
+                        console.log(test);
+                        test = test.replace(/\\r\\n/g, "<br />");
+                        console.log(test);
+                        
 
                         $('#container').append(page3);
                         
@@ -287,6 +314,9 @@ myApp.alert('La requete n a pas abouti', function(){
 
 
 
+
+
+
             });
                         
 
@@ -364,10 +394,15 @@ myApp.alert('La requete n a pas abouti', function(){
         page = compiledTemplate(data);
         //console.log(data.speakers[0].speaker_photo);
             document.getElementById("container").innerHTML = page;
+            $(".my-rating-read").starRating({
+                                totalStars: 5,
+                                starSize: 20,
+                                readOnly : true
+                              });
             myApp.hideIndicator();
                     var mySearchbar = myApp.searchbar('.searchbar', {
                         searchList: '.list-block-search',
-                        searchIn: '.item-title'
+                        searchIn: '.item-inner'
                     });
 
 				   });
@@ -1142,7 +1177,6 @@ function backKeyDown() {
     get_welcome();
     //$.mobile.changePage("#homepage", "slideup");
 }
-
 
 
 

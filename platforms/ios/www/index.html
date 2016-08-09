@@ -169,23 +169,35 @@
     <div class="list-block media-list">
         <ul>
             {{#each reviews}}
-            <a href="#" onclick="sessionStorage['idSpeaker']='{{review.speaker.id}}'; get_specific_speaker()">
+            
                 <li>
 
                     <span class="item-content">
-                        <div class="item-media"><img src="img/hollande.jpg" width="60" class="circular"/></div>
+                    
+                        <div class="item-media">
+                        <a href="#" onclick="sessionStorage['idSpecificUser']='{{review.user.id}}'; get_specific_user()">
+                        {{#if review.user.profile_picture}} <img src="https://s3-ap-northeast-1.amazonaws.com/talk-advisor/users/{{review.user.profile_picture}}" width="60" class="circular"/>
+                            {{else}}
+                            <img src="img/hollande.jpg" width="60" class="circular"/>
+                            {{/if}}
+                        </a>
+                        </div>
+                        
                         <div class="item-inner">
+                        <a href="#" onclick="sessionStorage['idSpeaker']='{{review.speaker.id}}'; get_specific_speaker()">
                             <div class="item-title-row">
                                 <div class="item-title">About {{review.speaker.speaker_name}}</div>
                                 <div class="item-after">{{#if review.user.name}}by {{review.user.name}} {{else}}Unknown user{{/if}}</div>
                             </div>
                             <div class="item-subtitle"><time class="timeago" datetime="{{review.created_at}}">Impossible to load the date</time></div>
-                            <div class="item-text"><span class="my-rating-read" data-rating="{{review_rating[0].pivot.score_id}}"></span>
+                            <div class="item-text 3-last-reviews"><span class="my-rating-read" data-rating="{{review_rating[0].pivot.score_id}}"></span>
                                 <span class="more">{{#js_compare "this.review.comment === '\"\"'"}}No comment{{else}}{{review.comment}}{{/js_compare}} </span>
                             </div>
+                        </a>
+                        </div>
                     </span>
                 </li>
-            </a>
+            
             {{/each}}
         </ul>
     </div>
@@ -417,13 +429,17 @@
             <li>
 
                     <span class="item-content">
-                        <div class="item-media">{{#if review.user.profile_picture}} <img src="https://s3-ap-northeast-1.amazonaws.com/talk-advisor/users/{{review.user.profile_picture}}" width="60" class="circular"/>
+                        <div class="item-media">
+                        <a href="#" onclick="sessionStorage['idSpecificUser']='{{review.user.id}}'; get_specific_user()">
+                        {{#if review.user.profile_picture}} <img src="https://s3-ap-northeast-1.amazonaws.com/talk-advisor/users/{{review.user.profile_picture}}" width="60" class="circular"/>
                             {{else}}
                             <img src="img/hollande.jpg" width="60" class="circular"/>
-                            {{/if}}</div>
+                            {{/if}}
+                            </a>
+                            </div>
                         <div class="item-inner">
                             <div class="item-title-row">
-                                <div class="item-title">{{#if review.user.name}}by {{review.user.name}} {{else}}Unknown user{{/if}}</div>
+                                <div class="item-title">{{#if review.user.name}}{{review.user.name}} {{else}}Unknown user{{/if}}</div>
                                 <div class="item-after"></div>
                             </div>
                             <div class="item-subtitle"><time class="timeago" datetime="{{review.created_at}}">Impossible to load the date</time></div>
@@ -762,11 +778,11 @@
     <div class="content-block-title">My profile</div>
     <div class="card demo-card-header-pic">
   <div style="background-image:url({{#if user.profile_picture}}
-                https://s3-ap-northeast-1.amazonaws.com/talk-advisor/users/Afra.jpg{{else}}img/hollande.jpg{{/if}})" valign="bottom" class="card-header color-white no-border italic">{{user.name}}</div>
+                https://s3-ap-northeast-1.amazonaws.com/talk-advisor/users/{{user.profile_picture}}{{else}}img/hollande.jpg{{/if}})" valign="bottom" class="card-header color-white no-border italic">{{user.name}}</div>
   <div class="card-content">
     <div class="card-content-inner">
       <p class="color-gray">Account created on {{user.created_at}}</p>
-      <p>email ={{user.email}}</p>
+      <p>Email : {{user.email}}</p>
     </div>
   </div>
   <div class="card-footer">
@@ -774,6 +790,64 @@
     <a href="#" class="link">Update my profile</a>
   </div>
 </div>
+</script>
+
+<script type="text/template7" id="tpl-specific-profile">
+
+    <div class="content-block-title">{{user.name}}&rsquo;s profile</div>
+    <div class="card demo-card-header-pic">
+  <div style="background-image:url({{#if user.profile_picture}}
+                https://s3-ap-northeast-1.amazonaws.com/talk-advisor/users/{{user.profile_picture}}{{else}}img/hollande.jpg{{/if}})" valign="bottom" class="card-header color-white no-border italic">{{user.name}}</div>
+  <div class="card-content">
+    <div class="card-content-inner">
+      <p class="color-gray">Account created on {{user.created_at}}</p>
+    </div>
+  </div>
+  <div class="card-footer">
+    <a href="#" class="link"></a>
+    <a href="#" class="link">See the statistics</a>
+  </div>
+</div>
+
+<div class="content-block-title">{{user.name}}&rsquo;s last reviews</div>
+<div class="list-block media-list">
+
+
+
+        <ul>
+            {{#each reviews}}
+
+            <li>
+
+                    <span class="item-content">
+                        <div class="item-media">
+                        <a href="#" onclick="sessionStorage['idSpecificUser']='1'; get_specific_user()">
+                        
+                            <img src="img/hollande.jpg" width="60" class="circular"/>
+                            
+                            </a>
+                            </div>
+                        <div class="item-inner">
+                            <div class="item-title-row">
+                                <div class="item-title">NAME</div>
+                                <div class="item-after"></div>
+                            </div>
+                            <div class="item-subtitle"><time class="timeago" datetime="{{created_at}}">Impossible to load the date</time></div>
+                            <div class="item-text">
+                                <span class="more">{{#js_compare "this.comment === '\"\"'"}}No comment{{else}}{{comment}}
+
+                                {{/js_compare}} </span>
+                            </div>
+                    </span>
+            </li>
+            {{/each}}
+
+
+
+        </ul>
+
+
+    </div>
 </script>
 
 
