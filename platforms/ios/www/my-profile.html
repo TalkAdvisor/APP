@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Your app title -->
+    <title>TalkAdvisor</title>
+
+<link rel="stylesheet" type="text/css" href="css/star-rating-svg.css">
+</head>
+<body>
+<div id="x">I\nam\nhere</div>
+<script>
+var messagetoSend = document.getElementById('x').innerHTML;
+messagetoSend=messagetoSend+messagetoSend;
+alert(messagetoSend);
+messagetoSend=messagetoSend.replace(/\n/g,' ');
+
+alert(messagetoSend);
+var r = "I\nam\nhere";
+console.log(r);
+console.log(messagetoSend);
+var s = r.replace("\\n",'</br>');
+console.log(s);
+</script>
+</body>
+</html>

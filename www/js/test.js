@@ -29,6 +29,9 @@ $('#leave-a-comment').hide();
 get_welcome();
 function get_welcome(){
 myApp.showIndicator();
+setTimeout(function () {
+        myApp.hideIndicator();
+    }, 5000);
 var settings = {
           "url": "http://52.69.148.135/ws/auth/login",
           "type": "Post",
@@ -52,6 +55,8 @@ myApp.alert('La requete n a pas abouti', function(){
             //console.log('ici');
             sessionStorage['token']="Bearer {"+data.token+"}";
             //console.log(sessionStorage['token']);
+
+var feu=false;
 
 var page = $$('#tpl-welcome').html();
             document.getElementById("container").innerHTML = page;
@@ -98,6 +103,12 @@ var page = $$('#tpl-welcome').html();
                                         results.push(data.speakers[i].speaker_name);
                                         resultsid.push(data.speakers[i].id);
                                         sessionStorage['idSpeaker']=data.speakers[i].id;
+                                        console.log(data.speakers[i].speaker_name);
+                                        console.log("dehors");
+                                        if (feu==true){
+                                          get_specific_speaker();
+                                          console.log("dedans");
+                                        }
 
 
                                         }
@@ -107,7 +118,10 @@ var page = $$('#tpl-welcome').html();
                                 autocomplete.hidePreloader();
                                 // Render items by passing array with result items
                                 render(results);
+                                console.log('RESULTS = '+results);
                                 sessionStorage['idSpeaker']=resultsid;
+                                console.log('ici');
+                                console.log(resultsid);
                             },
                             error : function(data){
                                 console.log('error');
@@ -118,7 +132,13 @@ var page = $$('#tpl-welcome').html();
 
                     },
                     onChange : function(autocomplete, value){
-                        get_specific_speaker();
+                        console.log('feu : '+feu);
+                        feu = true;
+                        myApp.showIndicator();
+                        console.log('feu : '+feu);
+
+                        console.log(value);
+                        console.log(autocomplete);
                         
                     }
 
@@ -366,6 +386,9 @@ function see_more_reviews(){
 function get_search_bar(){
 
 myApp.showIndicator();
+setTimeout(function () {
+        myApp.hideIndicator();
+    }, 5000);
 var template = $$('#tpl-search-bar').html();
 		var compiledTemplate = Template7.compile(template);
 		var settings = {
@@ -421,6 +444,9 @@ myApp.alert('YOLO');
 // FONCTION PRINCIPALE
 function get_specific_speaker() {
 myApp.showIndicator();
+setTimeout(function () {
+        myApp.hideIndicator();
+    }, 5000);
 console.log("sessionStorage['idUser'] = "+sessionStorage['idUser']);
 
 
@@ -921,6 +947,9 @@ function get_my_profile(){
   else{
     console.log('rara');
     myApp.showIndicator();
+    setTimeout(function () {
+        myApp.hideIndicator();
+    }, 5000);
   var template = $('#tpl-my-profile').html();
   var compiledTemplate = Template7.compile(template);
 
@@ -1068,11 +1097,15 @@ myApp.alert('La requete n a pas abouti', function(){
 }
 
 function get_specific_user(){
+  console.log('yolo');
   myApp.showIndicator();
+  setTimeout(function () {
+        myApp.hideIndicator();
+    }, 5000);
   console.log("sessionStorage['idSpecificUser'] = "+sessionStorage['idSpecificUser']);
 var template = $('#tpl-specific-profile').html();
   var compiledTemplate = Template7.compile(template);
-
+console.log('ici');
 //PREPARATION DE LA REQUETE
 
 var settings = {
@@ -1105,9 +1138,14 @@ myApp.alert('La requete n a pas abouti', function(){
 
 
 $.ajax(settings).done(function(data){
+  console.log('ici');
   page = compiledTemplate(data);
   console.log(data.reviews[0]);
   $('#container').html(page);
+  var mySwiper3 = myApp.swiper('.swiper-3', {
+    pagination:'.swiper-3 .swiper-pagination',
+    spaceBetween: 50
+  });
   $("time.timeago").timeago();
         // READ MORE AND READ LESS DESCRIPTION
 

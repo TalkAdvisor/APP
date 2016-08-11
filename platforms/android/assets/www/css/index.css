@@ -261,3 +261,18 @@ element.style {
 .list-block .item-title {
     color : black;
 }
+
+h3{
+    margin-top:0em;
+    margin-bottom: 0em;
+}
+
+.navbar-inner{
+    background-color: #589442;
+}
+
+.swiper-slide.user span {
+  text-align:left;
+  margin:0px;
+  font-size:15px;
+}

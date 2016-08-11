@@ -7,19 +7,19 @@
 <link rel="stylesheet" type="text/css" href="css/star-rating-svg.css">
 </head>
 <body>
-<div id="x">Line 1 \n \n
-Line 2
-
-
-
-
-Line 3
-</div>
+<div id="x">I\nam\nhere</div>
 <script>
 var messagetoSend = document.getElementById('x').innerHTML;
-messagetoSend=messagetoSend.replace(/\n/g, "<br />");
+messagetoSend=messagetoSend+messagetoSend;
+alert(messagetoSend);
+messagetoSend=messagetoSend.replace(/\n/g,' ');
 
 alert(messagetoSend);
+var r = "I\nam\nhere";
+console.log(r);
+console.log(messagetoSend);
+var s = r.replace("\\n",'</br>');
+console.log(s);
 </script>
 </body>
 </html>
